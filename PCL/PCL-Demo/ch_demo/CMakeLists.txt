@@ -20,3 +20,6 @@ add_definitions(${PCL_DEFINITIONS})
 
 add_executable(PCLDemo src/main.cpp)
 target_link_libraries(PCLDemo ${PCL_LIBRARIES})
+
+add_executable(CloudDemo src/cloud_viewer.cpp)
+target_link_libraries(CloudDemo ${PCL_LIBRARIES})
