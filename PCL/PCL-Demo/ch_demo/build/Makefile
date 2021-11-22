@@ -111,6 +111,45 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named load_pcd
+
+# Build rule for target.
+load_pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 load_pcd
+.PHONY : load_pcd
+
+# fast build rule for target.
+load_pcd/fast:
+	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
+.PHONY : load_pcd/fast
+
+#=============================================================================
+# Target rules for targets named pcl_transform
+
+# Build rule for target.
+pcl_transform: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_transform
+.PHONY : pcl_transform
+
+# fast build rule for target.
+pcl_transform/fast:
+	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
+.PHONY : pcl_transform/fast
+
+#=============================================================================
+# Target rules for targets named pcl_visualizer
+
+# Build rule for target.
+pcl_visualizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_visualizer
+.PHONY : pcl_visualizer
+
+# fast build rule for target.
+pcl_visualizer/fast:
+	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/build
+.PHONY : pcl_visualizer/fast
+
+#=============================================================================
 # Target rules for targets named CloudDemo
 
 # Build rule for target.
@@ -163,6 +202,33 @@ src/cloud_viewer.cpp.s:
 	$(MAKE) -f CMakeFiles/CloudDemo.dir/build.make CMakeFiles/CloudDemo.dir/src/cloud_viewer.cpp.s
 .PHONY : src/cloud_viewer.cpp.s
 
+src/load_pcd.o: src/load_pcd.cpp.o
+
+.PHONY : src/load_pcd.o
+
+# target to build an object file
+src/load_pcd.cpp.o:
+	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/src/load_pcd.cpp.o
+.PHONY : src/load_pcd.cpp.o
+
+src/load_pcd.i: src/load_pcd.cpp.i
+
+.PHONY : src/load_pcd.i
+
+# target to preprocess a source file
+src/load_pcd.cpp.i:
+	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/src/load_pcd.cpp.i
+.PHONY : src/load_pcd.cpp.i
+
+src/load_pcd.s: src/load_pcd.cpp.s
+
+.PHONY : src/load_pcd.s
+
+# target to generate assembly for a file
+src/load_pcd.cpp.s:
+	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/src/load_pcd.cpp.s
+.PHONY : src/load_pcd.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -190,6 +256,60 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pcl_transform.o: src/pcl_transform.cpp.o
+
+.PHONY : src/pcl_transform.o
+
+# target to build an object file
+src/pcl_transform.cpp.o:
+	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/src/pcl_transform.cpp.o
+.PHONY : src/pcl_transform.cpp.o
+
+src/pcl_transform.i: src/pcl_transform.cpp.i
+
+.PHONY : src/pcl_transform.i
+
+# target to preprocess a source file
+src/pcl_transform.cpp.i:
+	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/src/pcl_transform.cpp.i
+.PHONY : src/pcl_transform.cpp.i
+
+src/pcl_transform.s: src/pcl_transform.cpp.s
+
+.PHONY : src/pcl_transform.s
+
+# target to generate assembly for a file
+src/pcl_transform.cpp.s:
+	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/src/pcl_transform.cpp.s
+.PHONY : src/pcl_transform.cpp.s
+
+src/pcl_visualizer.o: src/pcl_visualizer.cpp.o
+
+.PHONY : src/pcl_visualizer.o
+
+# target to build an object file
+src/pcl_visualizer.cpp.o:
+	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/src/pcl_visualizer.cpp.o
+.PHONY : src/pcl_visualizer.cpp.o
+
+src/pcl_visualizer.i: src/pcl_visualizer.cpp.i
+
+.PHONY : src/pcl_visualizer.i
+
+# target to preprocess a source file
+src/pcl_visualizer.cpp.i:
+	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/src/pcl_visualizer.cpp.i
+.PHONY : src/pcl_visualizer.cpp.i
+
+src/pcl_visualizer.s: src/pcl_visualizer.cpp.s
+
+.PHONY : src/pcl_visualizer.s
+
+# target to generate assembly for a file
+src/pcl_visualizer.cpp.s:
+	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/src/pcl_visualizer.cpp.s
+.PHONY : src/pcl_visualizer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -198,14 +318,26 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... load_pcd"
+	@echo "... pcl_transform"
+	@echo "... pcl_visualizer"
 	@echo "... CloudDemo"
 	@echo "... PCLDemo"
 	@echo "... src/cloud_viewer.o"
 	@echo "... src/cloud_viewer.i"
 	@echo "... src/cloud_viewer.s"
+	@echo "... src/load_pcd.o"
+	@echo "... src/load_pcd.i"
+	@echo "... src/load_pcd.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/pcl_transform.o"
+	@echo "... src/pcl_transform.i"
+	@echo "... src/pcl_transform.s"
+	@echo "... src/pcl_visualizer.o"
+	@echo "... src/pcl_visualizer.i"
+	@echo "... src/pcl_visualizer.s"
 .PHONY : help
 
 

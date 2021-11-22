@@ -23,3 +23,12 @@ target_link_libraries(PCLDemo ${PCL_LIBRARIES})
 
 add_executable(CloudDemo src/cloud_viewer.cpp)
 target_link_libraries(CloudDemo ${PCL_LIBRARIES})
+
+add_executable(pcl_visualizer src/pcl_visualizer.cpp)
+target_link_libraries(pcl_visualizer ${PCL_LIBRARIES})
+
+add_executable(pcl_transform src/pcl_transform.cpp)
+target_link_libraries(pcl_transform ${PCL_LIBRARIES})
+
+add_executable(load_pcd src/load_pcd.cpp)
+target_link_libraries(load_pcd ${PCL_LIBRARIES})
