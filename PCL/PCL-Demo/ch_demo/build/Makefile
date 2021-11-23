@@ -124,6 +124,19 @@ load_pcd/fast:
 .PHONY : load_pcd/fast
 
 #=============================================================================
+# Target rules for targets named save_pcd
+
+# Build rule for target.
+save_pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 save_pcd
+.PHONY : save_pcd
+
+# fast build rule for target.
+save_pcd/fast:
+	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/build
+.PHONY : save_pcd/fast
+
+#=============================================================================
 # Target rules for targets named pcl_transform
 
 # Build rule for target.
@@ -310,6 +323,33 @@ src/pcl_visualizer.cpp.s:
 	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/src/pcl_visualizer.cpp.s
 .PHONY : src/pcl_visualizer.cpp.s
 
+src/save_pcd.o: src/save_pcd.cpp.o
+
+.PHONY : src/save_pcd.o
+
+# target to build an object file
+src/save_pcd.cpp.o:
+	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/src/save_pcd.cpp.o
+.PHONY : src/save_pcd.cpp.o
+
+src/save_pcd.i: src/save_pcd.cpp.i
+
+.PHONY : src/save_pcd.i
+
+# target to preprocess a source file
+src/save_pcd.cpp.i:
+	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/src/save_pcd.cpp.i
+.PHONY : src/save_pcd.cpp.i
+
+src/save_pcd.s: src/save_pcd.cpp.s
+
+.PHONY : src/save_pcd.s
+
+# target to generate assembly for a file
+src/save_pcd.cpp.s:
+	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/src/save_pcd.cpp.s
+.PHONY : src/save_pcd.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -319,6 +359,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... load_pcd"
+	@echo "... save_pcd"
 	@echo "... pcl_transform"
 	@echo "... pcl_visualizer"
 	@echo "... CloudDemo"
@@ -338,6 +379,9 @@ help:
 	@echo "... src/pcl_visualizer.o"
 	@echo "... src/pcl_visualizer.i"
 	@echo "... src/pcl_visualizer.s"
+	@echo "... src/save_pcd.o"
+	@echo "... src/save_pcd.i"
+	@echo "... src/save_pcd.s"
 .PHONY : help
 
 

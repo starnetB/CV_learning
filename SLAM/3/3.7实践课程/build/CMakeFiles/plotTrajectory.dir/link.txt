@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/plotTrajectory.dir/src/plotTrajectory.cpp.o  -o bin/plotTrajectory  -lpangolin -lGL -lGLEW 

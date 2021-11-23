@@ -32,3 +32,6 @@ target_link_libraries(pcl_transform ${PCL_LIBRARIES})
 
 add_executable(load_pcd src/load_pcd.cpp)
 target_link_libraries(load_pcd ${PCL_LIBRARIES})
+
+add_executable(save_pcd src/save_pcd.cpp)
+target_link_libraries(save_pcd ${PCL_LIBRARIES})
