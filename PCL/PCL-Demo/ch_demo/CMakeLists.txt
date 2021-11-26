@@ -35,3 +35,9 @@ target_link_libraries(load_pcd ${PCL_LIBRARIES})
 
 add_executable(save_pcd src/save_pcd.cpp)
 target_link_libraries(save_pcd ${PCL_LIBRARIES})
+
+add_executable(kd_tree src/kd_tree.cpp)
+target_link_libraries(kd_tree ${PCL_LIBRARIES})
+
+add_executable(octree src/octree.cpp)
+target_link_libraries(octree ${PCL_LIBRARIES})

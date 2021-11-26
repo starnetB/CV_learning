@@ -245,17 +245,56 @@ OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenGL.so
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 
-//The directory containing a CMake configuration file for Pangolin,REQUIRED.
-Pangolin,REQUIRED_DIR:PATH=Pangolin,REQUIRED_DIR-NOTFOUND
-
 //Value Computed by CMake
 eigenMatrix_BINARY_DIR:STATIC=/home/franka/home/CV_learning/SLAM/3/3.7实践课程/build
 
 //Value Computed by CMake
 eigenMatrix_SOURCE_DIR:STATIC=/home/franka/home/CV_learning/SLAM/3/3.7实践课程
 
-//The directory containing a CMake configuration file for pangolin,REQUIRED.
-pangolin,REQUIRED_DIR:PATH=pangolin,REQUIRED_DIR-NOTFOUND
+//Path to a library.
+pango_core_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_core.so
+
+//Path to a library.
+pango_display_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_display.so
+
+//Path to a library.
+pango_geometry_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_geometry.so
+
+//Path to a library.
+pango_glgeometry_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_glgeometry.so
+
+//Path to a library.
+pango_image_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_image.so
+
+//Path to a library.
+pango_opengl_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_opengl.so
+
+//Path to a library.
+pango_packetstream_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_packetstream.so
+
+//Path to a library.
+pango_plot_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_plot.so
+
+//Path to a library.
+pango_python_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_python.so
+
+//Path to a library.
+pango_scene_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_scene.so
+
+//Path to a library.
+pango_tools_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_tools.so
+
+//Path to a library.
+pango_vars_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_vars.so
+
+//Path to a library.
+pango_video_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_video.so
+
+//Path to a library.
+pango_windowing_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libpango_windowing.so
+
+//Path to a library.
+tinyobj_lib:FILEPATH=/home/franka/home/CV_learning/Pangolin/devel/lib/libtinyobj.so
 
 
 ########################

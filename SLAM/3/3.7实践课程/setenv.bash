@@ -1,0 +1,1 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/franka/home/CV_learning/Pangolin/devel/lib

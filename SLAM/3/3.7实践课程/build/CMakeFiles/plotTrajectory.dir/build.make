@@ -79,6 +79,21 @@ plotTrajectory_EXTERNAL_OBJECTS =
 
 bin/plotTrajectory: CMakeFiles/plotTrajectory.dir/src/plotTrajectory.cpp.o
 bin/plotTrajectory: CMakeFiles/plotTrajectory.dir/build.make
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_core.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_display.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_geometry.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_glgeometry.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_image.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_opengl.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_packetstream.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_plot.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_python.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_scene.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_tools.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_vars.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_video.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libpango_windowing.so
+bin/plotTrajectory: /home/franka/home/CV_learning/Pangolin/devel/lib/libtinyobj.so
 bin/plotTrajectory: CMakeFiles/plotTrajectory.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka/home/CV_learning/SLAM/3/3.7实践课程/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/plotTrajectory"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/plotTrajectory.dir/link.txt --verbose=$(VERBOSE)

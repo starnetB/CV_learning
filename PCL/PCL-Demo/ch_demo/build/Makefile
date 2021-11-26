@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named kd_tree
+
+# Build rule for target.
+kd_tree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kd_tree
+.PHONY : kd_tree
+
+# fast build rule for target.
+kd_tree/fast:
+	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/build
+.PHONY : kd_tree/fast
+
+#=============================================================================
 # Target rules for targets named load_pcd
 
 # Build rule for target.
@@ -161,6 +174,19 @@ pcl_visualizer: cmake_check_build_system
 pcl_visualizer/fast:
 	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/build
 .PHONY : pcl_visualizer/fast
+
+#=============================================================================
+# Target rules for targets named octree
+
+# Build rule for target.
+octree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 octree
+.PHONY : octree
+
+# fast build rule for target.
+octree/fast:
+	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/build
+.PHONY : octree/fast
 
 #=============================================================================
 # Target rules for targets named CloudDemo
@@ -215,6 +241,33 @@ src/cloud_viewer.cpp.s:
 	$(MAKE) -f CMakeFiles/CloudDemo.dir/build.make CMakeFiles/CloudDemo.dir/src/cloud_viewer.cpp.s
 .PHONY : src/cloud_viewer.cpp.s
 
+src/kd_tree.o: src/kd_tree.cpp.o
+
+.PHONY : src/kd_tree.o
+
+# target to build an object file
+src/kd_tree.cpp.o:
+	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o
+.PHONY : src/kd_tree.cpp.o
+
+src/kd_tree.i: src/kd_tree.cpp.i
+
+.PHONY : src/kd_tree.i
+
+# target to preprocess a source file
+src/kd_tree.cpp.i:
+	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/src/kd_tree.cpp.i
+.PHONY : src/kd_tree.cpp.i
+
+src/kd_tree.s: src/kd_tree.cpp.s
+
+.PHONY : src/kd_tree.s
+
+# target to generate assembly for a file
+src/kd_tree.cpp.s:
+	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/src/kd_tree.cpp.s
+.PHONY : src/kd_tree.cpp.s
+
 src/load_pcd.o: src/load_pcd.cpp.o
 
 .PHONY : src/load_pcd.o
@@ -268,6 +321,33 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/octree.o: src/octree.cpp.o
+
+.PHONY : src/octree.o
+
+# target to build an object file
+src/octree.cpp.o:
+	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/src/octree.cpp.o
+.PHONY : src/octree.cpp.o
+
+src/octree.i: src/octree.cpp.i
+
+.PHONY : src/octree.i
+
+# target to preprocess a source file
+src/octree.cpp.i:
+	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/src/octree.cpp.i
+.PHONY : src/octree.cpp.i
+
+src/octree.s: src/octree.cpp.s
+
+.PHONY : src/octree.s
+
+# target to generate assembly for a file
+src/octree.cpp.s:
+	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/src/octree.cpp.s
+.PHONY : src/octree.cpp.s
 
 src/pcl_transform.o: src/pcl_transform.cpp.o
 
@@ -358,21 +438,29 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... kd_tree"
 	@echo "... load_pcd"
 	@echo "... save_pcd"
 	@echo "... pcl_transform"
 	@echo "... pcl_visualizer"
+	@echo "... octree"
 	@echo "... CloudDemo"
 	@echo "... PCLDemo"
 	@echo "... src/cloud_viewer.o"
 	@echo "... src/cloud_viewer.i"
 	@echo "... src/cloud_viewer.s"
+	@echo "... src/kd_tree.o"
+	@echo "... src/kd_tree.i"
+	@echo "... src/kd_tree.s"
 	@echo "... src/load_pcd.o"
 	@echo "... src/load_pcd.i"
 	@echo "... src/load_pcd.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/octree.o"
+	@echo "... src/octree.i"
+	@echo "... src/octree.s"
 	@echo "... src/pcl_transform.o"
 	@echo "... src/pcl_transform.i"
 	@echo "... src/pcl_transform.s"

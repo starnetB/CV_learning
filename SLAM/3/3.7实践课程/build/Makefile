@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named visualizeGeometry
+
+# Build rule for target.
+visualizeGeometry: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualizeGeometry
+.PHONY : visualizeGeometry
+
+# fast build rule for target.
+visualizeGeometry/fast:
+	$(MAKE) -f CMakeFiles/visualizeGeometry.dir/build.make CMakeFiles/visualizeGeometry.dir/build
+.PHONY : visualizeGeometry/fast
+
+#=============================================================================
 # Target rules for targets named plotTrajectory
 
 # Build rule for target.
@@ -150,6 +163,33 @@ src/plotTrajectory.cpp.s:
 	$(MAKE) -f CMakeFiles/plotTrajectory.dir/build.make CMakeFiles/plotTrajectory.dir/src/plotTrajectory.cpp.s
 .PHONY : src/plotTrajectory.cpp.s
 
+src/visualizeGeometry.o: src/visualizeGeometry.cpp.o
+
+.PHONY : src/visualizeGeometry.o
+
+# target to build an object file
+src/visualizeGeometry.cpp.o:
+	$(MAKE) -f CMakeFiles/visualizeGeometry.dir/build.make CMakeFiles/visualizeGeometry.dir/src/visualizeGeometry.cpp.o
+.PHONY : src/visualizeGeometry.cpp.o
+
+src/visualizeGeometry.i: src/visualizeGeometry.cpp.i
+
+.PHONY : src/visualizeGeometry.i
+
+# target to preprocess a source file
+src/visualizeGeometry.cpp.i:
+	$(MAKE) -f CMakeFiles/visualizeGeometry.dir/build.make CMakeFiles/visualizeGeometry.dir/src/visualizeGeometry.cpp.i
+.PHONY : src/visualizeGeometry.cpp.i
+
+src/visualizeGeometry.s: src/visualizeGeometry.cpp.s
+
+.PHONY : src/visualizeGeometry.s
+
+# target to generate assembly for a file
+src/visualizeGeometry.cpp.s:
+	$(MAKE) -f CMakeFiles/visualizeGeometry.dir/build.make CMakeFiles/visualizeGeometry.dir/src/visualizeGeometry.cpp.s
+.PHONY : src/visualizeGeometry.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... visualizeGeometry"
 	@echo "... plotTrajectory"
 	@echo "... src/plotTrajectory.o"
 	@echo "... src/plotTrajectory.i"
 	@echo "... src/plotTrajectory.s"
+	@echo "... src/visualizeGeometry.o"
+	@echo "... src/visualizeGeometry.i"
+	@echo "... src/visualizeGeometry.s"
 .PHONY : help
 
 
