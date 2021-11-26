@@ -150,6 +150,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/kd_tree.dir/DependInfo.cmake"
   "CMakeFiles/load_pcd.dir/DependInfo.cmake"
+  "CMakeFiles/moment_of_inertia.dir/DependInfo.cmake"
   "CMakeFiles/save_pcd.dir/DependInfo.cmake"
   "CMakeFiles/pcl_transform.dir/DependInfo.cmake"
   "CMakeFiles/pcl_visualizer.dir/DependInfo.cmake"

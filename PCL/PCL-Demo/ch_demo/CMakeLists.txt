@@ -41,3 +41,10 @@ target_link_libraries(kd_tree ${PCL_LIBRARIES})
 
 add_executable(octree src/octree.cpp)
 target_link_libraries(octree ${PCL_LIBRARIES})
+
+
+
+# 4.application 点云的使用
+add_executable(moment_of_inertia src/4_application/moment_of_inertia.cpp)
+target_link_libraries(moment_of_inertia ${PCL_LIBRARIES})
+

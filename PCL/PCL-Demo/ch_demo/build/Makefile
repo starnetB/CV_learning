@@ -137,6 +137,19 @@ load_pcd/fast:
 .PHONY : load_pcd/fast
 
 #=============================================================================
+# Target rules for targets named moment_of_inertia
+
+# Build rule for target.
+moment_of_inertia: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 moment_of_inertia
+.PHONY : moment_of_inertia
+
+# fast build rule for target.
+moment_of_inertia/fast:
+	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/build
+.PHONY : moment_of_inertia/fast
+
+#=============================================================================
 # Target rules for targets named save_pcd
 
 # Build rule for target.
@@ -213,6 +226,33 @@ PCLDemo: cmake_check_build_system
 PCLDemo/fast:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/build
 .PHONY : PCLDemo/fast
+
+src/4_application/moment_of_inertia.o: src/4_application/moment_of_inertia.cpp.o
+
+.PHONY : src/4_application/moment_of_inertia.o
+
+# target to build an object file
+src/4_application/moment_of_inertia.cpp.o:
+	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/src/4_application/moment_of_inertia.cpp.o
+.PHONY : src/4_application/moment_of_inertia.cpp.o
+
+src/4_application/moment_of_inertia.i: src/4_application/moment_of_inertia.cpp.i
+
+.PHONY : src/4_application/moment_of_inertia.i
+
+# target to preprocess a source file
+src/4_application/moment_of_inertia.cpp.i:
+	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/src/4_application/moment_of_inertia.cpp.i
+.PHONY : src/4_application/moment_of_inertia.cpp.i
+
+src/4_application/moment_of_inertia.s: src/4_application/moment_of_inertia.cpp.s
+
+.PHONY : src/4_application/moment_of_inertia.s
+
+# target to generate assembly for a file
+src/4_application/moment_of_inertia.cpp.s:
+	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/src/4_application/moment_of_inertia.cpp.s
+.PHONY : src/4_application/moment_of_inertia.cpp.s
 
 src/cloud_viewer.o: src/cloud_viewer.cpp.o
 
@@ -440,12 +480,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... kd_tree"
 	@echo "... load_pcd"
+	@echo "... moment_of_inertia"
 	@echo "... save_pcd"
 	@echo "... pcl_transform"
 	@echo "... pcl_visualizer"
 	@echo "... octree"
 	@echo "... CloudDemo"
 	@echo "... PCLDemo"
+	@echo "... src/4_application/moment_of_inertia.o"
+	@echo "... src/4_application/moment_of_inertia.i"
+	@echo "... src/4_application/moment_of_inertia.s"
 	@echo "... src/cloud_viewer.o"
 	@echo "... src/cloud_viewer.i"
 	@echo "... src/cloud_viewer.s"
