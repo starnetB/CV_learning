@@ -17,14 +17,17 @@ int main(int argc,char** argv)
     {
         return (-1);
     }
+    std::cout<<"dfadfdasfdasfasdfdsaf"<<std::endl;
 
     //创建惯性矩阵估算对象，设置输入点云，并进行计算
     pcl::MomentOfInertiaEstimation <pcl::PointXYZ> feature_extractor;
+    std::cout<<"dfadfdasfdasfasdfdsaf"<<std::endl;
     feature_extractor.setInputCloud(cloud);
     feature_extractor.compute();
 
     std::vector<float> moment_of_inertia;
     std::vector<float> eccentricity;
+    std::cout<<"dfadfdasfdasfasdfdsaf"<<std::endl;
 
     pcl::PointXYZ  min_point_AABB;
     pcl::PointXYZ  max_point_AABB;
@@ -38,6 +41,7 @@ int main(int argc,char** argv)
 
     //获取惯性矩阵
     feature_extractor.getMomentOfInertia(eccentricity);
+    std::cout<<"dfadfdasfdasfasdfdsaf"<<std::endl;
 
     //获取离心率
     feature_extractor.getEccentricity(eccentricity);
@@ -87,6 +91,8 @@ int main(int argc,char** argv)
     viewer->addLine(center,x_axis,1.0f,0.0f,0.0f,"major eigen vector");
     viewer->addLine(center,y_axis,1.0f,0.0f,0.0f,"middle eigen vector");
     viewer->addLine(center,z_axis,0.0f,0.0f,1.0f,"minor eigen vector");
+
+   
 
     while(!viewer->wasStopped())
     {
