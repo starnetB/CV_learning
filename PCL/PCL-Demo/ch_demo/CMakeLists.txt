@@ -48,3 +48,9 @@ target_link_libraries(octree ${PCL_LIBRARIES})
 add_executable(moment_of_inertia src/4_application/moment_of_inertia.cpp)
 target_link_libraries(moment_of_inertia ${PCL_LIBRARIES})
 
+# 2 点云进阶
+add_executable(PassThrough src/2_ad/PassThrough.cpp)
+target_link_libraries(PassThrough ${PCL_LIBRARIES})
+
+add_executable(downsample_voxel_grid src/2_ad/downsample_voxel_grid.cpp)
+target_link_libraries(downsample_voxel_grid ${PCL_LIBRARIES})

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named downsample_voxel_grid
+
+# Build rule for target.
+downsample_voxel_grid: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 downsample_voxel_grid
+.PHONY : downsample_voxel_grid
+
+# fast build rule for target.
+downsample_voxel_grid/fast:
+	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/build
+.PHONY : downsample_voxel_grid/fast
+
+#=============================================================================
 # Target rules for targets named kd_tree
 
 # Build rule for target.
@@ -135,6 +148,19 @@ load_pcd: cmake_check_build_system
 load_pcd/fast:
 	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
 .PHONY : load_pcd/fast
+
+#=============================================================================
+# Target rules for targets named PassThrough
+
+# Build rule for target.
+PassThrough: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PassThrough
+.PHONY : PassThrough
+
+# fast build rule for target.
+PassThrough/fast:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
+.PHONY : PassThrough/fast
 
 #=============================================================================
 # Target rules for targets named moment_of_inertia
@@ -226,6 +252,60 @@ PCLDemo: cmake_check_build_system
 PCLDemo/fast:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/build
 .PHONY : PCLDemo/fast
+
+src/2_ad/PassThrough.o: src/2_ad/PassThrough.cpp.o
+
+.PHONY : src/2_ad/PassThrough.o
+
+# target to build an object file
+src/2_ad/PassThrough.cpp.o:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o
+.PHONY : src/2_ad/PassThrough.cpp.o
+
+src/2_ad/PassThrough.i: src/2_ad/PassThrough.cpp.i
+
+.PHONY : src/2_ad/PassThrough.i
+
+# target to preprocess a source file
+src/2_ad/PassThrough.cpp.i:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.i
+.PHONY : src/2_ad/PassThrough.cpp.i
+
+src/2_ad/PassThrough.s: src/2_ad/PassThrough.cpp.s
+
+.PHONY : src/2_ad/PassThrough.s
+
+# target to generate assembly for a file
+src/2_ad/PassThrough.cpp.s:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.s
+.PHONY : src/2_ad/PassThrough.cpp.s
+
+src/2_ad/downsample_voxel_grid.o: src/2_ad/downsample_voxel_grid.cpp.o
+
+.PHONY : src/2_ad/downsample_voxel_grid.o
+
+# target to build an object file
+src/2_ad/downsample_voxel_grid.cpp.o:
+	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.o
+.PHONY : src/2_ad/downsample_voxel_grid.cpp.o
+
+src/2_ad/downsample_voxel_grid.i: src/2_ad/downsample_voxel_grid.cpp.i
+
+.PHONY : src/2_ad/downsample_voxel_grid.i
+
+# target to preprocess a source file
+src/2_ad/downsample_voxel_grid.cpp.i:
+	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.i
+.PHONY : src/2_ad/downsample_voxel_grid.cpp.i
+
+src/2_ad/downsample_voxel_grid.s: src/2_ad/downsample_voxel_grid.cpp.s
+
+.PHONY : src/2_ad/downsample_voxel_grid.s
+
+# target to generate assembly for a file
+src/2_ad/downsample_voxel_grid.cpp.s:
+	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.s
+.PHONY : src/2_ad/downsample_voxel_grid.cpp.s
 
 src/4_application/moment_of_inertia.o: src/4_application/moment_of_inertia.cpp.o
 
@@ -477,9 +557,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... downsample_voxel_grid"
 	@echo "... edit_cache"
 	@echo "... kd_tree"
 	@echo "... load_pcd"
+	@echo "... PassThrough"
 	@echo "... moment_of_inertia"
 	@echo "... save_pcd"
 	@echo "... pcl_transform"
@@ -487,6 +569,12 @@ help:
 	@echo "... octree"
 	@echo "... CloudDemo"
 	@echo "... PCLDemo"
+	@echo "... src/2_ad/PassThrough.o"
+	@echo "... src/2_ad/PassThrough.i"
+	@echo "... src/2_ad/PassThrough.s"
+	@echo "... src/2_ad/downsample_voxel_grid.o"
+	@echo "... src/2_ad/downsample_voxel_grid.i"
+	@echo "... src/2_ad/downsample_voxel_grid.s"
 	@echo "... src/4_application/moment_of_inertia.o"
 	@echo "... src/4_application/moment_of_inertia.i"
 	@echo "... src/4_application/moment_of_inertia.s"
