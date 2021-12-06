@@ -71,7 +71,8 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "geometry": "cpp"
+        "geometry": "cpp",
+        "core": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
