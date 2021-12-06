@@ -10,5 +10,5 @@ int main(int argc,char **argv)
 
     //创建一个矩阵的点云
     //Generate the data
-    for(float y=-0)
+    //for(float y=-0)
 }
