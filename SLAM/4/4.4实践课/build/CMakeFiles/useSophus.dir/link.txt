@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/useSophus.dir/src/useSophus.cpp.o  -o bin/useSophus  -lGL -lGLEW 
