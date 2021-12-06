@@ -148,6 +148,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+<<<<<<< HEAD
   "CMakeFiles/downsample_voxel_grid.dir/DependInfo.cmake"
   "CMakeFiles/kd_tree.dir/DependInfo.cmake"
   "CMakeFiles/load_pcd.dir/DependInfo.cmake"
@@ -156,7 +157,19 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/save_pcd.dir/DependInfo.cmake"
   "CMakeFiles/pcl_transform.dir/DependInfo.cmake"
   "CMakeFiles/pcl_visualizer.dir/DependInfo.cmake"
+=======
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
   "CMakeFiles/octree.dir/DependInfo.cmake"
+  "CMakeFiles/pcl_visualizer.dir/DependInfo.cmake"
+  "CMakeFiles/pcl_transform.dir/DependInfo.cmake"
   "CMakeFiles/CloudDemo.dir/DependInfo.cmake"
+  "CMakeFiles/save_pcd.dir/DependInfo.cmake"
+  "CMakeFiles/moment_of_inertia.dir/DependInfo.cmake"
+  "CMakeFiles/PassThrough.dir/DependInfo.cmake"
+  "CMakeFiles/load_pcd.dir/DependInfo.cmake"
   "CMakeFiles/PCLDemo.dir/DependInfo.cmake"
+  "CMakeFiles/kd_tree.dir/DependInfo.cmake"
+  "CMakeFiles/downsample_voxel_grid.dir/DependInfo.cmake"
+  "CMakeFiles/statistical_removal.dir/DependInfo.cmake"
+  "CMakeFiles/remove_outlier.dir/DependInfo.cmake"
   )

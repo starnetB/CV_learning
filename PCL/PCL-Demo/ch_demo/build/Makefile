@@ -111,6 +111,7 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for targets named downsample_voxel_grid
 
 # Build rule for target.
@@ -125,81 +126,19 @@ downsample_voxel_grid/fast:
 
 #=============================================================================
 # Target rules for targets named kd_tree
+=======
+# Target rules for targets named octree
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for target.
-kd_tree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kd_tree
-.PHONY : kd_tree
+octree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 octree
+.PHONY : octree
 
 # fast build rule for target.
-kd_tree/fast:
-	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/build
-.PHONY : kd_tree/fast
-
-#=============================================================================
-# Target rules for targets named load_pcd
-
-# Build rule for target.
-load_pcd: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 load_pcd
-.PHONY : load_pcd
-
-# fast build rule for target.
-load_pcd/fast:
-	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
-.PHONY : load_pcd/fast
-
-#=============================================================================
-# Target rules for targets named PassThrough
-
-# Build rule for target.
-PassThrough: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PassThrough
-.PHONY : PassThrough
-
-# fast build rule for target.
-PassThrough/fast:
-	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
-.PHONY : PassThrough/fast
-
-#=============================================================================
-# Target rules for targets named moment_of_inertia
-
-# Build rule for target.
-moment_of_inertia: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 moment_of_inertia
-.PHONY : moment_of_inertia
-
-# fast build rule for target.
-moment_of_inertia/fast:
-	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/build
-.PHONY : moment_of_inertia/fast
-
-#=============================================================================
-# Target rules for targets named save_pcd
-
-# Build rule for target.
-save_pcd: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 save_pcd
-.PHONY : save_pcd
-
-# fast build rule for target.
-save_pcd/fast:
-	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/build
-.PHONY : save_pcd/fast
-
-#=============================================================================
-# Target rules for targets named pcl_transform
-
-# Build rule for target.
-pcl_transform: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_transform
-.PHONY : pcl_transform
-
-# fast build rule for target.
-pcl_transform/fast:
-	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
-.PHONY : pcl_transform/fast
+octree/fast:
+	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/build
+.PHONY : octree/fast
 
 #=============================================================================
 # Target rules for targets named pcl_visualizer
@@ -215,17 +154,34 @@ pcl_visualizer/fast:
 .PHONY : pcl_visualizer/fast
 
 #=============================================================================
-# Target rules for targets named octree
+<<<<<<< HEAD
+# Target rules for targets named PassThrough
 
 # Build rule for target.
-octree: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 octree
-.PHONY : octree
+PassThrough: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PassThrough
+.PHONY : PassThrough
 
 # fast build rule for target.
-octree/fast:
-	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/build
-.PHONY : octree/fast
+PassThrough/fast:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
+.PHONY : PassThrough/fast
+
+#=============================================================================
+# Target rules for targets named moment_of_inertia
+=======
+# Target rules for targets named pcl_transform
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
+
+# Build rule for target.
+pcl_transform: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_transform
+.PHONY : pcl_transform
+
+# fast build rule for target.
+pcl_transform/fast:
+	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
+.PHONY : pcl_transform/fast
 
 #=============================================================================
 # Target rules for targets named CloudDemo
@@ -241,6 +197,58 @@ CloudDemo/fast:
 .PHONY : CloudDemo/fast
 
 #=============================================================================
+# Target rules for targets named save_pcd
+
+# Build rule for target.
+save_pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 save_pcd
+.PHONY : save_pcd
+
+# fast build rule for target.
+save_pcd/fast:
+	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/build
+.PHONY : save_pcd/fast
+
+#=============================================================================
+# Target rules for targets named moment_of_inertia
+
+# Build rule for target.
+moment_of_inertia: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 moment_of_inertia
+.PHONY : moment_of_inertia
+
+# fast build rule for target.
+moment_of_inertia/fast:
+	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/build
+.PHONY : moment_of_inertia/fast
+
+#=============================================================================
+# Target rules for targets named PassThrough
+
+# Build rule for target.
+PassThrough: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PassThrough
+.PHONY : PassThrough
+
+# fast build rule for target.
+PassThrough/fast:
+	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
+.PHONY : PassThrough/fast
+
+#=============================================================================
+# Target rules for targets named load_pcd
+
+# Build rule for target.
+load_pcd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 load_pcd
+.PHONY : load_pcd
+
+# fast build rule for target.
+load_pcd/fast:
+	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
+.PHONY : load_pcd/fast
+
+#=============================================================================
 # Target rules for targets named PCLDemo
 
 # Build rule for target.
@@ -253,6 +261,61 @@ PCLDemo/fast:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/build
 .PHONY : PCLDemo/fast
 
+<<<<<<< HEAD
+=======
+#=============================================================================
+# Target rules for targets named kd_tree
+
+# Build rule for target.
+kd_tree: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kd_tree
+.PHONY : kd_tree
+
+# fast build rule for target.
+kd_tree/fast:
+	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/build
+.PHONY : kd_tree/fast
+
+#=============================================================================
+# Target rules for targets named downsample_voxel_grid
+
+# Build rule for target.
+downsample_voxel_grid: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 downsample_voxel_grid
+.PHONY : downsample_voxel_grid
+
+# fast build rule for target.
+downsample_voxel_grid/fast:
+	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/build
+.PHONY : downsample_voxel_grid/fast
+
+#=============================================================================
+# Target rules for targets named statistical_removal
+
+# Build rule for target.
+statistical_removal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 statistical_removal
+.PHONY : statistical_removal
+
+# fast build rule for target.
+statistical_removal/fast:
+	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/build
+.PHONY : statistical_removal/fast
+
+#=============================================================================
+# Target rules for targets named remove_outlier
+
+# Build rule for target.
+remove_outlier: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 remove_outlier
+.PHONY : remove_outlier
+
+# fast build rule for target.
+remove_outlier/fast:
+	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/build
+.PHONY : remove_outlier/fast
+
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 src/2_ad/PassThrough.o: src/2_ad/PassThrough.cpp.o
 
 .PHONY : src/2_ad/PassThrough.o
@@ -307,6 +370,63 @@ src/2_ad/downsample_voxel_grid.cpp.s:
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.s
 .PHONY : src/2_ad/downsample_voxel_grid.cpp.s
 
+<<<<<<< HEAD
+=======
+src/2_ad/remove_outlier.o: src/2_ad/remove_outlier.cpp.o
+
+.PHONY : src/2_ad/remove_outlier.o
+
+# target to build an object file
+src/2_ad/remove_outlier.cpp.o:
+	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.o
+.PHONY : src/2_ad/remove_outlier.cpp.o
+
+src/2_ad/remove_outlier.i: src/2_ad/remove_outlier.cpp.i
+
+.PHONY : src/2_ad/remove_outlier.i
+
+# target to preprocess a source file
+src/2_ad/remove_outlier.cpp.i:
+	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.i
+.PHONY : src/2_ad/remove_outlier.cpp.i
+
+src/2_ad/remove_outlier.s: src/2_ad/remove_outlier.cpp.s
+
+.PHONY : src/2_ad/remove_outlier.s
+
+# target to generate assembly for a file
+src/2_ad/remove_outlier.cpp.s:
+	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.s
+.PHONY : src/2_ad/remove_outlier.cpp.s
+
+src/2_ad/statistical_removal.o: src/2_ad/statistical_removal.cpp.o
+
+.PHONY : src/2_ad/statistical_removal.o
+
+# target to build an object file
+src/2_ad/statistical_removal.cpp.o:
+	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.o
+.PHONY : src/2_ad/statistical_removal.cpp.o
+
+src/2_ad/statistical_removal.i: src/2_ad/statistical_removal.cpp.i
+
+.PHONY : src/2_ad/statistical_removal.i
+
+# target to preprocess a source file
+src/2_ad/statistical_removal.cpp.i:
+	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.i
+.PHONY : src/2_ad/statistical_removal.cpp.i
+
+src/2_ad/statistical_removal.s: src/2_ad/statistical_removal.cpp.s
+
+.PHONY : src/2_ad/statistical_removal.s
+
+# target to generate assembly for a file
+src/2_ad/statistical_removal.cpp.s:
+	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.s
+.PHONY : src/2_ad/statistical_removal.cpp.s
+
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 src/4_application/moment_of_inertia.o: src/4_application/moment_of_inertia.cpp.o
 
 .PHONY : src/4_application/moment_of_inertia.o
@@ -559,6 +679,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... downsample_voxel_grid"
 	@echo "... edit_cache"
+<<<<<<< HEAD
 	@echo "... kd_tree"
 	@echo "... load_pcd"
 	@echo "... PassThrough"
@@ -566,15 +687,39 @@ help:
 	@echo "... save_pcd"
 	@echo "... pcl_transform"
 	@echo "... pcl_visualizer"
+=======
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 	@echo "... octree"
+	@echo "... pcl_visualizer"
+	@echo "... pcl_transform"
 	@echo "... CloudDemo"
+	@echo "... save_pcd"
+	@echo "... moment_of_inertia"
+	@echo "... PassThrough"
+	@echo "... load_pcd"
 	@echo "... PCLDemo"
+<<<<<<< HEAD
+=======
+	@echo "... kd_tree"
+	@echo "... downsample_voxel_grid"
+	@echo "... statistical_removal"
+	@echo "... remove_outlier"
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 	@echo "... src/2_ad/PassThrough.o"
 	@echo "... src/2_ad/PassThrough.i"
 	@echo "... src/2_ad/PassThrough.s"
 	@echo "... src/2_ad/downsample_voxel_grid.o"
 	@echo "... src/2_ad/downsample_voxel_grid.i"
 	@echo "... src/2_ad/downsample_voxel_grid.s"
+<<<<<<< HEAD
+=======
+	@echo "... src/2_ad/remove_outlier.o"
+	@echo "... src/2_ad/remove_outlier.i"
+	@echo "... src/2_ad/remove_outlier.s"
+	@echo "... src/2_ad/statistical_removal.o"
+	@echo "... src/2_ad/statistical_removal.i"
+	@echo "... src/2_ad/statistical_removal.s"
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 	@echo "... src/4_application/moment_of_inertia.o"
 	@echo "... src/4_application/moment_of_inertia.i"
 	@echo "... src/4_application/moment_of_inertia.s"

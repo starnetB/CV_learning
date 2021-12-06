@@ -54,3 +54,12 @@ target_link_libraries(PassThrough ${PCL_LIBRARIES})
 
 add_executable(downsample_voxel_grid src/2_ad/downsample_voxel_grid.cpp)
 target_link_libraries(downsample_voxel_grid ${PCL_LIBRARIES})
+<<<<<<< HEAD
+=======
+
+add_executable(statistical_removal src/2_ad/statistical_removal.cpp)
+target_link_libraries(statistical_removal ${PCL_LIBRARIES})
+
+add_executable(remove_outlier src/2_ad/remove_outlier.cpp)
+target_link_libraries(remove_outlier ${PCL_LIBRARIES})
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f

@@ -1,6 +1,7 @@
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/rebuild_cache.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/downsample_voxel_grid.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/edit_cache.dir
+<<<<<<< HEAD
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/kd_tree.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/load_pcd.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/PassThrough.dir
@@ -8,6 +9,18 @@
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/save_pcd.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_transform.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_visualizer.dir
+=======
+>>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/octree.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_visualizer.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_transform.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/CloudDemo.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/save_pcd.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/moment_of_inertia.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/PassThrough.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/load_pcd.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/PCLDemo.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/kd_tree.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/downsample_voxel_grid.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/statistical_removal.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/remove_outlier.dir

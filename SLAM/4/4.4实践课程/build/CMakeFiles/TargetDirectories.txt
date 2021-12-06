@@ -1,0 +1,4 @@
+/Users/lidanqing/Work/CV_learning/SLAM/4/4.4实践课程/build/CMakeFiles/useSophus.dir
+/Users/lidanqing/Work/CV_learning/SLAM/4/4.4实践课程/build/CMakeFiles/trajectoryError.dir
+/Users/lidanqing/Work/CV_learning/SLAM/4/4.4实践课程/build/CMakeFiles/edit_cache.dir
+/Users/lidanqing/Work/CV_learning/SLAM/4/4.4实践课程/build/CMakeFiles/rebuild_cache.dir
