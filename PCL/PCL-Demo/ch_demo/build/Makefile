@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,24 +111,7 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for targets named downsample_voxel_grid
-
-# Build rule for target.
-downsample_voxel_grid: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 downsample_voxel_grid
-.PHONY : downsample_voxel_grid
-
-# fast build rule for target.
-downsample_voxel_grid/fast:
-	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/build
-.PHONY : downsample_voxel_grid/fast
-
-#=============================================================================
-# Target rules for targets named kd_tree
-=======
 # Target rules for targets named octree
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for target.
 octree: cmake_check_build_system
@@ -154,24 +137,7 @@ pcl_visualizer/fast:
 .PHONY : pcl_visualizer/fast
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for targets named PassThrough
-
-# Build rule for target.
-PassThrough: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PassThrough
-.PHONY : PassThrough
-
-# fast build rule for target.
-PassThrough/fast:
-	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
-.PHONY : PassThrough/fast
-
-#=============================================================================
-# Target rules for targets named moment_of_inertia
-=======
 # Target rules for targets named pcl_transform
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for target.
 pcl_transform: cmake_check_build_system
@@ -182,6 +148,19 @@ pcl_transform: cmake_check_build_system
 pcl_transform/fast:
 	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
 .PHONY : pcl_transform/fast
+
+#=============================================================================
+# Target rules for targets named range_image
+
+# Build rule for target.
+range_image: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 range_image
+.PHONY : range_image
+
+# fast build rule for target.
+range_image/fast:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/build
+.PHONY : range_image/fast
 
 #=============================================================================
 # Target rules for targets named CloudDemo
@@ -261,8 +240,6 @@ PCLDemo/fast:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/build
 .PHONY : PCLDemo/fast
 
-<<<<<<< HEAD
-=======
 #=============================================================================
 # Target rules for targets named kd_tree
 
@@ -290,32 +267,18 @@ downsample_voxel_grid/fast:
 .PHONY : downsample_voxel_grid/fast
 
 #=============================================================================
-# Target rules for targets named statistical_removal
+# Target rules for targets named range_image_border_extraction
 
 # Build rule for target.
-statistical_removal: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 statistical_removal
-.PHONY : statistical_removal
+range_image_border_extraction: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 range_image_border_extraction
+.PHONY : range_image_border_extraction
 
 # fast build rule for target.
-statistical_removal/fast:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/build
-.PHONY : statistical_removal/fast
+range_image_border_extraction/fast:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/build
+.PHONY : range_image_border_extraction/fast
 
-#=============================================================================
-# Target rules for targets named remove_outlier
-
-# Build rule for target.
-remove_outlier: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 remove_outlier
-.PHONY : remove_outlier
-
-# fast build rule for target.
-remove_outlier/fast:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/build
-.PHONY : remove_outlier/fast
-
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 src/2_ad/PassThrough.o: src/2_ad/PassThrough.cpp.o
 
 .PHONY : src/2_ad/PassThrough.o
@@ -370,63 +333,60 @@ src/2_ad/downsample_voxel_grid.cpp.s:
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.s
 .PHONY : src/2_ad/downsample_voxel_grid.cpp.s
 
-<<<<<<< HEAD
-=======
-src/2_ad/remove_outlier.o: src/2_ad/remove_outlier.cpp.o
+src/2_ad/range_image.o: src/2_ad/range_image.cpp.o
 
-.PHONY : src/2_ad/remove_outlier.o
+.PHONY : src/2_ad/range_image.o
 
 # target to build an object file
-src/2_ad/remove_outlier.cpp.o:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.o
-.PHONY : src/2_ad/remove_outlier.cpp.o
+src/2_ad/range_image.cpp.o:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/src/2_ad/range_image.cpp.o
+.PHONY : src/2_ad/range_image.cpp.o
 
-src/2_ad/remove_outlier.i: src/2_ad/remove_outlier.cpp.i
+src/2_ad/range_image.i: src/2_ad/range_image.cpp.i
 
-.PHONY : src/2_ad/remove_outlier.i
+.PHONY : src/2_ad/range_image.i
 
 # target to preprocess a source file
-src/2_ad/remove_outlier.cpp.i:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.i
-.PHONY : src/2_ad/remove_outlier.cpp.i
+src/2_ad/range_image.cpp.i:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/src/2_ad/range_image.cpp.i
+.PHONY : src/2_ad/range_image.cpp.i
 
-src/2_ad/remove_outlier.s: src/2_ad/remove_outlier.cpp.s
+src/2_ad/range_image.s: src/2_ad/range_image.cpp.s
 
-.PHONY : src/2_ad/remove_outlier.s
+.PHONY : src/2_ad/range_image.s
 
 # target to generate assembly for a file
-src/2_ad/remove_outlier.cpp.s:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/src/2_ad/remove_outlier.cpp.s
-.PHONY : src/2_ad/remove_outlier.cpp.s
+src/2_ad/range_image.cpp.s:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/src/2_ad/range_image.cpp.s
+.PHONY : src/2_ad/range_image.cpp.s
 
-src/2_ad/statistical_removal.o: src/2_ad/statistical_removal.cpp.o
+src/2_ad/range_image_border.o: src/2_ad/range_image_border.cpp.o
 
-.PHONY : src/2_ad/statistical_removal.o
+.PHONY : src/2_ad/range_image_border.o
 
 # target to build an object file
-src/2_ad/statistical_removal.cpp.o:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.o
-.PHONY : src/2_ad/statistical_removal.cpp.o
+src/2_ad/range_image_border.cpp.o:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/src/2_ad/range_image_border.cpp.o
+.PHONY : src/2_ad/range_image_border.cpp.o
 
-src/2_ad/statistical_removal.i: src/2_ad/statistical_removal.cpp.i
+src/2_ad/range_image_border.i: src/2_ad/range_image_border.cpp.i
 
-.PHONY : src/2_ad/statistical_removal.i
+.PHONY : src/2_ad/range_image_border.i
 
 # target to preprocess a source file
-src/2_ad/statistical_removal.cpp.i:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.i
-.PHONY : src/2_ad/statistical_removal.cpp.i
+src/2_ad/range_image_border.cpp.i:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/src/2_ad/range_image_border.cpp.i
+.PHONY : src/2_ad/range_image_border.cpp.i
 
-src/2_ad/statistical_removal.s: src/2_ad/statistical_removal.cpp.s
+src/2_ad/range_image_border.s: src/2_ad/range_image_border.cpp.s
 
-.PHONY : src/2_ad/statistical_removal.s
+.PHONY : src/2_ad/range_image_border.s
 
 # target to generate assembly for a file
-src/2_ad/statistical_removal.cpp.s:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/src/2_ad/statistical_removal.cpp.s
-.PHONY : src/2_ad/statistical_removal.cpp.s
+src/2_ad/range_image_border.cpp.s:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/src/2_ad/range_image_border.cpp.s
+.PHONY : src/2_ad/range_image_border.cpp.s
 
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 src/4_application/moment_of_inertia.o: src/4_application/moment_of_inertia.cpp.o
 
 .PHONY : src/4_application/moment_of_inertia.o
@@ -677,49 +637,32 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... downsample_voxel_grid"
 	@echo "... edit_cache"
-<<<<<<< HEAD
-	@echo "... kd_tree"
-	@echo "... load_pcd"
-	@echo "... PassThrough"
-	@echo "... moment_of_inertia"
-	@echo "... save_pcd"
-	@echo "... pcl_transform"
-	@echo "... pcl_visualizer"
-=======
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 	@echo "... octree"
 	@echo "... pcl_visualizer"
 	@echo "... pcl_transform"
+	@echo "... range_image"
 	@echo "... CloudDemo"
 	@echo "... save_pcd"
 	@echo "... moment_of_inertia"
 	@echo "... PassThrough"
 	@echo "... load_pcd"
 	@echo "... PCLDemo"
-<<<<<<< HEAD
-=======
 	@echo "... kd_tree"
 	@echo "... downsample_voxel_grid"
-	@echo "... statistical_removal"
-	@echo "... remove_outlier"
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
+	@echo "... range_image_border_extraction"
 	@echo "... src/2_ad/PassThrough.o"
 	@echo "... src/2_ad/PassThrough.i"
 	@echo "... src/2_ad/PassThrough.s"
 	@echo "... src/2_ad/downsample_voxel_grid.o"
 	@echo "... src/2_ad/downsample_voxel_grid.i"
 	@echo "... src/2_ad/downsample_voxel_grid.s"
-<<<<<<< HEAD
-=======
-	@echo "... src/2_ad/remove_outlier.o"
-	@echo "... src/2_ad/remove_outlier.i"
-	@echo "... src/2_ad/remove_outlier.s"
-	@echo "... src/2_ad/statistical_removal.o"
-	@echo "... src/2_ad/statistical_removal.i"
-	@echo "... src/2_ad/statistical_removal.s"
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
+	@echo "... src/2_ad/range_image.o"
+	@echo "... src/2_ad/range_image.i"
+	@echo "... src/2_ad/range_image.s"
+	@echo "... src/2_ad/range_image_border.o"
+	@echo "... src/2_ad/range_image_border.i"
+	@echo "... src/2_ad/range_image_border.s"
 	@echo "... src/4_application/moment_of_inertia.o"
 	@echo "... src/4_application/moment_of_inertia.i"
 	@echo "... src/4_application/moment_of_inertia.s"

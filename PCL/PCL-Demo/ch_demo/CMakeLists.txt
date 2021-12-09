@@ -54,3 +54,9 @@ target_link_libraries(PassThrough ${PCL_LIBRARIES})
 
 add_executable(downsample_voxel_grid src/2_ad/downsample_voxel_grid.cpp)
 target_link_libraries(downsample_voxel_grid ${PCL_LIBRARIES})
+
+add_executable(range_image src/2_ad/range_image.cpp)
+target_link_libraries(range_image ${PCL_LIBRARIES})
+
+add_executable(range_image_border_extraction src/2_ad/range_image_border.cpp)
+target_link_libraries(range_image_border_extraction ${PCL_LIBRARIES})

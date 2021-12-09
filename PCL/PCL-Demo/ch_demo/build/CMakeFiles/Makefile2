@@ -44,29 +44,19 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-<<<<<<< HEAD
-all: CMakeFiles/downsample_voxel_grid.dir/all
-all: CMakeFiles/kd_tree.dir/all
-all: CMakeFiles/load_pcd.dir/all
-all: CMakeFiles/PassThrough.dir/all
-all: CMakeFiles/moment_of_inertia.dir/all
-all: CMakeFiles/save_pcd.dir/all
-all: CMakeFiles/pcl_transform.dir/all
-all: CMakeFiles/pcl_visualizer.dir/all
-=======
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 all: CMakeFiles/octree.dir/all
 all: CMakeFiles/pcl_visualizer.dir/all
 all: CMakeFiles/pcl_transform.dir/all
+all: CMakeFiles/range_image.dir/all
 all: CMakeFiles/CloudDemo.dir/all
 all: CMakeFiles/save_pcd.dir/all
 all: CMakeFiles/moment_of_inertia.dir/all
@@ -75,8 +65,7 @@ all: CMakeFiles/load_pcd.dir/all
 all: CMakeFiles/PCLDemo.dir/all
 all: CMakeFiles/kd_tree.dir/all
 all: CMakeFiles/downsample_voxel_grid.dir/all
-all: CMakeFiles/statistical_removal.dir/all
-all: CMakeFiles/remove_outlier.dir/all
+all: CMakeFiles/range_image_border_extraction.dir/all
 
 .PHONY : all
 
@@ -86,20 +75,10 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-<<<<<<< HEAD
-clean: CMakeFiles/downsample_voxel_grid.dir/clean
-clean: CMakeFiles/kd_tree.dir/clean
-clean: CMakeFiles/load_pcd.dir/clean
-clean: CMakeFiles/PassThrough.dir/clean
-clean: CMakeFiles/moment_of_inertia.dir/clean
-clean: CMakeFiles/save_pcd.dir/clean
-clean: CMakeFiles/pcl_transform.dir/clean
-clean: CMakeFiles/pcl_visualizer.dir/clean
-=======
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 clean: CMakeFiles/octree.dir/clean
 clean: CMakeFiles/pcl_visualizer.dir/clean
 clean: CMakeFiles/pcl_transform.dir/clean
+clean: CMakeFiles/range_image.dir/clean
 clean: CMakeFiles/CloudDemo.dir/clean
 clean: CMakeFiles/save_pcd.dir/clean
 clean: CMakeFiles/moment_of_inertia.dir/clean
@@ -108,64 +87,25 @@ clean: CMakeFiles/load_pcd.dir/clean
 clean: CMakeFiles/PCLDemo.dir/clean
 clean: CMakeFiles/kd_tree.dir/clean
 clean: CMakeFiles/downsample_voxel_grid.dir/clean
-clean: CMakeFiles/statistical_removal.dir/clean
-clean: CMakeFiles/remove_outlier.dir/clean
+clean: CMakeFiles/range_image_border_extraction.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for target CMakeFiles/downsample_voxel_grid.dir
-
-# All Build rule for target.
-CMakeFiles/downsample_voxel_grid.dir/all:
-	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/depend
-	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=7,8 "Built target downsample_voxel_grid"
-.PHONY : CMakeFiles/downsample_voxel_grid.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/downsample_voxel_grid.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/downsample_voxel_grid.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/downsample_voxel_grid.dir/rule
-
-# Convenience name for target.
-downsample_voxel_grid: CMakeFiles/downsample_voxel_grid.dir/rule
-
-.PHONY : downsample_voxel_grid
-
-# clean rule for target.
-CMakeFiles/downsample_voxel_grid.dir/clean:
-	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/clean
-.PHONY : CMakeFiles/downsample_voxel_grid.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/kd_tree.dir
-
-# All Build rule for target.
-CMakeFiles/kd_tree.dir/all:
-	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/depend
-	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=9,10 "Built target kd_tree"
-.PHONY : CMakeFiles/kd_tree.dir/all
-=======
 # Target rules for target CMakeFiles/octree.dir
 
 # All Build rule for target.
 CMakeFiles/octree.dir/all:
 	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/depend
 	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=15,16 "Built target octree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=15,16 "Built target octree"
 .PHONY : CMakeFiles/octree.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/octree.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/octree.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/octree.dir/rule
 
 # Convenience name for target.
@@ -182,25 +122,17 @@ CMakeFiles/octree.dir/clean:
 # Target rules for target CMakeFiles/pcl_visualizer.dir
 
 # All Build rule for target.
-<<<<<<< HEAD
-CMakeFiles/load_pcd.dir/all:
-	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/depend
-	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=11,12 "Built target load_pcd"
-.PHONY : CMakeFiles/load_pcd.dir/all
-=======
 CMakeFiles/pcl_visualizer.dir/all:
 	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/depend
 	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=19,20 "Built target pcl_visualizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=19,20 "Built target pcl_visualizer"
 .PHONY : CMakeFiles/pcl_visualizer.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pcl_visualizer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pcl_visualizer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/pcl_visualizer.dir/rule
 
 # Convenience name for target.
@@ -214,58 +146,20 @@ CMakeFiles/pcl_visualizer.dir/clean:
 .PHONY : CMakeFiles/pcl_visualizer.dir/clean
 
 #=============================================================================
-<<<<<<< HEAD
-# Target rules for target CMakeFiles/PassThrough.dir
-
-# All Build rule for target.
-CMakeFiles/PassThrough.dir/all:
-	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/depend
-	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=5,6 "Built target PassThrough"
-.PHONY : CMakeFiles/PassThrough.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/PassThrough.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PassThrough.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/PassThrough.dir/rule
-
-# Convenience name for target.
-PassThrough: CMakeFiles/PassThrough.dir/rule
-
-.PHONY : PassThrough
-
-# clean rule for target.
-CMakeFiles/PassThrough.dir/clean:
-	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/clean
-.PHONY : CMakeFiles/PassThrough.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/moment_of_inertia.dir
-
-# All Build rule for target.
-CMakeFiles/moment_of_inertia.dir/all:
-	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/depend
-	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=13,14 "Built target moment_of_inertia"
-.PHONY : CMakeFiles/moment_of_inertia.dir/all
-=======
 # Target rules for target CMakeFiles/pcl_transform.dir
 
 # All Build rule for target.
 CMakeFiles/pcl_transform.dir/all:
 	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/depend
 	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=17,18 "Built target pcl_transform"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=17,18 "Built target pcl_transform"
 .PHONY : CMakeFiles/pcl_transform.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pcl_transform.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pcl_transform.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/pcl_transform.dir/rule
 
 # Convenience name for target.
@@ -279,28 +173,47 @@ CMakeFiles/pcl_transform.dir/clean:
 .PHONY : CMakeFiles/pcl_transform.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/range_image.dir
+
+# All Build rule for target.
+CMakeFiles/range_image.dir/all:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/depend
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=21,22 "Built target range_image"
+.PHONY : CMakeFiles/range_image.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/range_image.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/range_image.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+.PHONY : CMakeFiles/range_image.dir/rule
+
+# Convenience name for target.
+range_image: CMakeFiles/range_image.dir/rule
+
+.PHONY : range_image
+
+# clean rule for target.
+CMakeFiles/range_image.dir/clean:
+	$(MAKE) -f CMakeFiles/range_image.dir/build.make CMakeFiles/range_image.dir/clean
+.PHONY : CMakeFiles/range_image.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/CloudDemo.dir
 
 # All Build rule for target.
-<<<<<<< HEAD
-CMakeFiles/save_pcd.dir/all:
-	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/depend
-	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=21,22 "Built target save_pcd"
-.PHONY : CMakeFiles/save_pcd.dir/all
-=======
 CMakeFiles/CloudDemo.dir/all:
 	$(MAKE) -f CMakeFiles/CloudDemo.dir/build.make CMakeFiles/CloudDemo.dir/depend
 	$(MAKE) -f CMakeFiles/CloudDemo.dir/build.make CMakeFiles/CloudDemo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=1,2 "Built target CloudDemo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=1,2 "Built target CloudDemo"
 .PHONY : CMakeFiles/CloudDemo.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CloudDemo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/CloudDemo.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/CloudDemo.dir/rule
 
 # Convenience name for target.
@@ -317,25 +230,17 @@ CMakeFiles/CloudDemo.dir/clean:
 # Target rules for target CMakeFiles/save_pcd.dir
 
 # All Build rule for target.
-<<<<<<< HEAD
-CMakeFiles/pcl_transform.dir/all:
-	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/depend
-	$(MAKE) -f CMakeFiles/pcl_transform.dir/build.make CMakeFiles/pcl_transform.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=17,18 "Built target pcl_transform"
-.PHONY : CMakeFiles/pcl_transform.dir/all
-=======
 CMakeFiles/save_pcd.dir/all:
 	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/depend
 	$(MAKE) -f CMakeFiles/save_pcd.dir/build.make CMakeFiles/save_pcd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=23,24 "Built target save_pcd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=25,26 "Built target save_pcd"
 .PHONY : CMakeFiles/save_pcd.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/save_pcd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/save_pcd.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/save_pcd.dir/rule
 
 # Convenience name for target.
@@ -352,25 +257,17 @@ CMakeFiles/save_pcd.dir/clean:
 # Target rules for target CMakeFiles/moment_of_inertia.dir
 
 # All Build rule for target.
-<<<<<<< HEAD
-CMakeFiles/pcl_visualizer.dir/all:
-	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/depend
-	$(MAKE) -f CMakeFiles/pcl_visualizer.dir/build.make CMakeFiles/pcl_visualizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=19,20 "Built target pcl_visualizer"
-.PHONY : CMakeFiles/pcl_visualizer.dir/all
-=======
 CMakeFiles/moment_of_inertia.dir/all:
 	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/depend
 	$(MAKE) -f CMakeFiles/moment_of_inertia.dir/build.make CMakeFiles/moment_of_inertia.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=13,14 "Built target moment_of_inertia"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=13,14 "Built target moment_of_inertia"
 .PHONY : CMakeFiles/moment_of_inertia.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/moment_of_inertia.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/moment_of_inertia.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/moment_of_inertia.dir/rule
 
 # Convenience name for target.
@@ -387,25 +284,17 @@ CMakeFiles/moment_of_inertia.dir/clean:
 # Target rules for target CMakeFiles/PassThrough.dir
 
 # All Build rule for target.
-<<<<<<< HEAD
-CMakeFiles/octree.dir/all:
-	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/depend
-	$(MAKE) -f CMakeFiles/octree.dir/build.make CMakeFiles/octree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=15,16 "Built target octree"
-.PHONY : CMakeFiles/octree.dir/all
-=======
 CMakeFiles/PassThrough.dir/all:
 	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/depend
 	$(MAKE) -f CMakeFiles/PassThrough.dir/build.make CMakeFiles/PassThrough.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=5,6 "Built target PassThrough"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=5,6 "Built target PassThrough"
 .PHONY : CMakeFiles/PassThrough.dir/all
->>>>>>> db0742a6d459c3861dff64d39d3092970494ca5f
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PassThrough.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PassThrough.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/PassThrough.dir/rule
 
 # Convenience name for target.
@@ -425,14 +314,14 @@ CMakeFiles/PassThrough.dir/clean:
 CMakeFiles/load_pcd.dir/all:
 	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/depend
 	$(MAKE) -f CMakeFiles/load_pcd.dir/build.make CMakeFiles/load_pcd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=11,12 "Built target load_pcd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=11,12 "Built target load_pcd"
 .PHONY : CMakeFiles/load_pcd.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/load_pcd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/load_pcd.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/load_pcd.dir/rule
 
 # Convenience name for target.
@@ -452,14 +341,14 @@ CMakeFiles/load_pcd.dir/clean:
 CMakeFiles/PCLDemo.dir/all:
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/depend
 	$(MAKE) -f CMakeFiles/PCLDemo.dir/build.make CMakeFiles/PCLDemo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=3,4 "Built target PCLDemo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=3,4 "Built target PCLDemo"
 .PHONY : CMakeFiles/PCLDemo.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PCLDemo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PCLDemo.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/PCLDemo.dir/rule
 
 # Convenience name for target.
@@ -479,14 +368,14 @@ CMakeFiles/PCLDemo.dir/clean:
 CMakeFiles/kd_tree.dir/all:
 	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/depend
 	$(MAKE) -f CMakeFiles/kd_tree.dir/build.make CMakeFiles/kd_tree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=9,10 "Built target kd_tree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=9,10 "Built target kd_tree"
 .PHONY : CMakeFiles/kd_tree.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/kd_tree.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/kd_tree.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/kd_tree.dir/rule
 
 # Convenience name for target.
@@ -506,14 +395,14 @@ CMakeFiles/kd_tree.dir/clean:
 CMakeFiles/downsample_voxel_grid.dir/all:
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/depend
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=7,8 "Built target downsample_voxel_grid"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=7,8 "Built target downsample_voxel_grid"
 .PHONY : CMakeFiles/downsample_voxel_grid.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/downsample_voxel_grid.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/downsample_voxel_grid.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : CMakeFiles/downsample_voxel_grid.dir/rule
 
 # Convenience name for target.
@@ -527,58 +416,31 @@ CMakeFiles/downsample_voxel_grid.dir/clean:
 .PHONY : CMakeFiles/downsample_voxel_grid.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/statistical_removal.dir
+# Target rules for target CMakeFiles/range_image_border_extraction.dir
 
 # All Build rule for target.
-CMakeFiles/statistical_removal.dir/all:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/depend
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=25,26 "Built target statistical_removal"
-.PHONY : CMakeFiles/statistical_removal.dir/all
+CMakeFiles/range_image_border_extraction.dir/all:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/depend
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=23,24 "Built target range_image_border_extraction"
+.PHONY : CMakeFiles/range_image_border_extraction.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/statistical_removal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/statistical_removal.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/statistical_removal.dir/rule
+CMakeFiles/range_image_border_extraction.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/range_image_border_extraction.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+.PHONY : CMakeFiles/range_image_border_extraction.dir/rule
 
 # Convenience name for target.
-statistical_removal: CMakeFiles/statistical_removal.dir/rule
+range_image_border_extraction: CMakeFiles/range_image_border_extraction.dir/rule
 
-.PHONY : statistical_removal
-
-# clean rule for target.
-CMakeFiles/statistical_removal.dir/clean:
-	$(MAKE) -f CMakeFiles/statistical_removal.dir/build.make CMakeFiles/statistical_removal.dir/clean
-.PHONY : CMakeFiles/statistical_removal.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/remove_outlier.dir
-
-# All Build rule for target.
-CMakeFiles/remove_outlier.dir/all:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/depend
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=21,22 "Built target remove_outlier"
-.PHONY : CMakeFiles/remove_outlier.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/remove_outlier.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/remove_outlier.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/remove_outlier.dir/rule
-
-# Convenience name for target.
-remove_outlier: CMakeFiles/remove_outlier.dir/rule
-
-.PHONY : remove_outlier
+.PHONY : range_image_border_extraction
 
 # clean rule for target.
-CMakeFiles/remove_outlier.dir/clean:
-	$(MAKE) -f CMakeFiles/remove_outlier.dir/build.make CMakeFiles/remove_outlier.dir/clean
-.PHONY : CMakeFiles/remove_outlier.dir/clean
+CMakeFiles/range_image_border_extraction.dir/clean:
+	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/clean
+.PHONY : CMakeFiles/range_image_border_extraction.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
