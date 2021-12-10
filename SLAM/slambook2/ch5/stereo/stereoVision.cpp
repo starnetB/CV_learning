@@ -30,6 +30,10 @@ int main(int argc, char **argv) {
         0, 96, 9, 8 * 9 * 9, 32 * 9 * 9, 1, 63, 10, 100, 32);    // 神奇的参数
     cv::Mat disparity_sgbm, disparity;
     sgbm->compute(left, right, disparity_sgbm);
+
+    //CV_32F 像素在0-1.0f之间
+    //1.0/16.0f
+    
     disparity_sgbm.convertTo(disparity, CV_32F, 1.0 / 16.0f);
 
     // 生成点云
