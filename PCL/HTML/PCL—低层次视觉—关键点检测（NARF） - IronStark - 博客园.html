@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin-when-crossorigin">
+    <meta name="description" content="关键点检测本质上来说，并不是一个独立的部分，它往往和特征描述联系在一起，再将特征描述和识别、寻物联系在一起。关键点检测可以说是通往高层次视觉的重要基础。但本章节仅在低层次视觉上讨论点云处理问题，故所有">
+    <meta property="og:description" content="关键点检测本质上来说，并不是一个独立的部分，它往往和特征描述联系在一起，再将特征描述和识别、寻物联系在一起。关键点检测可以说是通往高层次视觉的重要基础。但本章节仅在低层次视觉上讨论点云处理问题，故所有">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PCL—低层次视觉—关键点检测（NARF） - IronStark - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="https://common.cnblogs.com/favicon.svg" type="image/svg+xml">
+    
+    <style>:not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([class*="language-"]):not([highlighted]):not(.hljs) {
+        background: rgb(245, 245, 245);
+        padding: ;
+        border: ;
+        border-radius: ;
+        border-color: transparent;
+        color: rgb(0, 0, 0);
+        font-family: "Courier New", sans-serif;
+    }:not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([highlighted]) code:not(.hljs) {
+            background: rgb(245, 245, 245) !important;
+            border-color: transparent !important;
+        }</style><link rel="stylesheet" href="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+    <link id="MainCss" rel="stylesheet" href="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-codinglife.css">
+    <link id="highlighter-theme-cnblogs" type="text/css" rel="stylesheet" href="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/cnblogs.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-codinglife-mobile.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/ironstark/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/ironstark/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/ironstark/wlwmanifest.xml">
+    <script type="text/javascript" async="" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js"></script><script>
+        var currentBlogId = 246758;
+        var currentBlogApp = 'ironstark';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'CodingLife';
+        var visitorUserId = '';
+        var hasCustomScript = false;
+        try {
+            if (hasCustomScript && document.referrer && document.referrer.indexOf('baidu.com') >= 0) {
+                Object.defineProperty(document, 'referrer', { value: '' });
+                Object.defineProperty(Document.prototype, 'referrer', { get: function(){ return ''; } });
+            }
+        } catch(error) { }
+        window.codeHighlightEngine = 1;
+        window.enableCodeLineNumber = false;
+        window.codeHighlightTheme = 'cnblogs';
+    </script>
+        <script>
+            var currentPostDateAdded = '2015-12-17 16:36';
+        </script>
+    <script src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery-2.js"></script>
+    <script src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js"></script><style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><script id="hljs-script" async="" data-loaded="true" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/highlight.js"></script>
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/MathJax.js"></script>
+    
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><meta http-equiv="origin-trial" content="AxujKG9INjsZ8/gUq8+dTruNvk7RjZQ1oFhhgQbcTJKDnZfbzSTE81wvC2Hzaf3TW4avA76LTZEMdiedF1vIbA4AAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="Azuce85ORtSnWe1MZDTv68qpaW3iHyfL9YbLRy0cwcCZwVnePnOmkUJlG8HGikmOwhZU22dElCcfrfX2HhrBPAkAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A16nvcdeoOAqrJcmjLRpl1I6f3McDD8EfofAYTt/P/H4/AWwB99nxiPp6kA0fXoiZav908Z8etuL16laFPUdfQsAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxBHdr0J44vFBQtZUqX9sjiqf5yWZ/OcHRcRMN3H9TH+t90V/j3ENW6C8+igBZFXMJ7G3Pr8Dd13632aLng42wgAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2NTI3NzQ0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A88BWHFjcawUfKU3lIejLoryXoyjooBXLgWmGh+hNcqMK44cugvsI5YZbNarYvi3roc1fYbHA1AVbhAtuHZflgEAAAB2eyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjUyNzc0NDAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A8FHS1NmdCwGqD9DwOicnHHY+y27kdWfxKa0YHSGDfv0CSpDKRHTQdQmZVPDUdaFWUsxdgVxlwAd6o+dhJykPA0AAACWeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="A8zdXi6dr1hwXEUjQrYiyYQGlU3557y5QWDnN0Lwgj9ePt66XMEvNkVWOEOWPd7TP9sBQ25X0Q15Lr1Nn4oGFQkAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="A4/Htern2udN9w3yJK9QgWQxQFruxOXsXL7cW60DyCl0EZFGCSme/J33Q/WzF7bBkVvhEWDlcBiUyZaim5CpFQwAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjQzMTU1MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><script src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/pubads_impl_2021120601.js" async=""></script><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="preload" href="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/integrator.js" as="script"><script type="text/javascript" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/integrator.js"></script></head>
+<body class="skin-codinglife has-navbar"><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding"><a href="https://www.cnblogs.com/" title="开发者的网上家园"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.svg" alt="博客园Logo"></a></li>
+                <li><a href="https://www.cnblogs.com/" onclick="countClicks('skin-navbar-sitehome')">首页</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-q')">博问</a></li>
+                <li><a id="nav_brandzone" href="https://brands.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-brands')">专区</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://edu.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-edu')">班级</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search" action="https://zzk.cnblogs.com/s" method="get">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="text" tabindex="3">
+                        <button type="submit" id="zzk_search_button">
+                            <img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/search.svg" alt="搜索">
+                        </button>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔" style="display: none;">
+                        <img id="new_post_icon" class="navbar-icon" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/newpost.svg" alt="写随笔">
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客" style="display: none;">
+                        <img id="myblog_icon" class="navbar-icon" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/myblog.svg" alt="我的博客">
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息" style="display: none;">
+                        <img id="msg_icon" class="navbar-icon" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/message.svg" alt="短消息">
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown" style="display: none;">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/avatar-default.svg" alt="用户头像">
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <img id="navbar_lite_mode_on" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/lite-mode-check.svg" class="hide"><span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup/" style="display: inline;">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()" style="display: inline;">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+    <!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/ironstark/"><img id="blogLogo" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/ironstark/">IronStark</a>
+</h1>
+<h2>Ph.D, HUST.</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/ironstark/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/IronStark">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/ironstark/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<span id="stats_post_count">随笔 - 97&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 108&nbsp; </span>
+<span id="stats-total-view-count">阅读 - 
+<span title="总阅读数: 485027">
+48万</span></span>
+
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/ironstark/p/5051533.html">
+    <span>PCL—低层次视觉—关键点检测（NARF）</span>
+    
+
+
+
+</a><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<p>　　关键点检测本质上来说，并不是一个独立的部分，它往往和特征描述联系在一起，再将特征描述和识别、寻物联系在一起。关键点检测可以说是通往高层
+次视觉的重要基础。但本章节仅在低层次视觉上讨论点云处理问题，故所有讨论都在关键点检测上点到为止。NARF 
+算法实际上可以分成两个部分，第一个部分是关键点提取，第二个部分是关键点信息描述，本文仅涉及第一个部分。</p>
+<p>　　在文章开始之前，有非常重要的一点要说明，点云中任意一点，都有一定概率作为关键点。关键点也是来自原始点云中的一个元素。和图像的边缘提取或者关键点检测算法追求n次插值，最终求的亚像素坐标不同，点云的关键点只在乎找到那个点。</p>
+<h1>1. 边缘提取<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<p>　　首先声明本文所有思想算法公式均来自：<em>Point Feature Extraction on 3D Range Scans Taking into Account Object Boundaries&nbsp;</em></p>
+<p>　　在正式开始关键点提取之前，有必要先进行边缘提取。原因是相对于其他点，边缘上的点更有可能是关键点。和图像的边缘不同（灰度明显变化），点云
+的边缘有更明确的物理意义。对点云而言，场景的边缘代表前景物体和背景物体的分界线。所以，点云的边缘又分为三种：前景边缘，背景边缘，阴影边缘。</p>
+<p>　　rangeImage 
+是一个天然适合用于边缘提取的框架。在这里需要做一些假设：每个rangeImage像素中假设都只有一个点（显然在生成rangeImage的时候点云
+是被压缩了的，压缩了多少和rangeImage的分辨率有关，分辨率不能太小，否则rangeImage上会有"洞”，分辨率太大则丢失很多信息）。</p>
+<p>　　三维点云的边缘有个很重要的特征，就是点a 和点b 如果在 rangImage 
+上是相邻的，然而在三维距离上却很远，那么多半这里就有边缘。由于三维点云的规模和稀疏性，“很远”这个概念很难描述清楚。到底多远算远？这里引入一个横
+向的比较是合适的。这种比较方法可以自适应点云的稀疏性。所谓的横向比较就是和 某点周围的点相比较。 
+这个周围有多大？不管多大，反正就是在某点pi的rangeImage 上取一个方窗。假设像素边长为s. 
+那么一共就取了s^2个点。接下来分三种情况来讨论所谓的边缘：</p>
+<p>　　1.这个点在某个平面上，边长为 s 的方窗没有涉及到边缘</p>
+<p>　　2.这个点恰好在某条边缘上，边长 s 的方窗一半在边缘左边，一半在右边</p>
+<p>　　3.这个点恰好处于某个角点上，边长 s 的方窗可能只有 1/4 与 pi 处于同一个平面</p>
+<p>　　如果将 pi 与不同点距离进行排序，得到一系列的距离，d0 表示与 pi 距离最近的点，显然是 pi 自己。 ds^2 是与pi 
+最远的点，这就有可能是跨越边缘的点了。 
+选择一个dm，作为与m同平面，但距离最远的点。也就是说，如果d0~ds^2是一个连续递增的数列，那么dm可以取平均值。如果这个数列存在某个阶跃跳
+动（可能会形成类似阶跃信号）那么则发生阶跃的地方应该是有边缘存在，不妨取阶跃点为dm(距离较小的按个阶跃点）原文并未如此表述此段落，原文取
+s=5, m=9 作为m点的一个合理估计。</p>
+<p>　　对任意一个点，进行打分，来判断该点作为边缘点有多大可能性。首先，边缘可能会在某点的：上，下，左，右四个方向。</p>
+<p>　　所以只要把pi 和 pi 右边的点求相对距离。 并把这个相对距离和dm进行比较，就可以判断边缘是不是在该点右边。如果距离远大于dm，显然该点右边的邻点就和pi不是同一个平面了。</p>
+<p style="text-align: center">　　<img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/710098-20151217161026615-1849929510.png" alt=""></p>
+<p style="text-align: left">　　为了增加对噪声的适应能力，取右边的点为右边几个点的平均数。接下来依据此信息对该点进行打分。</p>
+<p style="text-align: center"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/710098-20151217161247052-1451086509.png" alt=""></p>
+<p style="text-align: left">　　其中deta 就是dm. dright = || pi pright ||.&nbsp;</p>
+<p style="text-align: left">　　最后再取大于0.8的Sright，并进行非极大值抑制。就可以得到物体的边缘了</p>
+<p style="text-align: left">　　</p>
+<h1>2. 关键点提取<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<p>&nbsp;　 &nbsp;在提取关键点时，边缘应该作为一个重要的参考依据。但一定不是唯一的依据。对于某个物体来说关键点应该是表达了某些特征的点，而不仅仅是边缘点。所以在设计关键点提取算法时，需要考虑到以下一些因素：</p>
+<p>　　i) it must take information about borders and the surface&nbsp;structure into account;</p>
+<p>&nbsp;　　边缘和曲面结构都要考虑进去</p>
+<p>&nbsp; &nbsp; &nbsp;ii) it must select positions that can 
+be&nbsp;reliably detected even if the object is observed from 
+another&nbsp;<em id="__mceDel" style="line-height: 1.5"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel">perspective; </em></em></em></em></p>
+<p><em id="__mceDel" style="line-height: 1.5"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel">&nbsp; &nbsp; &nbsp; &nbsp;关键点要能重复</em></em></em></em></p>
+<p><em id="__mceDel" style="line-height: 1.5"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel">　　iii) the points must be on positions that&nbsp;</em></em></em></em><em id="__mceDel" style="line-height: 1.5"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel">provide stable areas for normal estimation or the descriptor&nbsp;</em></em></em></em></em></em><em id="__mceDel" style="line-height: 1.5"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel">calculation in general.</em></em></em></em></em></em></em></p>
+<p><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><em id="__mceDel"><span style="line-height: 1.5">　　　关键点最好落在比较稳定的区域，方便提取法线　</span></em></em></em></em></em></em></em></p>
+<p><span style="line-height: 1.5">　　</span><span style="line-height: 1.5">对于点云构成的曲面而言，某处的曲率无疑是一个非常重要的结构描述因素。某点的曲率越大，则该点处曲面变化越剧烈。在2D rangeImage 上，去 pi 点及其周边与之距离小于2deta的点，进行<a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank">PCA主成分分析</a>。可以得到一个 主方向v，以及曲率值 lamda. 注意， v 必然是一个三维向量。</span></p>
+<p><span style="line-height: 1.5">　　那么对于边缘点，可以取其 权重 w 为1 ， v 为边缘方向。</span></p>
+<p><span style="line-height: 1.5">　　对于其他点，取权重 w 为 1-(1-lamda)^3 ， 方向为 v 在平面 p上的投影。 平面 p 垂直于 pi 与原点连线。</span></p>
+<p><span style="line-height: 1.5">　　到此位置，每个点都有了两个量，一个权重，一个方向。</span></p>
+<p><span style="line-height: 1.5">　　将权重与方向带入下列式子 I 就是某点 为特征点的可能性。</span></p>
+<p style="text-align: center"><span style="line-height: 1.5"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/710098-20151217172158818-944247367.png" alt="" class="medium-zoom-image"></span></p>
+<p style="text-align: left"><span style="line-height: 1.5">　　最后进行极大值抑制，就可以得到一些特征点了。</span></p>
+<h1 style="text-align: left"><span style="line-height: 1.5">3. 关于特征点提取的一些思考</span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<p><span style="line-height: 1.5">　　在我看来，本文提出的算法效果上可能确实不错，但是这算法里面太多经验值与神秘数。各种式子没有明确的物理意义，只是单纯为了获得一个较好的结果设计出来 "打分"的。 这种算法实在谈不上优雅，当然，我连这种不优雅的算法也设计不出来。。。。。。。</span></p>
+<p><span style="line-height: 1.5">　　点云的特征点提取应该与后面的特征描述是松耦合的。确实不得不承认，针对不同
+的点云：稀疏的，致密的，有序的，无序的，有遮挡的，高精测量的.......设计不同的关键点提取算法也无可厚非。总结出的关键点提取算法原则就是要尺
+度不变，鲁棒性好，至于是否一定要存在于平坦区域，我觉得并不一定。不同的关键点提取算法可以和不同的特征描述算法进行组合，最终得到一个较好的效果。如
+果非要把关键点提取算法和特征描述算法紧耦合，那势必会失去一部分灵活性。</span></p>
+<p>　　最后还有一点想要吐槽的是，点云中的点为什么不应该自带是否是关键点的性质，而需要我们来进行检测？这显然不符合面向对象的设计原则........我觉的应该有某种点云采集方法，得到的点云可以有以下性质：</p>
+<p>　　point.is_key_point = 1/0.</p>
+<p>　　这多好~</p>
+<p><span style="line-height: 1.5">　　</span></p>
+</div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/ironstark/category/759418.html" target="_blank">三维计算机视觉</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/ironstark/tag/PCL/">PCL</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5051533,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow('64209f10-d393-e411-b908-9dcfd8948a71');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/ironstark/" target="_blank"><img src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/20151127170342.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/ironstark/">IronStark</a><br>
+            <a href="https://home.cnblogs.com/u/ironstark/followees/">关注 - 14</a><br>
+            <a href="https://home.cnblogs.com/u/ironstark/followers/">粉丝 - 351</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow('64209f10-d393-e411-b908-9dcfd8948a71');return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5051533,'Digg')">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+    <div class="buryit" onclick="votePost(5051533,'Bury')">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/ironstark/p/5046479.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/ironstark/p/5046479.html" title="发布于 2015-12-14 20:35">PCL—低层次视觉—关键点检测（rangeImage）</a>
+    <br>
+    <a href="https://www.cnblogs.com/ironstark/p/5046741.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/ironstark/p/5046741.html" title="发布于 2015-12-19 01:08">机器学习 —— 条件随机场模型</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2015-12-17 16:36</span>&nbsp;
+<a href="https://www.cnblogs.com/ironstark/">IronStark</a>&nbsp;
+阅读(<span id="post_view_count">9643</span>)&nbsp;
+评论(<span id="post_comment_count">14</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=5051533" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(5051533);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '', targetType: 'blogPost', targetId: '5051533', targetLink: 'https://www.cnblogs.com/ironstark/p/5051533.html', title: 'PCL—低层次视觉—关键点检测（NARF）' })">举报</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+
+<script>
+    markdown_highlight()
+    var allowComments = true, cb_blogId = 246758, cb_blogApp = 'ironstark', cb_blogUserGuid = '64209f10-d393-e411-b908-9dcfd8948a71';
+    var cb_entryId = 5051533, cb_entryCreatedDate = '2015-12-17 16:36', cb_postType = 1;
+    updatePostStats(
+        [cb_entryId],
+        function(id, count) { $("#post_view_count").text(count) },
+        function(id, count) { $("#post_comment_count").text(count) })
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");
+</script>
+<a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    登录后才能查看或发表评论，立即 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return account.login('!comments');">登录</a> 或者
+    <a href="https://www.cnblogs.com/">逛逛</a> 博客园首页
+</div>
+</div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="cnblogs_ch"><a href="https://www.cnblogs.com/shanyou/p/netconfchina2021.html" target="_blank">【推荐】2021中国.NET开发者峰会近50场热点技术专题揭秘</a><br><a href="https://brands.cnblogs.com/huawei" target="_blank" onclick="gtag('event', 'click', {'event_category': 'ad', 'event_label': 'T2-华为专区'})">【推荐】华为开发者专区，与开发者一起构建万物互联的智能世界</a><br><a href="http://www.uccpsoft.com/index.htm" target="_blank" onclick="gtag('event', 'click', {'event_category': 'ad', 'event_label': 'T2-ucancode'})">【推荐】跨平台组态\工控\仿真\CAD 50万行C++源码全开放免费下载！</a><br><a href="https://brands.cnblogs.com/huawei/p/2730" target="_blank" onclick="gtag('event', 'click', {'event_category': 'ad', 'event_label': 'T2-华为专区'})">【推荐】华为 HMS Core 线上 Codelabs 挑战赛第4期，探索“智”感生活</a><br></div>
+    <div id="opt_under_post"></div>
+    <div id="cnblogs_c1" class="under-post-card">
+        <div id="div-gpt-ad-1592365906576-0" style="width: 300px; height: 250px;" data-google-query-id="CO_TuOLw4vQCFc3DTAIdBUkLRQ"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" scrolling="no" marginwidth="0" marginheight="0" style="border: 0px none; vertical-align: bottom;" role="region" aria-label="Advertisement" tabindex="0" srcdoc="" data-google-container-id="1" width="300" height="250" frameborder="0"></iframe></div></div>
+    </div>
+    <div id="under_post_card1"><div class="under-post-card">
+<b>编辑推荐：</b>
+<br>
+
+· <a href="https://www.cnblogs.com/lonely-wolf/p/15674526.html" target="_blank">一文讲透算法中的时间复杂度和空间复杂度计算方式 </a>
+    <br>
+· <a href="https://www.cnblogs.com/cool-net/p/15655036.html" target="_blank">.NET Core基础篇：集成Swagger文档与自定义Swagger UI</a>
+    <br>
+· <a href="https://www.cnblogs.com/myshowtime/p/15666336.html" target="_blank">「译」 .NET 6 中 gRPC 的新功能</a>
+    <br>
+· <a href="https://www.cnblogs.com/wzh2010/p/13874211.html" target="_blank">一次缓存雪崩的灾难复盘</a>
+    <br>
+· <a href="https://www.cnblogs.com/wanghao72214/p/15659718.html" target="_blank">如何在 ASP.NET Core 中构建轻量级服务 </a>
+    <br>
+</div></div>
+    <div id="under_post_card2"><div class="itnews under-post-card">
+    <b>最新新闻</b>：
+    <br>
+ ·          <a href="https://news.cnblogs.com/n/709006/" target="_blank">中国云计算战争：误判、追赶与缠斗（2021-12-14 16:09）</a>
+        <br>
+ ·          <a href="https://news.cnblogs.com/n/709007/" target="_blank">睡在车间奔向火星，马斯克的“时代”来了！（2021-12-14 15:50）</a>
+        <br>
+ ·          <a href="https://news.cnblogs.com/n/709004/" target="_blank">腾讯To B的「决心」，工业AI的「雄心」（2021-12-14 15:40）</a>
+        <br>
+ ·          <a href="https://news.cnblogs.com/n/709003/" target="_blank">猿辅导等5家中小学线上“营转非”获审批，“双减”重剑下的独辟蹊径（2021-12-14 15:27）</a>
+        <br>
+ ·          <a href="https://news.cnblogs.com/n/709002/" target="_blank">耐克收购虚拟运动鞋制造商（2021-12-14 15:21）</a>
+        <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="under-post-card" style="display: none;"></div>
+    <script type="text/javascript">
+       var commentManager = new blogCommentManager();
+       commentManager.renderComments(0);
+       fixPostBody();
+
+           window.tocManager.displayDisableTocTips = false
+           window.tocManager.generateToc();
+           setTimeout(function() { incrementViewCount(cb_entryId); }, 50);       deliverT2();
+       deliverC1C2();
+       loadNewsAndKb();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);       LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+       GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+       loadOptUnderPost();
+       GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<div id="sideBarMain">
+			<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/ironstark/">
+            IronStark
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/ironstark/" title="入园时间：2015-01-04">
+            6年11个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/ironstark/followers/">
+            351
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/ironstark/followees/">
+            14
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow('64209f10-d393-e411-b908-9dcfd8948a71')">+加关注</a></div>
+        <script>getFollowStatus('64209f10-d393-e411-b908-9dcfd8948a71');</script>
+    </div>
+</div>
+
+</div>
+<div id="sidebar_c3"></div>
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" title="Calendar" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar('2021/11/14'); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2021年12月</td>
+                            <td class="CalNextPrev" align="right">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar('2022/01/14'); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    <tr>
+        <th class="CalDayHeader" abbr="日" scope="col" align="center">日</th>
+        <th class="CalDayHeader" abbr="一" scope="col" align="center">一</th>
+        <th class="CalDayHeader" abbr="二" scope="col" align="center">二</th>
+        <th class="CalDayHeader" abbr="三" scope="col" align="center">三</th>
+        <th class="CalDayHeader" abbr="四" scope="col" align="center">四</th>
+        <th class="CalDayHeader" abbr="五" scope="col" align="center">五</th>
+        <th class="CalDayHeader" abbr="六" scope="col" align="center">六</th>
+    </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                        <td class="" align="center">
+                            3
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        4
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            5
+                        </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                9
+                            </td>
+                            <td class="" align="center">
+                                10
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            11
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            12
+                        </td>
+                            <td class="" align="center">
+                                13
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="" align="center">
+                                16
+                            </td>
+                            <td class="" align="center">
+                                17
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            18
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            19
+                        </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                            <td class="" align="center">
+                                24
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            25
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            26
+                        </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                            <td class="" align="center">
+                                31
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            2
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                7
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            8
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block"><div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+    
+<li><a href="https://www.cnblogs.com/ironstark/p/" title="我的博客的随笔列表">我的随笔</a></li>
+<li><a href="https://www.cnblogs.com/ironstark/MyComments.html" title="我的发表过的评论列表">我的评论</a></li>
+<li><a href="https://www.cnblogs.com/ironstark/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li>
+<li><a href="https://www.cnblogs.com/ironstark/RecentComments.html" title="我的博客的评论列表">最新评论</a></li>
+<li><a href="https://www.cnblogs.com/ironstark/tag/" title="我的博客的标签列表">我的标签</a></li>
+
+</ul>
+</div>
+
+</div>
+
+<!-- 最新随笔 -->
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block"><div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+        <li>
+            <a href="https://www.cnblogs.com/ironstark/tag/PCL/">PCL<span class="tag-count">(13)</span></a>
+        </li>
+    
+
+</ul>
+</div>
+
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+
+    <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+        <h3 class="catListTitle">
+            
+随笔分类
+
+
+
+        </h3>
+
+        <ul>
+
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/816895.html" class="category-item-link" rel="" target="">Robotics(15)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/836766.html" class="category-item-link" rel="" target="">并行异构程序设计(3)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/745953.html" class="category-item-link" rel="" target="">机器视觉与计算机视觉(19)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/765694.html" class="category-item-link" rel="" target="">机器学习与概率(29)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/745952.html" class="category-item-link" rel="" target="">嵌入式与linux(11)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/759418.html" class="category-item-link" rel="" target="">三维计算机视觉(16)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/category/760079.html" class="category-item-link" rel="" target="">数学(1)</a>
+ 
+                </li>                
+            
+        </ul>
+
+
+    </div>    
+    <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+        <h3 class="catListTitle">
+            
+随笔档案
+
+
+
+        </h3>
+
+        <ul>
+
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2017/06.html" class="category-item-link" rel="" target="">2017年6月(1)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/11.html" class="category-item-link" rel="" target="">2016年11月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/10.html" class="category-item-link" rel="" target="">2016年10月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/07.html" class="category-item-link" rel="" target="">2016年7月(3)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/06.html" class="category-item-link" rel="" target="">2016年6月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/05.html" class="category-item-link" rel="" target="">2016年5月(12)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/04.html" class="category-item-link" rel="" target="">2016年4月(6)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/03.html" class="category-item-link" rel="" target="">2016年3月(12)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/02.html" class="category-item-link" rel="" target="">2016年2月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2016/01.html" class="category-item-link" rel="" target="">2016年1月(6)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/12.html" class="category-item-link" rel="" target="">2015年12月(13)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/11.html" class="category-item-link" rel="" target="">2015年11月(5)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/10.html" class="category-item-link" rel="" target="">2015年10月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/09.html" class="category-item-link" rel="" target="">2015年9月(1)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/08.html" class="category-item-link" rel="" target="">2015年8月(1)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="false" style="display: none">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/06.html" class="category-item-link" rel="" target="">2015年6月(2)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="false" style="display: none">
+                    
+<a href="https://www.cnblogs.com/ironstark/archive/2015/05.html" class="category-item-link" rel="" target="">2015年5月(25)</a>
+ 
+                </li>                
+            <li>
+                <a href="javascript:void(0)" onclick="sideColumnManager.loadMore(this)">更多</a>
+            </li>
+        </ul>
+
+
+    </div>    
+</div>
+
+<!-- 最新评论 -->
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block"><div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5087081.html">
+                            1. 机器学习 —— 概率图模型（贝叶斯网络）(58511)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5027269.html">
+                            2. PCL—低层次视觉—点云分割（基于凹凸性）(30229)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5013968.html">
+                            3. PCL—低层次视觉—点云分割（超体聚类）(21428)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5000147.html">
+                            4. PCL—低层次视觉—点云分割（邻近信息）(20556)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/4998037.html">
+                            5. PCL—低层次视觉—点云分割（RanSaC）(19419)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block"><div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5064848.html">
+                            1. PCL—低层次视觉—关键点检测（Harris）(14)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5051533.html">
+                            2. PCL—低层次视觉—关键点检测（NARF）(14)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5027269.html">
+                            3. PCL—低层次视觉—点云分割（基于凹凸性）(11)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5013968.html">
+                            4. PCL—低层次视觉—点云分割（超体聚类）(11)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/ironstark/p/5342791.html">
+                            5. 机器学习 —— 概率图模型（完结）(6)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/ironstark/p/5027269.html">
+                                1. PCL—低层次视觉—点云分割（基于凹凸性）(12)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/ironstark/p/7016699.html">
+                                2. 3D Object Classification With Point Convolution —— 点云卷积网络(5)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/ironstark/p/5953881.html">
+                                3. 深夜随想(5)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/ironstark/p/5010771.html">
+                                4. PCL—低层次视觉—点云滤波（基于点云频率）(4)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/ironstark/p/5008258.html">
+                                5. PCL—低层次视觉—点云分割（最小割算法）(3)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div></div><div id="sidebar_recentcomments" class="sidebar-block"><div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/ironstark/p/5146818.html">1. Re:机器学习 —— 概率图模型（推理：消息传递算法）</a></li>
+                    <li class="recent_comment_body"><p>博主可以告诉您图中的内容参考的是什么资料吗？？</p>
+</li>
+                    <li class="recent_comment_author">--yyzhang_h</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/ironstark/p/5146818.html">2. Re:机器学习 —— 概率图模型（推理：消息传递算法）</a></li>
+                    <li class="recent_comment_body"><p>看不到图</p>
+</li>
+                    <li class="recent_comment_author">--studystudy2</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/ironstark/p/5027269.html">3. Re:PCL—低层次视觉—点云分割（基于凹凸性）</a></li>
+                    <li class="recent_comment_body"><p>楼主，你说的官网是哪个网站啊，能给个链接吗？？</p>
+</li>
+                    <li class="recent_comment_author">--周姝康</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/ironstark/p/5064848.html">4. Re:PCL—低层次视觉—关键点检测（Harris）</a></li>
+                    <li class="recent_comment_body"><p>博主,请问harris3d关键点检测用于相机标定是否精度能够达到要求?我想用圆锥顶点作为标定点,想到是求底面圆中心点和harris来求,但精度上不知道哪种比较好一点</p>
+</li>
+                    <li class="recent_comment_author">--callcall</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/ironstark/p/5010771.html">5. Re:PCL—低层次视觉—点云滤波（基于点云频率）</a></li>
+                    <li class="recent_comment_body"><p>有人试过这个可以吗？计算大尺度和小尺度的参数输入我看着没变，这个是这样吗？</p>
+</li>
+                    <li class="recent_comment_author">--little_white</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+
+</div>
+                    <script>loadBlogSideColumn();</script>
+			</div>			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2021 IronStark
+<br><span id="poweredby">Powered by .NET 6 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8FO3GXnjClZGrNGr2Ic8Z1pTnQEVrd5KOCwXQAJybAPE_KiFzZ2me_fcbPdBpHqg2szG-Gj8gtze8kF47FuByfWmON8Dvr5BfUkDjzWTDtkLo1XGPrpzYL_8grkPK8fXeVnGibgYwbbD6JoGDnEwSyM">
+    <script async="" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/js.js"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var kv = getGACustom();
+    if (kv) {
+        gtag('set', kv);
+    }
+    gtag('config', 'UA-476124-1');
+    </script>
+    <script defer="defer" src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/hm.js"></script><iframe src="PCL%E2%80%94%E4%BD%8E%E5%B1%82%E6%AC%A1%E8%A7%86%E8%A7%89%E2%80%94%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B%EF%BC%88NARF%EF%BC%89%20-%20IronStark%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/container.html" style="visibility: hidden; display: none;"></iframe>
+
+</body></html>
