@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/save_pcd.cpp" "/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/save_pcd.dir/src/save_pcd.cpp.o"
+  "/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/save_pcd.cpp" "/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/save_pcd.dir/src/save_pcd.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,10 +18,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "BOOST_SYSTEM_DYN_LINK"
   "DISABLE_PCAP"
   "DISABLE_PNG"
-  "QT_CORE_LIB"
-  "QT_GUI_LIB"
-  "QT_NO_DEBUG"
-  "QT_WIDGETS_LIB"
   "qh_QHpointer"
   "vtkRenderingCore_AUTOINIT=3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)"
   )
@@ -32,11 +28,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/freetype2"
   "/usr/local/include/pcl-1.12"
   "/usr/include/eigen3"
-  "/usr/include/x86_64-linux-gnu/qt5"
-  "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
-  "/usr/include/x86_64-linux-gnu/qt5/QtGui"
-  "/usr/include/x86_64-linux-gnu/qt5/QtCore"
-  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+  "/usr/include/ni"
+  "/usr/include/openni2"
   )
 
 # Targets to which this target links.

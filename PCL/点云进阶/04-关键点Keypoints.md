@@ -18,3 +18,9 @@ NARF(Normal Aligned Radial Feature)关键点是为了从深度图像中识别物
 * 以上概念一片模糊  
 
 # 重新理解
+* 如何提取边缘点
+* 如何提取兴趣点
+* 如何求解局部描述子 (类似于方向直方图)
+  
+## 代码实现 
+narf_keypoint_extraction.cpp

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -215,6 +215,19 @@ PassThrough/fast:
 .PHONY : PassThrough/fast
 
 #=============================================================================
+# Target rules for targets named narf_keypoint_extraction
+
+# Build rule for target.
+narf_keypoint_extraction: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 narf_keypoint_extraction
+.PHONY : narf_keypoint_extraction
+
+# fast build rule for target.
+narf_keypoint_extraction/fast:
+	$(MAKE) -f CMakeFiles/narf_keypoint_extraction.dir/build.make CMakeFiles/narf_keypoint_extraction.dir/build
+.PHONY : narf_keypoint_extraction/fast
+
+#=============================================================================
 # Target rules for targets named load_pcd
 
 # Build rule for target.
@@ -332,6 +345,33 @@ src/2_ad/downsample_voxel_grid.s: src/2_ad/downsample_voxel_grid.cpp.s
 src/2_ad/downsample_voxel_grid.cpp.s:
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.s
 .PHONY : src/2_ad/downsample_voxel_grid.cpp.s
+
+src/2_ad/narf_keypoint_extraction.o: src/2_ad/narf_keypoint_extraction.cpp.o
+
+.PHONY : src/2_ad/narf_keypoint_extraction.o
+
+# target to build an object file
+src/2_ad/narf_keypoint_extraction.cpp.o:
+	$(MAKE) -f CMakeFiles/narf_keypoint_extraction.dir/build.make CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o
+.PHONY : src/2_ad/narf_keypoint_extraction.cpp.o
+
+src/2_ad/narf_keypoint_extraction.i: src/2_ad/narf_keypoint_extraction.cpp.i
+
+.PHONY : src/2_ad/narf_keypoint_extraction.i
+
+# target to preprocess a source file
+src/2_ad/narf_keypoint_extraction.cpp.i:
+	$(MAKE) -f CMakeFiles/narf_keypoint_extraction.dir/build.make CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.i
+.PHONY : src/2_ad/narf_keypoint_extraction.cpp.i
+
+src/2_ad/narf_keypoint_extraction.s: src/2_ad/narf_keypoint_extraction.cpp.s
+
+.PHONY : src/2_ad/narf_keypoint_extraction.s
+
+# target to generate assembly for a file
+src/2_ad/narf_keypoint_extraction.cpp.s:
+	$(MAKE) -f CMakeFiles/narf_keypoint_extraction.dir/build.make CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s
+.PHONY : src/2_ad/narf_keypoint_extraction.cpp.s
 
 src/2_ad/range_image.o: src/2_ad/range_image.cpp.o
 
@@ -646,6 +686,7 @@ help:
 	@echo "... save_pcd"
 	@echo "... moment_of_inertia"
 	@echo "... PassThrough"
+	@echo "... narf_keypoint_extraction"
 	@echo "... load_pcd"
 	@echo "... PCLDemo"
 	@echo "... kd_tree"
@@ -657,6 +698,9 @@ help:
 	@echo "... src/2_ad/downsample_voxel_grid.o"
 	@echo "... src/2_ad/downsample_voxel_grid.i"
 	@echo "... src/2_ad/downsample_voxel_grid.s"
+	@echo "... src/2_ad/narf_keypoint_extraction.o"
+	@echo "... src/2_ad/narf_keypoint_extraction.i"
+	@echo "... src/2_ad/narf_keypoint_extraction.s"
 	@echo "... src/2_ad/range_image.o"
 	@echo "... src/2_ad/range_image.i"
 	@echo "... src/2_ad/range_image.s"

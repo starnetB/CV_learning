@@ -60,3 +60,6 @@ target_link_libraries(range_image ${PCL_LIBRARIES})
 
 add_executable(range_image_border_extraction src/2_ad/range_image_border.cpp)
 target_link_libraries(range_image_border_extraction ${PCL_LIBRARIES})
+
+add_executable(narf_keypoint_extraction src/2_ad/narf_keypoint_extraction.cpp)
+target_link_libraries(narf_keypoint_extraction ${PCL_LIBRARIES})
