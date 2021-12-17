@@ -63,3 +63,10 @@ target_link_libraries(range_image_border_extraction ${PCL_LIBRARIES})
 
 add_executable(narf_keypoint_extraction src/2_ad/narf_keypoint_extraction.cpp)
 target_link_libraries(narf_keypoint_extraction ${PCL_LIBRARIES})
+
+
+add_executable(random_sample_consensus src/2_ad/random_sample_consensus.cpp)
+target_link_libraries(random_sample_consensus ${PCL_LIBRARIES})
+
+add_executable(n_show_get_1 src/2_ad/n_show_get_1.cpp)
+target_link_libraries(n_show_get_1 ${PCL_LIBRARIES})

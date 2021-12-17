@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named n_show_get_1
+
+# Build rule for target.
+n_show_get_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 n_show_get_1
+.PHONY : n_show_get_1
+
+# fast build rule for target.
+n_show_get_1/fast:
+	$(MAKE) -f CMakeFiles/n_show_get_1.dir/build.make CMakeFiles/n_show_get_1.dir/build
+.PHONY : n_show_get_1/fast
+
+#=============================================================================
+# Target rules for targets named random_sample_consensus
+
+# Build rule for target.
+random_sample_consensus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 random_sample_consensus
+.PHONY : random_sample_consensus
+
+# fast build rule for target.
+random_sample_consensus/fast:
+	$(MAKE) -f CMakeFiles/random_sample_consensus.dir/build.make CMakeFiles/random_sample_consensus.dir/build
+.PHONY : random_sample_consensus/fast
+
+#=============================================================================
 # Target rules for targets named octree
 
 # Build rule for target.
@@ -346,6 +372,33 @@ src/2_ad/downsample_voxel_grid.cpp.s:
 	$(MAKE) -f CMakeFiles/downsample_voxel_grid.dir/build.make CMakeFiles/downsample_voxel_grid.dir/src/2_ad/downsample_voxel_grid.cpp.s
 .PHONY : src/2_ad/downsample_voxel_grid.cpp.s
 
+src/2_ad/n_show_get_1.o: src/2_ad/n_show_get_1.cpp.o
+
+.PHONY : src/2_ad/n_show_get_1.o
+
+# target to build an object file
+src/2_ad/n_show_get_1.cpp.o:
+	$(MAKE) -f CMakeFiles/n_show_get_1.dir/build.make CMakeFiles/n_show_get_1.dir/src/2_ad/n_show_get_1.cpp.o
+.PHONY : src/2_ad/n_show_get_1.cpp.o
+
+src/2_ad/n_show_get_1.i: src/2_ad/n_show_get_1.cpp.i
+
+.PHONY : src/2_ad/n_show_get_1.i
+
+# target to preprocess a source file
+src/2_ad/n_show_get_1.cpp.i:
+	$(MAKE) -f CMakeFiles/n_show_get_1.dir/build.make CMakeFiles/n_show_get_1.dir/src/2_ad/n_show_get_1.cpp.i
+.PHONY : src/2_ad/n_show_get_1.cpp.i
+
+src/2_ad/n_show_get_1.s: src/2_ad/n_show_get_1.cpp.s
+
+.PHONY : src/2_ad/n_show_get_1.s
+
+# target to generate assembly for a file
+src/2_ad/n_show_get_1.cpp.s:
+	$(MAKE) -f CMakeFiles/n_show_get_1.dir/build.make CMakeFiles/n_show_get_1.dir/src/2_ad/n_show_get_1.cpp.s
+.PHONY : src/2_ad/n_show_get_1.cpp.s
+
 src/2_ad/narf_keypoint_extraction.o: src/2_ad/narf_keypoint_extraction.cpp.o
 
 .PHONY : src/2_ad/narf_keypoint_extraction.o
@@ -372,6 +425,33 @@ src/2_ad/narf_keypoint_extraction.s: src/2_ad/narf_keypoint_extraction.cpp.s
 src/2_ad/narf_keypoint_extraction.cpp.s:
 	$(MAKE) -f CMakeFiles/narf_keypoint_extraction.dir/build.make CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s
 .PHONY : src/2_ad/narf_keypoint_extraction.cpp.s
+
+src/2_ad/random_sample_consensus.o: src/2_ad/random_sample_consensus.cpp.o
+
+.PHONY : src/2_ad/random_sample_consensus.o
+
+# target to build an object file
+src/2_ad/random_sample_consensus.cpp.o:
+	$(MAKE) -f CMakeFiles/random_sample_consensus.dir/build.make CMakeFiles/random_sample_consensus.dir/src/2_ad/random_sample_consensus.cpp.o
+.PHONY : src/2_ad/random_sample_consensus.cpp.o
+
+src/2_ad/random_sample_consensus.i: src/2_ad/random_sample_consensus.cpp.i
+
+.PHONY : src/2_ad/random_sample_consensus.i
+
+# target to preprocess a source file
+src/2_ad/random_sample_consensus.cpp.i:
+	$(MAKE) -f CMakeFiles/random_sample_consensus.dir/build.make CMakeFiles/random_sample_consensus.dir/src/2_ad/random_sample_consensus.cpp.i
+.PHONY : src/2_ad/random_sample_consensus.cpp.i
+
+src/2_ad/random_sample_consensus.s: src/2_ad/random_sample_consensus.cpp.s
+
+.PHONY : src/2_ad/random_sample_consensus.s
+
+# target to generate assembly for a file
+src/2_ad/random_sample_consensus.cpp.s:
+	$(MAKE) -f CMakeFiles/random_sample_consensus.dir/build.make CMakeFiles/random_sample_consensus.dir/src/2_ad/random_sample_consensus.cpp.s
+.PHONY : src/2_ad/random_sample_consensus.cpp.s
 
 src/2_ad/range_image.o: src/2_ad/range_image.cpp.o
 
@@ -678,6 +758,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... n_show_get_1"
+	@echo "... random_sample_consensus"
 	@echo "... octree"
 	@echo "... pcl_visualizer"
 	@echo "... pcl_transform"
@@ -698,9 +780,15 @@ help:
 	@echo "... src/2_ad/downsample_voxel_grid.o"
 	@echo "... src/2_ad/downsample_voxel_grid.i"
 	@echo "... src/2_ad/downsample_voxel_grid.s"
+	@echo "... src/2_ad/n_show_get_1.o"
+	@echo "... src/2_ad/n_show_get_1.i"
+	@echo "... src/2_ad/n_show_get_1.s"
 	@echo "... src/2_ad/narf_keypoint_extraction.o"
 	@echo "... src/2_ad/narf_keypoint_extraction.i"
 	@echo "... src/2_ad/narf_keypoint_extraction.s"
+	@echo "... src/2_ad/random_sample_consensus.o"
+	@echo "... src/2_ad/random_sample_consensus.i"
+	@echo "... src/2_ad/random_sample_consensus.s"
 	@echo "... src/2_ad/range_image.o"
 	@echo "... src/2_ad/range_image.i"
 	@echo "... src/2_ad/range_image.s"

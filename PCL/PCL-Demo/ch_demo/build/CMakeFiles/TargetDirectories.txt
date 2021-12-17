@@ -1,5 +1,7 @@
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/rebuild_cache.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/edit_cache.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/n_show_get_1.dir
+/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/random_sample_consensus.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/octree.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_visualizer.dir
 /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/pcl_transform.dir
