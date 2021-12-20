@@ -19,8 +19,8 @@ include_directories(${PCL_INCLUDE_DIRS})
 # Eigen
 include_directories("/usr/include/eigen3")
 
-add_executable(stereoVision src/stereoVision.cpp)
-target_link_libraries(stereoVision ${OpenCV_LIBRARIES} ${Pangolin_LIBRARIES})
+add_executable(gaussNewton src/gaussNewton.cpp)
+target_link_libraries(gaussNewton ${OpenCV_LIBRARIES} ${Pangolin_LIBRARIES})
 
-add_executable(jointMap src/jointMap.cpp)
-target_link_libraries(jointMap ${OpenCV_LIBRARIES} ${PCL_LIBRARIES} ${Pangolin_LIBRARIES} Sophus::Sophus)
+#add_executable(jointMap src/jointMap.cpp)
+#target_link_libraries(jointMap ${OpenCV_LIBRARIES} ${PCL_LIBRARIES} ${Pangolin_LIBRARIES} Sophus::Sophus)
