@@ -287,6 +287,7 @@ CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/ope
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/highgui.hpp
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/imgcodecs.hpp
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/imgproc.hpp
+CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/imgproc/segmentation.hpp
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/ml.hpp
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/ml/ml.inl.hpp
 CMakeFiles/gaussNewton.dir/src/gaussNewton.cpp.o: /usr/local/include/opencv4/opencv2/objdetect.hpp

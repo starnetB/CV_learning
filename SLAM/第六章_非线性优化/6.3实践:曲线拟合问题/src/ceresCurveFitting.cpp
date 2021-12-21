@@ -56,7 +56,7 @@ int main(int argc,char **argv){
     }
 
     //配置求解器
-    ceres::Solver::Option option;  //这里有很多配置项可以填写
+    ceres::Solver::Options option;  //这里有很多配置项可以填写
     option.linear_solver_type=ceres::DENSE_NORMAL_CHOLESKY; //增量方法如何求解
     option.minimizer_progress_to_stdout=true;   //输出到cout 
 

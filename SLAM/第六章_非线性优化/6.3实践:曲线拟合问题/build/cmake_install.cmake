@@ -1,4 +1,4 @@
-# Install script for directory: /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
+# Install script for directory: /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

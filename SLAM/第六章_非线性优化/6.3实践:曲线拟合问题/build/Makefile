@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named ceresCurveFitting
+
+# Build rule for target.
+ceresCurveFitting: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ceresCurveFitting
+.PHONY : ceresCurveFitting
+
+# fast build rule for target.
+ceresCurveFitting/fast:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/build
+.PHONY : ceresCurveFitting/fast
+
+#=============================================================================
 # Target rules for targets named gaussNewton
 
 # Build rule for target.
@@ -122,6 +135,33 @@ gaussNewton: cmake_check_build_system
 gaussNewton/fast:
 	$(MAKE) -f CMakeFiles/gaussNewton.dir/build.make CMakeFiles/gaussNewton.dir/build
 .PHONY : gaussNewton/fast
+
+src/ceresCurveFitting.o: src/ceresCurveFitting.cpp.o
+
+.PHONY : src/ceresCurveFitting.o
+
+# target to build an object file
+src/ceresCurveFitting.cpp.o:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/src/ceresCurveFitting.cpp.o
+.PHONY : src/ceresCurveFitting.cpp.o
+
+src/ceresCurveFitting.i: src/ceresCurveFitting.cpp.i
+
+.PHONY : src/ceresCurveFitting.i
+
+# target to preprocess a source file
+src/ceresCurveFitting.cpp.i:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/src/ceresCurveFitting.cpp.i
+.PHONY : src/ceresCurveFitting.cpp.i
+
+src/ceresCurveFitting.s: src/ceresCurveFitting.cpp.s
+
+.PHONY : src/ceresCurveFitting.s
+
+# target to generate assembly for a file
+src/ceresCurveFitting.cpp.s:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/src/ceresCurveFitting.cpp.s
+.PHONY : src/ceresCurveFitting.cpp.s
 
 src/gaussNewton.o: src/gaussNewton.cpp.o
 
@@ -158,7 +198,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... ceresCurveFitting"
 	@echo "... gaussNewton"
+	@echo "... src/ceresCurveFitting.o"
+	@echo "... src/ceresCurveFitting.i"
+	@echo "... src/ceresCurveFitting.s"
 	@echo "... src/gaussNewton.o"
 	@echo "... src/gaussNewton.i"
 	@echo "... src/gaussNewton.s"

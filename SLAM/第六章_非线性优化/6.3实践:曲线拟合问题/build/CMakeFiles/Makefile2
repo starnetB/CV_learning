@@ -44,15 +44,16 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/ceresCurveFitting.dir/all
 all: CMakeFiles/gaussNewton.dir/all
 
 .PHONY : all
@@ -63,9 +64,37 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/ceresCurveFitting.dir/clean
 clean: CMakeFiles/gaussNewton.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ceresCurveFitting.dir
+
+# All Build rule for target.
+CMakeFiles/ceresCurveFitting.dir/all:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/depend
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles --progress-num=1,2 "Built target ceresCurveFitting"
+.PHONY : CMakeFiles/ceresCurveFitting.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ceresCurveFitting.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ceresCurveFitting.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 0
+.PHONY : CMakeFiles/ceresCurveFitting.dir/rule
+
+# Convenience name for target.
+ceresCurveFitting: CMakeFiles/ceresCurveFitting.dir/rule
+
+.PHONY : ceresCurveFitting
+
+# clean rule for target.
+CMakeFiles/ceresCurveFitting.dir/clean:
+	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/clean
+.PHONY : CMakeFiles/ceresCurveFitting.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/gaussNewton.dir
@@ -74,14 +103,14 @@ clean: CMakeFiles/gaussNewton.dir/clean
 CMakeFiles/gaussNewton.dir/all:
 	$(MAKE) -f CMakeFiles/gaussNewton.dir/build.make CMakeFiles/gaussNewton.dir/depend
 	$(MAKE) -f CMakeFiles/gaussNewton.dir/build.make CMakeFiles/gaussNewton.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles --progress-num=1,2 "Built target gaussNewton"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles --progress-num=3,4 "Built target gaussNewton"
 .PHONY : CMakeFiles/gaussNewton.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/gaussNewton.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gaussNewton.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franka/home/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lees/CV_learning/SLAM/第六章_非线性优化/6.3实践:曲线拟合问题/build/CMakeFiles 0
 .PHONY : CMakeFiles/gaussNewton.dir/rule
 
 # Convenience name for target.
