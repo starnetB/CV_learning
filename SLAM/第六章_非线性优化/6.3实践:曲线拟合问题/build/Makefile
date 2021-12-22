@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named g2oCurveFitting
+
+# Build rule for target.
+g2oCurveFitting: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 g2oCurveFitting
+.PHONY : g2oCurveFitting
+
+# fast build rule for target.
+g2oCurveFitting/fast:
+	$(MAKE) -f CMakeFiles/g2oCurveFitting.dir/build.make CMakeFiles/g2oCurveFitting.dir/build
+.PHONY : g2oCurveFitting/fast
+
+#=============================================================================
 # Target rules for targets named ceresCurveFitting
 
 # Build rule for target.
@@ -163,6 +176,33 @@ src/ceresCurveFitting.cpp.s:
 	$(MAKE) -f CMakeFiles/ceresCurveFitting.dir/build.make CMakeFiles/ceresCurveFitting.dir/src/ceresCurveFitting.cpp.s
 .PHONY : src/ceresCurveFitting.cpp.s
 
+src/g2oCurveFitting.o: src/g2oCurveFitting.cpp.o
+
+.PHONY : src/g2oCurveFitting.o
+
+# target to build an object file
+src/g2oCurveFitting.cpp.o:
+	$(MAKE) -f CMakeFiles/g2oCurveFitting.dir/build.make CMakeFiles/g2oCurveFitting.dir/src/g2oCurveFitting.cpp.o
+.PHONY : src/g2oCurveFitting.cpp.o
+
+src/g2oCurveFitting.i: src/g2oCurveFitting.cpp.i
+
+.PHONY : src/g2oCurveFitting.i
+
+# target to preprocess a source file
+src/g2oCurveFitting.cpp.i:
+	$(MAKE) -f CMakeFiles/g2oCurveFitting.dir/build.make CMakeFiles/g2oCurveFitting.dir/src/g2oCurveFitting.cpp.i
+.PHONY : src/g2oCurveFitting.cpp.i
+
+src/g2oCurveFitting.s: src/g2oCurveFitting.cpp.s
+
+.PHONY : src/g2oCurveFitting.s
+
+# target to generate assembly for a file
+src/g2oCurveFitting.cpp.s:
+	$(MAKE) -f CMakeFiles/g2oCurveFitting.dir/build.make CMakeFiles/g2oCurveFitting.dir/src/g2oCurveFitting.cpp.s
+.PHONY : src/g2oCurveFitting.cpp.s
+
 src/gaussNewton.o: src/gaussNewton.cpp.o
 
 .PHONY : src/gaussNewton.o
@@ -198,11 +238,15 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... g2oCurveFitting"
 	@echo "... ceresCurveFitting"
 	@echo "... gaussNewton"
 	@echo "... src/ceresCurveFitting.o"
 	@echo "... src/ceresCurveFitting.i"
 	@echo "... src/ceresCurveFitting.s"
+	@echo "... src/g2oCurveFitting.o"
+	@echo "... src/g2oCurveFitting.i"
+	@echo "... src/g2oCurveFitting.s"
 	@echo "... src/gaussNewton.o"
 	@echo "... src/gaussNewton.i"
 	@echo "... src/gaussNewton.s"

@@ -155,6 +155,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/lib/cmake/Pangolin/PangolinConfigVersion.cmake"
   "/usr/local/lib/cmake/Pangolin/PangolinTargets-release.cmake"
   "/usr/local/lib/cmake/Pangolin/PangolinTargets.cmake"
+  "/usr/local/lib/cmake/g2o/g2oConfig.cmake"
+  "/usr/local/lib/cmake/g2o/g2oConfigVersion.cmake"
+  "/usr/local/lib/cmake/g2o/g2oTargets-release.cmake"
+  "/usr/local/lib/cmake/g2o/g2oTargets.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake"
@@ -184,6 +188,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.16/Modules/Compiler/GNU.cmake"
   "/usr/share/cmake-3.16/Modules/FindBoost.cmake"
+  "/usr/share/cmake-3.16/Modules/FindOpenGL.cmake"
   "/usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.16/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake-3.16/Modules/FindPkgConfig.cmake"
@@ -209,6 +214,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/g2oCurveFitting.dir/DependInfo.cmake"
   "CMakeFiles/ceresCurveFitting.dir/DependInfo.cmake"
   "CMakeFiles/gaussNewton.dir/DependInfo.cmake"
   )

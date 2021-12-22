@@ -23,8 +23,15 @@ include_directories(${PCL_INCLUDE_DIRS})
 # Eigen
 include_directories("/usr/include/eigen3")
 
+
+find_package(g2o REQUIRED)
+include_directories((${g2o_INCLUDE_DIRS}))
+
 add_executable(gaussNewton src/gaussNewton.cpp)
 target_link_libraries(gaussNewton ${OpenCV_LIBRARIES} ${Pangolin_LIBRARIES})
 
 add_executable(ceresCurveFitting src/ceresCurveFitting.cpp)
 target_link_libraries(ceresCurveFitting ${OpenCV_LIBRARIES} ${PCL_LIBRARIES} ${CERES_LIBRARIES} ${Pangolin_LIBRARIES})
+
+add_executable(g2oCurveFitting src/g2oCurveFitting.cpp)
+target_link_libraries(g2oCurveFitting ${OpenCV_LIBRARIES} ${PCL_LIBRARIES} ${CERES_LIBRARIES} ${Pangolin_LIBRARIES} g2o_core g2o_stuff)

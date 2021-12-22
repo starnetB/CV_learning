@@ -30,8 +30,8 @@ public:
     }
 
     //存盘和读盘 ：预留
-    virtual bool read(istream &in){}
-    virtual bool write(ostream &out) const{}
+    virtual bool read(istream &in){return true;}
+    virtual bool write(ostream &out) const{return true;}
 };
 
 //误差模型 模板参数：观测值维度，类型，连接顶点类型,边
@@ -55,12 +55,12 @@ public:
         const Eigen::Vector3d abc=v->estimate();
         double y=exp(abc[0]*_x*_x+abc[1]*_x+abc[2]);
         _jacobianOplusXi[0]=-_x*_x*y;
-        _jacobianOplusXi[0]=-_x*y;
-        _jacobianOplusXi[0]=-y;
+        _jacobianOplusXi[1]=-_x*y;
+        _jacobianOplusXi[2]=-y;
     }
 
-    virtual bool read(istream &in){}
-    virtual bool write(ostream &out){}
+    virtual bool read(istream &in){return true;}
+    virtual bool write(ostream &out) const {return true;}  //1.当成员函数后面加const，函数中所有类中的成员属性不能被改变
 public:
     double _x;  //x值，y值为_measurement ,父类自带了
 
@@ -89,6 +89,45 @@ int main(int argc, char **argv){
 
     //梯度下降方法，可以从GN，LM，DogLeg中选
     auto solver=new g2o::OptimizationAlgorithmGaussNewton(
-        g2o::make_unique<BlockSolverType>
-    )
+        g2o::make_unique<BlockSolverType>(g2o::make_unique<LinearSolverType>()));
+    g2o::SparseOptimizer optimizer;   //图模型
+    optimizer.setAlgorithm(solver);   //设置求解器
+    optimizer.setVerbose(true);       //打开调试输出
+    
+
+    //向图里面增加顶点
+    CurveFittingVertex *v=new CurveFittingVertex();
+    v->setEstimate(Eigen::Vector3d(ae,be,ce));
+    v->setId(0);   //设定顶点的初始Id
+    optimizer.addVertex(v);
+
+    //往图中增加边
+    for(int i=0;i<N;i++){
+        CurveFittingEdge *edge=new CurveFittingEdge(x_data[i]);
+        edge->setId(i);                        //设置边的id
+        edge->setVertex(0,v);                  //设置顶点0id的顶点指向 V，指向同一个顶点
+        edge->setMeasurement(y_data[i]);   //观测数据
+        edge->setInformation(Eigen::Matrix<double,1,1>::
+                            Identity()*1/(w_sigma*w_sigma));
+                             //信息矩阵，协方差矩阵之逆，
+                             //这里 使用的是一维度的协方差矩阵
+                             //其实这里的协方差矩阵真心没啥用，但要设置
+                             //求目标函数的时候是有用的
+        optimizer.addEdge(edge);
+    }
+
+    //开始执行优化项目
+    cout<<"start optimization"<<endl;
+    chrono::steady_clock::time_point t1=chrono::steady_clock::now();
+    optimizer.initializeOptimization();
+    optimizer.optimize(100);
+    chrono::steady_clock::time_point t2=chrono::steady_clock::now();
+    chrono::duration<double> time_used=chrono::duration_cast<chrono::duration<double>>(t2-t1);
+    cout<<"solve time cost =  "<< time_used.count() << "seconds. " <<endl;
+
+    //输出优化值
+    Eigen::Vector3d abc_estimate=v->estimate();
+    cout<<"estimate model:  "<<abc_estimate.transpose()<<endl;
+
+    return 0;
 }

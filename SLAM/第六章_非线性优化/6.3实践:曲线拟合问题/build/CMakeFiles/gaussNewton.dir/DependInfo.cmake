@@ -23,6 +23,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/vtk-7.1"
   "/usr/include/freetype2"
   "/usr/local/include/pcl-1.12"
+  "../("
+  "../)"
   "/usr/local/include/opencv4"
   "/usr/include/eigen3"
   )
