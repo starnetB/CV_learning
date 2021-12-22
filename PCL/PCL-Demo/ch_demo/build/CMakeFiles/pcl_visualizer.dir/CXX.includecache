@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/pcl_visualizer.cpp
+/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/pcl_visualizer.cpp
 pcl/io/pcd_io.h
 -
 pcl/visualization/pcl_visualizer.h

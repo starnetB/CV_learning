@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/narf_keypoint_extraction.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/narf_keypoint_extraction.dir/flags.make
 
 CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o: CMakeFiles/narf_keypoint_extraction.dir/flags.make
 CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o: ../src/2_ad/narf_keypoint_extraction.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o -c /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o -c /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp
 
 CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp > CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp > CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.i
 
 CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp -o CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/narf_keypoint_extraction.cpp -o CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.s
 
 # Object files for target narf_keypoint_extraction
 narf_keypoint_extraction_OBJECTS = \
@@ -79,18 +79,19 @@ narf_keypoint_extraction_EXTERNAL_OBJECTS =
 
 bin/narf_keypoint_extraction: CMakeFiles/narf_keypoint_extraction.dir/src/2_ad/narf_keypoint_extraction.cpp.o
 bin/narf_keypoint_extraction: CMakeFiles/narf_keypoint_extraction.dir/build.make
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_apps.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_surface.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_keypoints.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_tracking.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_recognition.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_stereo.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_outofcore.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_people.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_simulation.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.71.0
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.71.0
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libqhull_r.so
-bin/narf_keypoint_extraction: /usr/lib/libOpenNI.so
-bin/narf_keypoint_extraction: /usr/lib/libOpenNI2.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkChartsCore-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkInfovisCore-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libfreetype.so
@@ -105,34 +106,24 @@ bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkIOLegacy-7.1.so.7.
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkIOPLY-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingLOD-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkViewsContext2D-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkGUISupportQt-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_keypoints.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_tracking.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_recognition.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_registration.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_stereo.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_segmentation.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_ml.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_features.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_filters.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_sample_consensus.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_ml.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_visualization.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_io.so
-bin/narf_keypoint_extraction: /usr/local/lib/libpcl_surface.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_search.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_kdtree.so
+bin/narf_keypoint_extraction: /usr/local/lib/libpcl_io.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_octree.so
 bin/narf_keypoint_extraction: /usr/local/lib/libpcl_common.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingContext2D-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkViewsCore-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkInteractionWidgets-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersModeling-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
-bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersHybrid-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkImagingGeneral-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkImagingSources-7.1.so.7.1p.1
@@ -145,6 +136,12 @@ bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingVolume-7.
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkIOXML-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkIOXMLParser-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkIOCore-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkImagingCore-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkRenderingCore-7.1.so.7.1p.1
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libvtkCommonColor-7.1.so.7.1p.1
@@ -171,8 +168,11 @@ bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libICE.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libX11.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libXext.so
 bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libXt.so
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
+bin/narf_keypoint_extraction: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
 bin/narf_keypoint_extraction: CMakeFiles/narf_keypoint_extraction.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/narf_keypoint_extraction"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/narf_keypoint_extraction"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/narf_keypoint_extraction.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -185,6 +185,6 @@ CMakeFiles/narf_keypoint_extraction.dir/clean:
 .PHONY : CMakeFiles/narf_keypoint_extraction.dir/clean
 
 CMakeFiles/narf_keypoint_extraction.dir/depend:
-	cd /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/narf_keypoint_extraction.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/narf_keypoint_extraction.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/narf_keypoint_extraction.dir/depend
 

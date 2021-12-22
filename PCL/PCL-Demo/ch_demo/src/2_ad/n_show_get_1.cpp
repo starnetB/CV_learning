@@ -64,10 +64,37 @@ void getN_2(){
     if(pcl::io::loadPCDFile<pcl::PointXYZ>("bunny.pcd",*cloud)==-1) //* load the file
     {
         PCL_ERROR("Couldn`t read file bunny.pcd\n");
-        return(-1);
+        return ;
     }
     // 准备一个indices索引集合，为了简单起见，我们直接使用点云的前10%的点
-    std::vector
+    std::vector<int> indices(std::floor(cloud->points.size()/10));
+    for (std::size_t i=0;i<indices.size();++i) indices[i]=i;
+
+    //创建法向量估算类，设置输入点云
+    pcl::NormalEstimation<pcl::PointXYZ,pcl::Normal> ne;
+    ne.setInputCloud(cloud);
+
+    //设置indices索引
+    std::shared_ptr<std::vector<int>> indicesptr(new std::vector<int>(indices));
+    ne.setIndices(indicesptr);
+
+    // 创建一个空的kdtree，将值传递给法向量估算对象
+    // 这个tree对象将会在ne内部根据输入的数据集进行填充（这里设置没有其他的search surface）
+    pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>());
+    ne.setSearchMethod(tree);
+    //自己对于KDtree的部分理解，如果只有自己，那么把自己变成KDtree，然后自己查询自己
+    //如果设置了SearchSurface,那么把别人变成KDtree，然后自己在别人那里找邻近点
+
+    //定义输出数据集
+    pcl::PointCloud<pcl::Normal>::Ptr cloud_normals(new pcl::PointCloud<pcl::Normal>);
+
+    //使用一个半径为3cm的球体中的所有邻近点
+    ne.setRadiusSearch(0.03);
+
+    //计算法向量特征
+    ne.compute(*cloud_normals);
+    // cloud_normals->points.size () 输出特征的点个数应当定于输入的点个数 cloud->points.size ()
+
 }
 int main(){
     getN_1();

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PassThrough.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/PassThrough.dir/flags.make
 
 CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o: CMakeFiles/PassThrough.dir/flags.make
 CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o: ../src/2_ad/PassThrough.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o -c /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o -c /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp
 
 CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp > CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp > CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.i
 
 CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp -o CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/2_ad/PassThrough.cpp -o CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.s
 
 # Object files for target PassThrough
 PassThrough_OBJECTS = \
@@ -79,18 +79,19 @@ PassThrough_EXTERNAL_OBJECTS =
 
 bin/PassThrough: CMakeFiles/PassThrough.dir/src/2_ad/PassThrough.cpp.o
 bin/PassThrough: CMakeFiles/PassThrough.dir/build.make
-bin/PassThrough: /usr/local/lib/libpcl_apps.so
+bin/PassThrough: /usr/local/lib/libpcl_surface.so
+bin/PassThrough: /usr/local/lib/libpcl_keypoints.so
+bin/PassThrough: /usr/local/lib/libpcl_tracking.so
+bin/PassThrough: /usr/local/lib/libpcl_recognition.so
+bin/PassThrough: /usr/local/lib/libpcl_stereo.so
 bin/PassThrough: /usr/local/lib/libpcl_outofcore.so
 bin/PassThrough: /usr/local/lib/libpcl_people.so
-bin/PassThrough: /usr/local/lib/libpcl_simulation.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.71.0
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.71.0
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libqhull_r.so
-bin/PassThrough: /usr/lib/libOpenNI.so
-bin/PassThrough: /usr/lib/libOpenNI2.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkChartsCore-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkInfovisCore-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libfreetype.so
@@ -105,34 +106,24 @@ bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkIOLegacy-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkIOPLY-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingLOD-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkViewsContext2D-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkGUISupportQt-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
-bin/PassThrough: /usr/local/lib/libpcl_keypoints.so
-bin/PassThrough: /usr/local/lib/libpcl_tracking.so
-bin/PassThrough: /usr/local/lib/libpcl_recognition.so
 bin/PassThrough: /usr/local/lib/libpcl_registration.so
-bin/PassThrough: /usr/local/lib/libpcl_stereo.so
 bin/PassThrough: /usr/local/lib/libpcl_segmentation.so
-bin/PassThrough: /usr/local/lib/libpcl_ml.so
 bin/PassThrough: /usr/local/lib/libpcl_features.so
 bin/PassThrough: /usr/local/lib/libpcl_filters.so
 bin/PassThrough: /usr/local/lib/libpcl_sample_consensus.so
+bin/PassThrough: /usr/local/lib/libpcl_ml.so
 bin/PassThrough: /usr/local/lib/libpcl_visualization.so
-bin/PassThrough: /usr/local/lib/libpcl_io.so
-bin/PassThrough: /usr/local/lib/libpcl_surface.so
 bin/PassThrough: /usr/local/lib/libpcl_search.so
 bin/PassThrough: /usr/local/lib/libpcl_kdtree.so
+bin/PassThrough: /usr/local/lib/libpcl_io.so
 bin/PassThrough: /usr/local/lib/libpcl_octree.so
 bin/PassThrough: /usr/local/lib/libpcl_common.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingContext2D-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkViewsCore-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkInteractionWidgets-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersModeling-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
-bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersHybrid-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkImagingGeneral-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkImagingSources-7.1.so.7.1p.1
@@ -145,6 +136,12 @@ bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingVolume-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkIOXML-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkIOXMLParser-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkIOCore-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkImagingCore-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkRenderingCore-7.1.so.7.1p.1
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libvtkCommonColor-7.1.so.7.1p.1
@@ -171,8 +168,11 @@ bin/PassThrough: /usr/lib/x86_64-linux-gnu/libICE.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libX11.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libXext.so
 bin/PassThrough: /usr/lib/x86_64-linux-gnu/libXt.so
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
+bin/PassThrough: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
 bin/PassThrough: CMakeFiles/PassThrough.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/PassThrough"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/PassThrough"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PassThrough.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -185,6 +185,6 @@ CMakeFiles/PassThrough.dir/clean:
 .PHONY : CMakeFiles/PassThrough.dir/clean
 
 CMakeFiles/PassThrough.dir/depend:
-	cd /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/PassThrough.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/PassThrough.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PassThrough.dir/depend
 

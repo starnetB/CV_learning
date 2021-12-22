@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo
+CMAKE_SOURCE_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build
+CMAKE_BINARY_DIR = /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/kd_tree.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/kd_tree.dir/flags.make
 
 CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o: CMakeFiles/kd_tree.dir/flags.make
 CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o: ../src/kd_tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o -c /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o -c /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp
 
 CMakeFiles/kd_tree.dir/src/kd_tree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/kd_tree.dir/src/kd_tree.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp > CMakeFiles/kd_tree.dir/src/kd_tree.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp > CMakeFiles/kd_tree.dir/src/kd_tree.cpp.i
 
 CMakeFiles/kd_tree.dir/src/kd_tree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/kd_tree.dir/src/kd_tree.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp -o CMakeFiles/kd_tree.dir/src/kd_tree.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/src/kd_tree.cpp -o CMakeFiles/kd_tree.dir/src/kd_tree.cpp.s
 
 # Object files for target kd_tree
 kd_tree_OBJECTS = \
@@ -79,18 +79,19 @@ kd_tree_EXTERNAL_OBJECTS =
 
 bin/kd_tree: CMakeFiles/kd_tree.dir/src/kd_tree.cpp.o
 bin/kd_tree: CMakeFiles/kd_tree.dir/build.make
-bin/kd_tree: /usr/local/lib/libpcl_apps.so
+bin/kd_tree: /usr/local/lib/libpcl_surface.so
+bin/kd_tree: /usr/local/lib/libpcl_keypoints.so
+bin/kd_tree: /usr/local/lib/libpcl_tracking.so
+bin/kd_tree: /usr/local/lib/libpcl_recognition.so
+bin/kd_tree: /usr/local/lib/libpcl_stereo.so
 bin/kd_tree: /usr/local/lib/libpcl_outofcore.so
 bin/kd_tree: /usr/local/lib/libpcl_people.so
-bin/kd_tree: /usr/local/lib/libpcl_simulation.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so.1.71.0
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.71.0
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libqhull_r.so
-bin/kd_tree: /usr/lib/libOpenNI.so
-bin/kd_tree: /usr/lib/libOpenNI2.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkChartsCore-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkInfovisCore-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libfreetype.so
@@ -105,34 +106,24 @@ bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkIOLegacy-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkIOPLY-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingLOD-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkViewsContext2D-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkGUISupportQt-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libflann_cpp_s.a
-bin/kd_tree: /usr/local/lib/libpcl_keypoints.so
-bin/kd_tree: /usr/local/lib/libpcl_tracking.so
-bin/kd_tree: /usr/local/lib/libpcl_recognition.so
 bin/kd_tree: /usr/local/lib/libpcl_registration.so
-bin/kd_tree: /usr/local/lib/libpcl_stereo.so
 bin/kd_tree: /usr/local/lib/libpcl_segmentation.so
-bin/kd_tree: /usr/local/lib/libpcl_ml.so
 bin/kd_tree: /usr/local/lib/libpcl_features.so
 bin/kd_tree: /usr/local/lib/libpcl_filters.so
 bin/kd_tree: /usr/local/lib/libpcl_sample_consensus.so
+bin/kd_tree: /usr/local/lib/libpcl_ml.so
 bin/kd_tree: /usr/local/lib/libpcl_visualization.so
-bin/kd_tree: /usr/local/lib/libpcl_io.so
-bin/kd_tree: /usr/local/lib/libpcl_surface.so
 bin/kd_tree: /usr/local/lib/libpcl_search.so
 bin/kd_tree: /usr/local/lib/libpcl_kdtree.so
+bin/kd_tree: /usr/local/lib/libpcl_io.so
 bin/kd_tree: /usr/local/lib/libpcl_octree.so
 bin/kd_tree: /usr/local/lib/libpcl_common.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingContext2D-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkViewsCore-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkInteractionWidgets-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersModeling-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
-bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersHybrid-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkImagingGeneral-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkImagingSources-7.1.so.7.1p.1
@@ -145,6 +136,12 @@ bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingVolume-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkIOXML-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkIOXMLParser-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkIOCore-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkImagingCore-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkRenderingCore-7.1.so.7.1p.1
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libvtkCommonColor-7.1.so.7.1p.1
@@ -171,8 +168,11 @@ bin/kd_tree: /usr/lib/x86_64-linux-gnu/libICE.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libX11.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libXext.so
 bin/kd_tree: /usr/lib/x86_64-linux-gnu/libXt.so
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
+bin/kd_tree: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
 bin/kd_tree: CMakeFiles/kd_tree.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/kd_tree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/kd_tree"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kd_tree.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -185,6 +185,6 @@ CMakeFiles/kd_tree.dir/clean:
 .PHONY : CMakeFiles/kd_tree.dir/clean
 
 CMakeFiles/kd_tree.dir/depend:
-	cd /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build /home/franka/home/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/kd_tree.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build /home/lees/CV_learning/PCL/PCL-Demo/ch_demo/build/CMakeFiles/kd_tree.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/kd_tree.dir/depend
 
