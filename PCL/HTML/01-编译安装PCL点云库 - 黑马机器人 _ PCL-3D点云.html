@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html class="js json svg checked target dataset details fetch supports csstransforms3d no-ios" style="" lang="zh"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="传智专修学院 人工智能和机器人实验室 PCL 3D点云 点云配准 点云分割 点云融合 曲面重建">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="https://robot.czxy.com/docs/pcl/assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>01-编译安装PCL点云库 - 黑马机器人 | PCL-3D点云</title>
+      
+    
+    
+      <link rel="stylesheet" href="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/application.css">
+      
+      
+    
+    
+      <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/push.js"></script><script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/hm.js"></script><script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/modernizr.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">-->
+        <link rel="stylesheet" href="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/css.css">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/material-icons.css">
+    
+    
+    
+      
+    
+    
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+  
+    <body dir="ltr" data-md-state=""><div id="MathJax_Message" style="display: none;"></div>
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#02-pcl" tabindex="0" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header" data-md-state="shadow">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <!-- <a href="../.." title="黑马机器人 | PCL-3D点云" aria-label="黑马机器人 | PCL-3D点云" class="md-header-nav__button md-logo"> -->
+        <a href="https://robot.czxy.com/docs/" title="黑马机器人 | PCL-3D点云" aria-label="黑马机器人 | PCL-3D点云" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic" style="width: 1062px;">
+              <a href="https://robot.czxy.com/docs/pcl/">黑马机器人 | PCL-3D点云</a>
+            </span>
+            <span class="md-header-nav__topic" style="width: 1062px;">
+              
+                01-编译安装PCL点云库
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="搜索" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" style="height: 1234px;">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer" style="display: none;">
+    <a href="https://robot.czxy.com/docs/pcl/" title="黑马机器人 | PCL-3D点云" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    黑马机器人 | PCL-3D点云
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      一、点云入门
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-1">
+        一、点云入门
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter01/" title="今日目标" class="md-nav__link">
+      今日目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter01/intro/" title="01-点云及其可视化" class="md-nav__link">
+      01-点云及其可视化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter01/io/" title="02-点云输入输出 *" class="md-nav__link">
+      02-点云输入输出 *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter01/decomposition/" title="03-点云拓扑结构 *" class="md-nav__link">
+      03-点云拓扑结构 *
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      二、点云进阶
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-2">
+        二、点云进阶
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/" title="学习目标" class="md-nav__link">
+      学习目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/filtering/" title="01-点云滤波Filtering *" class="md-nav__link">
+      01-点云滤波Filtering *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/filters/" title="02-滤波器及其原理" class="md-nav__link">
+      02-滤波器及其原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/range_image/" title="03-深度图RangeImage" class="md-nav__link">
+      03-深度图RangeImage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/keypoints/" title="04-关键点Keypoints" class="md-nav__link">
+      04-关键点Keypoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/RANSAC/" title="05-随机采样一致性算法RANSAC *" class="md-nav__link">
+      05-随机采样一致性算法RANSAC *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/features/" title="06-特征描述与提取Features" class="md-nav__link">
+      06-特征描述与提取Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/normal_estimation/" title="07-点云表面法线估算 *" class="md-nav__link">
+      07-点云表面法线估算 *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter02/descriptor/" title="08-特征检测与描述子 *" class="md-nav__link">
+      08-特征检测与描述子 *
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      三、点云高级
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-3">
+        三、点云高级
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/" title="学习目标" class="md-nav__link">
+      学习目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/point_cloud_math/" title="01-点云中的数学" class="md-nav__link">
+      01-点云中的数学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/registration_intro/" title="02-点云配准原理概述" class="md-nav__link">
+      02-点云配准原理概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/registration/" title="03-点云配准流程示例 *" class="md-nav__link">
+      03-点云配准流程示例 *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/registration_interactive_icp/" title="04-配准之交互式ICP" class="md-nav__link">
+      04-配准之交互式ICP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter03/registration_theory/" title="05-点云配准数学原理" class="md-nav__link">
+      05-点云配准数学原理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      四、点云应用
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-4">
+        四、点云应用
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter04/" title="学习目标" class="md-nav__link">
+      学习目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter04/segmentation/" title="01-点云分割" class="md-nav__link">
+      01-点云分割
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter04/resampling/" title="02-点云曲面重建" class="md-nav__link">
+      02-点云曲面重建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter04/bounding_volumes/" title="03-3D包容盒子" class="md-nav__link">
+      03-3D包容盒子
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter04/template_alignment/" title="04-点云模板匹配 *" class="md-nav__link">
+      04-点云模板匹配 *
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      五、2D与3D融合
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-5">
+        五、2D与3D融合
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter05/" title="学习目标" class="md-nav__link">
+      学习目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter05/2D_3D/" title="01-2D与3D融合 *" class="md-nav__link">
+      01-2D与3D融合 *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter05/handeye/" title="02-手眼标定(外参标定) *" class="md-nav__link">
+      02-手眼标定(外参标定) *
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/chapter05/2D_3D_exercise/" title="03-2D与3D融合实践" class="md-nav__link">
+      03-2D与3D融合实践
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      附录：相关开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1" style="display: none; overflow: hidden;">
+      <label class="md-nav__title" for="nav-6">
+        附录：相关开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix="">
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/" title="前言" class="md-nav__link">
+      前言
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        01-编译安装PCL点云库
+      </label>
+    
+    <a href="https://robot.czxy.com/docs/pcl/env/pcl/" title="01-编译安装PCL点云库" class="md-nav__link md-nav__link--active">
+      01-编译安装PCL点云库
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    官网及文档
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    问题及处理
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcl_viewer" class="md-nav__link">
+    问题：没有pcl_viewer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcd" class="md-nav__link">
+    问题：加载pcd文件异常
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metslib-cmake" class="md-nav__link">
+    问题：metslib cmake 错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libpqsolibvtkioso" class="md-nav__link">
+    问题：libpq.so和libvtkIO.so错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makelibprojso" class="md-nav__link">
+    问题：make时libproj.so
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libpng16so" class="md-nav__link">
+    问题：libpng16.so错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrbinld-cannot-find-lxxx" class="md-nav__link">
+    问题：/usr/bin/ld: cannot find -lxxx
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/python_pcl/" title="02-python-pcl" class="md-nav__link">
+      02-python-pcl
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/kinect2/" title="03-编译安装Kinect2驱动" class="md-nav__link">
+      03-编译安装Kinect2驱动
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/astra_camera/" title="04-编译安装Astra驱动" class="md-nav__link">
+      04-编译安装Astra驱动
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/rpath/" title="05-rpath解决so动态库依赖" class="md-nav__link">
+      05-rpath解决so动态库依赖
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/other/" title="06-编译及运行问题收集" class="md-nav__link">
+      06-编译及运行问题收集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://robot.czxy.com/docs/pcl/env/robwork/" title="07-编译安装RobWork" class="md-nav__link">
+      07-编译安装RobWork
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" style="height: 1234px;">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    官网及文档
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    问题及处理
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pcl_viewer" class="md-nav__link">
+    问题：没有pcl_viewer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pcd" class="md-nav__link">
+    问题：加载pcd文件异常
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metslib-cmake" class="md-nav__link">
+    问题：metslib cmake 错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libpqsolibvtkioso" class="md-nav__link">
+    问题：libpq.so和libvtkIO.so错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makelibprojso" class="md-nav__link">
+    问题：make时libproj.so
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libpng16so" class="md-nav__link">
+    问题：libpng16.so错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrbinld-cannot-find-lxxx" class="md-nav__link">
+    问题：/usr/bin/ld: cannot find -lxxx
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="02-pcl">02-编译安装PCL点云库<a class="headerlink" href="#02-pcl" title="Permanent link">¶</a></h1>
+<h2 id="_1">官网及文档<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>源码官网：https://github.com/PointCloudLibrary/pcl</p>
+<h2 id="_2">安装方式<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p><strong>方式一</strong>：编译源码安装（最稳妥）</p>
+<ol>
+<li><strong>准备编译环境及工具</strong></li>
+</ol>
+<div class="highlight"><pre id="__code_0"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_0 pre, #__code_0 code"><span class="md-clipboard__message"></span></button><code>sudo apt-get update
+sudo apt-get install git build-essential linux-libc-dev
+sudo apt-get install cmake cmake-gui 
+sudo apt-get install libusb-1.0-0-dev libusb-dev libudev-dev
+sudo apt-get install mpi-default-dev openmpi-bin openmpi-common
+sudo apt-get install libpcap-dev
+sudo apt-get install libflann1.9 libflann-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install libboost-all-dev
+sudo apt-get install vtk6 libvtk6.3 libvtk6-dev libvtk6.3-qt libvtk6-qt-dev 
+sudo apt-get install libqhull* libgtest-dev
+sudo apt-get install freeglut3-dev pkg-config
+sudo apt-get install libxmu-dev libxi-dev 
+sudo apt-get install mono-complete
+sudo apt-get install libopenni-dev libopenni2-dev
+<span class="c1"># sudo apt-get install qt-sdk openjdk-8-jdk openjdk-8-jre</span>
+</code></pre></div>
+
+<ol>
+<li><strong>编译PCL（PointCloudLibrary）</strong></li>
+</ol>
+<p>下载源码：</p>
+<div class="highlight"><pre id="__code_1"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_1 pre, #__code_1 code"><span class="md-clipboard__message"></span></button><code>git clone https://gitee.com/mirrors/pcl.git
+</code></pre></div>
+
+<p>进入下载后的pcl目录，创建并进入release目录，执行编译：</p>
+<div class="highlight"><pre id="__code_2"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_2 pre, #__code_2 code"><span class="md-clipboard__message"></span></button><code><span class="nb">cd</span> pcl
+<span class="c1"># 切换到指定版本v1.9.1再编译</span>
+git checkout pcl-1.9.1
+<span class="c1"># 创建目录</span>
+mkdir release
+<span class="c1"># 进入目录</span>
+<span class="nb">cd</span> release
+
+<span class="c1"># 配置cmake</span>
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>None <span class="se">\</span>
+      -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr/local <span class="se">\</span>
+      -DBUILD_GPU<span class="o">=</span>ON <span class="se">\</span>
+      -DBUILD_apps<span class="o">=</span>ON <span class="se">\</span>
+      -DBUILD_simulation<span class="o">=</span>ON <span class="se">\</span>
+      -DBUILD_examples<span class="o">=</span>ON ..
+
+<span class="c1"># 进行编译</span>
+make -j8
+</code></pre></div>
+
+<ol>
+<li><strong>安装</strong></li>
+</ol>
+<p>编译可能比较久，等他编完后，执行安装：</p>
+<div class="highlight"><pre id="__code_3"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_3 pre, #__code_3 code"><span class="md-clipboard__message"></span></button><code>sudo make install
+</code></pre></div>
+
+<ol>
+<li><strong>测试</strong></li>
+</ol>
+<p>测试是否成功，打开窗口看到logo点云即为成功安装</p>
+<div class="highlight"><pre id="__code_4"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_4 pre, #__code_4 code"><span class="md-clipboard__message"></span></button><code>pcl_viewer ../test/pcl_logo.pcd
+</code></pre></div>
+
+<p><strong>方式二</strong>：在线安装（100M下载，释放后1G）</p>
+<div class="highlight"><pre id="__code_5"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_5 pre, #__code_5 code"><span class="md-clipboard__message"></span></button><code>sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
+sudo apt-get update
+sudo apt-get install libpcl-dev  <span class="c1"># 或 libpcl-all</span>
+</code></pre></div>
+
+<h2 id="_3">问题及处理<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="pcl_viewer"><strong>问题：没有pcl_viewer</strong><a class="headerlink" href="#pcl_viewer" title="Permanent link">¶</a></h3>
+<ul>
+<li>解决：</li>
+</ul>
+<blockquote>
+<p>说明编译的时候，cmake参数有误，或install有问题，可以检查参数后重新执行cmake make</p>
+<p>或通过以下命令安装
+<code>bash
+sudo apt install pcl-tools</code></p>
+</blockquote>
+<h3 id="pcd"><strong>问题：加载pcd文件异常</strong><a class="headerlink" href="#pcd" title="Permanent link">¶</a></h3>
+<p>描述：执行<code>pcl::io::loadPCDFile&lt;PointType&gt;("./assets/xxxx.pcd", *cloud) == -1)</code>，控制台报错</p>
+<div class="highlight"><pre id="__code_6"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_6 pre, #__code_6 code"><span class="md-clipboard__message"></span></button><code>Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
+</code></pre></div>
+
+<ul>
+<li>解决：</li>
+</ul>
+<blockquote>
+<p>此时，很可能是eigen3有问题，从此处下载离线版eigen3库</p>
+<div class="highlight"><pre id="__code_7"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_7 pre, #__code_7 code"><span class="md-clipboard__message"></span></button><code>http://bitbucket.org/eigen/eigen/get/3.2.0.tar.bz2
+</code></pre></div>
+
+<p>http://eigen.tuxfamily.org/index.php?title=Main_Page
+在该网站中，可以下载任意版本对应的文件，本例下载了Eigen 3.2.0. tar.bz2 格式压缩文件。
+文件名：eigen-eigen-ffa86ffb5570.tar.bz2</p>
+<p>执行如下操作：</p>
+<ol>
+<li>卸载原有eigen3：</li>
+</ol>
+<div class="highlight"><pre id="__code_8"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_8 pre, #__code_8 code"><span class="md-clipboard__message"></span></button><code>sudo apt-get remove libeigen3-dev --purge
+</code></pre></div>
+
+<ol>
+<li>重装eigen3</li>
+</ol>
+<p></p><div class="highlight"><pre id="__code_9"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_9 pre, #__code_9 code"><span class="md-clipboard__message"></span></button><code><span class="c1"># 解压</span>
+tar -jxvf eigen3_3.2.0.orig.tar.bz2
+<span class="c1"># 重命名</span>
+mv eigen-eigen-ffa86ffb5570/ eigen3
+<span class="c1"># 复制到/usr/local/include/</span>
+sudo cp -r eigen3 /usr/local/include/eigen3
+<span class="c1"># 复制到/usr/include/</span>
+sudo cp -r eigen3 /usr/include/eigen3
+</code></pre></div>
+<p></p>
+</blockquote>
+<h3 id="metslib-cmake">问题：<code>metslib</code> cmake 错误<a class="headerlink" href="#metslib-cmake" title="Permanent link">¶</a></h3>
+<blockquote>
+<div class="highlight"><pre id="__code_10"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_10 pre, #__code_10 code"><span class="md-clipboard__message"></span></button><code>no metslib found.
+</code></pre></div>
+
+<ul>
+<li>解决：</li>
+</ul>
+<div class="highlight"><pre id="__code_11"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_11 pre, #__code_11 code"><span class="md-clipboard__message"></span></button><code>wget https://www.coin-or.org/download/source/metslib/metslib-0.5.3.tgz
+tar xzvf metslib-0.5.3.tgz
+<span class="nb">cd</span> metslib-0.5.3
+./configure
+make 
+sudo make install
+</code></pre></div>
+
+</blockquote>
+<h3 id="libpqsolibvtkioso">问题：<code>libpq.so</code>和<code>libvtkIO.so</code>错误<a class="headerlink" href="#libpqsolibvtkioso" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre id="__code_12"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_12 pre, #__code_12 code"><span class="md-clipboard__message"></span></button><code>[ 13%] Built target pcl_pcd_convert_NaN_nan
+[ 13%] Linking CXX executable ../../bin/pcl_pcd_introduce_nan
+//usr/lib/x86_64-linux-gnu/libpq.so.5: undefined reference to `SSL_get_peer_certificate@OPENSSL_1.0.0'
+/usr/lib/libvtkIO.so.5.10.1: undefined reference to `TIFFReadDirectory@LIBTIFF_4.0'
+//usr/lib/x86_64-linux-gnu/libpq.so.5: undefined reference to `CRYPTO_num_locks@OPENSSL_1.0.0'
+//usr/lib/x86_64-linux-gnu/libpq.so.5: undefined reference to `SSL_get_current_compression@OPENSSL_1.0.0'
+//usr/lib/x86_64-linux-gnu/libpq.so.5: undefined reference to `SSL_CTX_free@OPENSSL_1.0.0'
+</code></pre></div>
+
+<ul>
+<li>解决：</li>
+</ul>
+<div class="highlight"><pre id="__code_13"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_13 pre, #__code_13 code"><span class="md-clipboard__message"></span></button><code>sudo apt-get remove libpq5
+sudo apt-get install libpq-dev
+</code></pre></div>
+
+<h3 id="makelibprojso">问题：make时<code>libproj.so</code><a class="headerlink" href="#makelibprojso" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre id="__code_14"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_14 pre, #__code_14 code"><span class="md-clipboard__message"></span></button><code> make[2]: *** No rule to make target '/usr/lib/x86_64-linux-gnu/libproj.so', needed by 'lib/libpcl_io.so.1.9.1.99'。 停止。CMakeFiles/Makefile2:499: recipe for target 'io/CMakeFiles/pcl_io.dir/all' failed
+</code></pre></div>
+
+<ul>
+<li>解决：</li>
+</ul>
+<blockquote>
+<p>建立软连接, 终端中输入: </p>
+<p></p><div class="highlight"><pre id="__code_15"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_15 pre, #__code_15 code"><span class="md-clipboard__message"></span></button><code>sudo ln -s /usr/lib/x86_64-linux-gnu/libproj.so.9 /usr/lib/x86_64-linux-gnu/libproj.so
+</code></pre></div>
+<p></p>
+</blockquote>
+<h3 id="libpng16so">问题：<code>libpng16.so</code>错误<a class="headerlink" href="#libpng16so" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre id="__code_16"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_16 pre, #__code_16 code"><span class="md-clipboard__message"></span></button><code>//home/ty/anaconda3/lib/libpng16.so.16: undefined reference to `inflateValidate@ZLIB_1.2.9'
+collect2: error: ld returned 1 exit status
+src/CMakeFiles/pcl_test.dir/build.make:253: recipe for target '../build/debug/bin/pcl_test' failed
+make[3]: *** [../build/debug/bin/pcl_test] Error 1
+</code></pre></div>
+
+<ul>
+<li>解决：</li>
+</ul>
+<blockquote>
+<div class="highlight"><pre id="__code_17"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_17 pre, #__code_17 code"><span class="md-clipboard__message"></span></button><code><span class="nb">cd</span> /usr/lib/x86_64-linux-gnu
+sudo ln -sf ~/anaconda/lib/libpng16.so.16 libpng16.so.16
+<span class="nb">cd</span> /usr/lib/
+sudo ln -sf ~/anaconda/lib/libpng16.so.16 libpng16.so.16
+sudo ldconfig
+</code></pre></div>
+
+<p>或</p>
+<p></p><div class="highlight"><pre id="__code_18"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_18 pre, #__code_18 code"><span class="md-clipboard__message"></span></button><code>conda remove libpng
+sudo apt-get install libpng16-16 --reinstall
+</code></pre></div>
+<p></p>
+<p>实在不行编译安装源码：</p>
+<div class="highlight"><pre id="__code_19"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_19 pre, #__code_19 code"><span class="md-clipboard__message"></span></button><code>wget https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz
+tar -zxvf libpng-1.6.37.tar.gz
+<span class="nb">cd</span> libpng-1.6.37/
+./configure --prefix<span class="o">=</span>/usr/local/
+sudo make <span class="o">&amp;&amp;</span> make install
+</code></pre></div>
+
+</blockquote>
+<h3 id="usrbinld-cannot-find-lxxx">问题：<code>/usr/bin/ld: cannot find -lxxx</code><a class="headerlink" href="#usrbinld-cannot-find-lxxx" title="Permanent link">¶</a></h3>
+<ul>
+<li>以<code>`/usr/bin/ld: cannot find -lvtkproj4</code>为例</li>
+<li>解决：</li>
+</ul>
+<blockquote>
+<p><strong>原因1</strong>：libvtkproj4.so的链接不正确或没有链接，注意规则是libxxx.so</p>
+<div class="highlight"><pre id="__code_20"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_20 pre, #__code_20 code"><span class="md-clipboard__message"></span></button><code><span class="nb">cd</span> /usr/lib
+ll <span class="p">|</span> grep -i vtkproj4
+<span class="c1"># 输出</span>
+lrwxrwxrwx   <span class="m">1</span> root root       <span class="m">21</span> 4月   <span class="m">5</span>  <span class="m">2016</span> libvtkproj4.so.5.10 -&gt; libvtkproj4.so.5.10.1
+-rw-r--r--   <span class="m">1</span> root root   <span class="m">312320</span> 4月   <span class="m">5</span>  <span class="m">2016</span> libvtkproj4.so.5.10.1
+</code></pre></div>
+
+<p>说明没有libvtkproj4.so链接，则执行以下命令即可：</p>
+<div class="highlight"><pre id="__code_21"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_21 pre, #__code_21 code"><span class="md-clipboard__message"></span></button><code>sudo ln -s libvtkproj4.so.5.10 libvtkproj4.so
+</code></pre></div>
+
+<p><strong>原因2</strong>：系统缺少对应的so库，即/usr/lib下找不到类似的so</p>
+<p>则进行搜索并安装</p>
+<div class="highlight"><pre id="__code_22"><span></span><button class="md-clipboard" title="复制" data-clipboard-target="#__code_22 pre, #__code_22 code"><span class="md-clipboard__message"></span></button><code>sudo apt-cache search libvtkproj4-dev
+sudo apt-get install libvtkproj4-dev
+</code></pre></div>
+
+</blockquote>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="https://robot.czxy.com/docs/pcl/env/" title="前言" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                前言
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="https://robot.czxy.com/docs/pcl/env/python_pcl/" title="02-python-pcl" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                02-python-pcl
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <a href="https://www.czxy.com/">传智专修学院</a> 版权所有 2006 - 2020 江苏传智播客教育科技股份有限公司  学校地址：江苏省宿迁市沭阳县北京南路6号  邮编：223600   <a href="http://www.beian.miit.gov.cn/">苏ICP备16007882号-4</a>
+          </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/application.js"></script>
+      
+        
+        
+          
+          <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/lunr.js"></script>
+          
+            
+              
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+        <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/extra.js"></script>
+      
+        <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/MathJax.js"></script>
+      
+        <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/baidu-tongji.js"></script>
+      
+        <script src="01-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PCL%E7%82%B9%E4%BA%91%E5%BA%93%20-%20%E9%BB%91%E9%A9%AC%E6%9C%BA%E5%99%A8%E4%BA%BA%20|%20PCL-3D%E7%82%B9%E4%BA%91_files/baidu-tuisong.js"></script>
+      
+    
+  
+</body></html>

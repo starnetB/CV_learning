@@ -403,7 +403,7 @@ void BfMatch(const vector<DescType> &desc1, const vector<DescType> &desc2, vecto
     for (size_t i2 = 0; i2 < desc2.size(); ++i2) {
       if (desc2[i2].empty()) continue;
       int distance = 0;
-      for (int k = 0; k < 8; k++) {
+      for (int k = 0; k < 8; k++) 
         distance += _mm_popcnt_u32(desc1[i1][k] ^ desc2[i2][k]);
       }
       if (distance < d_max && distance < m.distance) {
