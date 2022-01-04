@@ -11,6 +11,7 @@ x=np.random.normal(0,1,200)
 y=np.random.normal(0,1,200)
 X=np.vstack((x,y))
 
+# 计算二元协方差矩阵
 def cov(x,y):
     xbar,ybar=x.mean(),y.mean()
     return np.sum((x-xbar)*(y-ybar))/(len(x)-1)
