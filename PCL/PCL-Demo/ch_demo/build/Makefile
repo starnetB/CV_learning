@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named iterative_closest_point
+
+# Build rule for target.
+iterative_closest_point: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 iterative_closest_point
+.PHONY : iterative_closest_point
+
+# fast build rule for target.
+iterative_closest_point/fast:
+	$(MAKE) -f CMakeFiles/iterative_closest_point.dir/build.make CMakeFiles/iterative_closest_point.dir/build
+.PHONY : iterative_closest_point/fast
+
+#=============================================================================
 # Target rules for targets named n_show_get_1
 
 # Build rule for target.
@@ -507,6 +520,33 @@ src/2_ad/range_image_border.cpp.s:
 	$(MAKE) -f CMakeFiles/range_image_border_extraction.dir/build.make CMakeFiles/range_image_border_extraction.dir/src/2_ad/range_image_border.cpp.s
 .PHONY : src/2_ad/range_image_border.cpp.s
 
+src/3_adad/iterative_closest_point.o: src/3_adad/iterative_closest_point.cpp.o
+
+.PHONY : src/3_adad/iterative_closest_point.o
+
+# target to build an object file
+src/3_adad/iterative_closest_point.cpp.o:
+	$(MAKE) -f CMakeFiles/iterative_closest_point.dir/build.make CMakeFiles/iterative_closest_point.dir/src/3_adad/iterative_closest_point.cpp.o
+.PHONY : src/3_adad/iterative_closest_point.cpp.o
+
+src/3_adad/iterative_closest_point.i: src/3_adad/iterative_closest_point.cpp.i
+
+.PHONY : src/3_adad/iterative_closest_point.i
+
+# target to preprocess a source file
+src/3_adad/iterative_closest_point.cpp.i:
+	$(MAKE) -f CMakeFiles/iterative_closest_point.dir/build.make CMakeFiles/iterative_closest_point.dir/src/3_adad/iterative_closest_point.cpp.i
+.PHONY : src/3_adad/iterative_closest_point.cpp.i
+
+src/3_adad/iterative_closest_point.s: src/3_adad/iterative_closest_point.cpp.s
+
+.PHONY : src/3_adad/iterative_closest_point.s
+
+# target to generate assembly for a file
+src/3_adad/iterative_closest_point.cpp.s:
+	$(MAKE) -f CMakeFiles/iterative_closest_point.dir/build.make CMakeFiles/iterative_closest_point.dir/src/3_adad/iterative_closest_point.cpp.s
+.PHONY : src/3_adad/iterative_closest_point.cpp.s
+
 src/4_application/moment_of_inertia.o: src/4_application/moment_of_inertia.cpp.o
 
 .PHONY : src/4_application/moment_of_inertia.o
@@ -758,6 +798,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... iterative_closest_point"
 	@echo "... n_show_get_1"
 	@echo "... random_sample_consensus"
 	@echo "... octree"
@@ -795,6 +836,9 @@ help:
 	@echo "... src/2_ad/range_image_border.o"
 	@echo "... src/2_ad/range_image_border.i"
 	@echo "... src/2_ad/range_image_border.s"
+	@echo "... src/3_adad/iterative_closest_point.o"
+	@echo "... src/3_adad/iterative_closest_point.i"
+	@echo "... src/3_adad/iterative_closest_point.s"
 	@echo "... src/4_application/moment_of_inertia.o"
 	@echo "... src/4_application/moment_of_inertia.i"
 	@echo "... src/4_application/moment_of_inertia.s"

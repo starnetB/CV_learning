@@ -70,3 +70,6 @@ target_link_libraries(random_sample_consensus ${PCL_LIBRARIES})
 
 add_executable(n_show_get_1 src/2_ad/n_show_get_1.cpp)
 target_link_libraries(n_show_get_1 ${PCL_LIBRARIES})
+
+add_executable(iterative_closest_point src/3_adad/iterative_closest_point.cpp)
+target_link_libraries(iterative_closest_point ${PCL_LIBRARIES})
