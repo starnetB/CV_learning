@@ -1,5 +1,10 @@
-#include <iostream>
 #include <opencv2/opencv.hpp>
+#include <iostream>
+#include <opencv2/core/core.hpp>
+#include <opencv2/features2d/features2d.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/calib3d/calib3d.hpp>
+#include <opencv2/imgcodecs/legacy/constants_c.h>
 // #include "extra.h" // used in opencv2
 using namespace std;
 using namespace cv;
