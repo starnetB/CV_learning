@@ -449,7 +449,7 @@ void computeL ( const Eigen::Matrix< double, int ( 12 ), int ( 4 ) >& eigen_vect
 
         //[B11 B12 B22 B13 B23 B33 B14 B24 B34 B44]
         //获取矩阵的各个平方项目  
-         L ( i, 0 ) = S1_T * S1;
+        L ( i, 0 ) = S1_T * S1;
         L ( i, 1 ) = 2 * S1_T * S2;
         L ( i, 2 ) = S2_T * S2;
         L ( i, 3 ) = 2 * S1_T * S3;
