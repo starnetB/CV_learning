@@ -199,3 +199,141 @@ void bundleAjustmentGaussNewton(
     }
     cout<<"pose by g-n:\n"<<pose.matrix()<<endl;
 }
+
+///vertex and edges used in g2o ba 
+class VertexPose:public g2o::BaseVertex<6,Sophus::SE3d>{
+    public:   //这里的6指明了节点的维度6 
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+
+    virtual void setToOriginImpl() override {//初始化一个节点
+        _estimate=Sophus::SE3d();
+    }
+
+    ///left multiplication on SE3  
+    //定义更新规则 
+    virtual void oplusImpl(const double *update) override{
+        Eigen::Matrix<double,6,1> update_eigen;
+        update_eigen <<update[0],update[1],update[2],update[3],update[4],update[5];
+        _estimate=Sophus::SE3d::exp(update_eigen)*_estimate;
+    }
+
+    virtual bool read(istream &in) override{}
+
+    virtual bool write(ostream &out) const override{}
+};
+
+
+//下面开始定义误差 ，也就是边
+//BaseUnaryEdge   一元边
+//BaseBinaryEdge  二元边
+//BaseMultiEdege  多元边
+//<2 ,Eigen::Vector2d,VectexPose> 
+//2 被动，被测量对象的维度，这里的话，是指像素点
+//Eigen::Vector<2d> 被测量对象类型
+//VertexPose 节点
+class EdegeProjection:public g2o::BaseUnaryEdge<2,Eigen::Vector2d,VertexPose>
+{
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+
+    EdegeProjection(const Eigen::Vector3d &pos,
+                    const Eigen::Matrix3d &K):_pos3d(pos),_K(K){}
+    
+    virtual void computeError() override{
+        const VertexPose *v=static_cast<VertexPose *>(_vertices[0]);
+        Sophus::SE3d T=v->estimate();
+        Eigen::Vector3d pos_pixel= _K*(T*_pos3d);
+        pos_pixel/=pos_pixel[2];
+        _error=_measurement-pos_pixel.head<2>();  //这里其实要设定b
+        // 像素来自于外面的_measurement
+        // 三维点可以制定
+        // 最终获得error，用于迭代
+    }
+
+    virtual void linearizeOplus() override{
+        const VertexPose *v=static_cast<VertexPose *>(_vertices[0]);
+        Sophus::SE3d T=v->estimate();
+        Eigen::Vector3d pos_cam=T*_pos3d;
+        double fx=_K(0,0);
+        double fy=_K(1,1);
+        double cx=_K(0,2);
+        double cy=_K(1,2);
+        double X=pos_cam(0);
+        double Y=pos_cam(1);
+        double Z=pos_cam(2);
+        double Z2=Z*Z;
+        _jacobianOplusXi
+        << -fx/Z,0,fx*X/Z2,fx*X*Y/Z2,-fx-fx*X*X/Z2,fx*Y/Z,
+           0,-fy/Z,fy*Y/Z2,fy+fy*Y*Y/Z2,-fy*X*Y/Z2,-fy*X/Z;
+    }
+
+    virtual bool read(istream &in) override{}
+
+    virtual bool write(ostream &out) const override{}
+
+private:
+    Eigen::Vector3d _pos3d;
+    Eigen::Matrix3d _K;
+};
+
+//上面定义完 边和节点，我们可以进行优化了  
+
+void bundleAdjustmentG2O(
+    const VecVector3d &points_3d,
+    const VecVector2d &points_2d,
+    const Mat &K,
+    Sophus::SE3d &pose
+){
+    //构建图优化，先设定g2o
+    typedef g2o::BlockSolver<g2o::BlockSolverTraits<6,3>> BlockSolverType;
+    //pose is 6,landmark is 3 也就是每次迭代T是6维度的李代数，路标就是世界坐标系下的 X《Y，Z
+    typedef g2o::LinearSolverDense<BlockSolverType::PoseMatrixType> LinearSolverType;
+    // 线性求解器
+    //梯度下降方法，可以从GN，LM，DolLeg中选择 
+    auto solver=new g2o::OptimizationAlgorithmGaussNewton(
+        g2o::make_unique<BlockSolverType>(g2o::make_unique<LinearSolverType>()));
+    
+    g2o::SparseOptimizer optimizer;  //图模型
+    optimizer.setAlgorithm(solver); //设置求解其
+    optimizer.setVerbose(true); //打开调试输出
+
+
+    //vertex
+    //设定一个初始化节点
+    VertexPose *vertex_pose=new VertexPose();
+    vertex_pose->setId(0);
+    vertex_pose->setEstimate(Sophus::SE3d());
+    optimizer.addVertex(vertex_pose);
+
+    //K  加载相机内参数
+
+    Eigen::Matrix3d K_eigen;
+    K_eigen <<
+        K.at<double>(0, 0), K.at<double>(0, 1), K.at<double>(0, 2),
+        K.at<double>(1, 0), K.at<double>(1, 1), K.at<double>(1, 2),
+        K.at<double>(2, 0), K.at<double>(2, 1), K.at<double>(2, 2);
+
+    // edges 加载边和其他节点   
+    int index=1;
+    for (size_t i=0;i<points_2d.size();++i)
+    {
+        auto p2d=points_2d[i];
+        auto p3d=points_3d[i];
+        EdegeProjection *edge=new EdegeProjection(p3d,K_eigen);
+        edge->setId(index);
+        edge->setVertex(0,vertex_pose);
+        edge->setMeasurement(p2d);
+        edge->setInformation(Eigen::Matrix2d::Identity());
+        optimizer.addEdge(edge);
+        index++;
+    }
+    chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+    optimizer.setVerbose(true);
+    optimizer.initializeOptimization();
+    optimizer.optimize(10);
+    chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+    chrono::duration<double> time_used = chrono::duration_cast<chrono::duration<double>>(t2 - t1);
+    cout << "optimization costs time: " << time_used.count() << " seconds." << endl;
+    cout << "pose estimated by g2o =\n" << vertex_pose->estimate().matrix() << endl;
+    pose = vertex_pose->estimate();
+};
