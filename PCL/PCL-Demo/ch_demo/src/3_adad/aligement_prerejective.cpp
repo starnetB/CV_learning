@@ -110,16 +110,21 @@ int main(int argc, char **argv)
     //设置多边形相似阈值，对于目标物体和场景上的对应点，根据他们在各自的空间里之间的欧式距离是不变得这一几何特性，使用类CorrespondenceRejectorPoly去消除错误对应点；这个值越接近1 ，该算法通过减少迭代次数而变得月快速；但是，当噪声存在时，这也增加了排查正确对应点对的风险。
     align.setSimilarityThreshold (0.9f); // Polygonal edge length similarity threshold
     
+    //判断内点阈值：此处的阈值用来判断用假设变换矩阵变换setInputSource输入源点云后，于setInputTarget输入的目标点云最近点的距离小于所设阈值，则认为该点为内点；
     align.setMaxCorrespondenceDistance (2.5f * leaf); // Inlier threshold
+
+    //设置内点比例：对于噪声大、有遮挡的场景，不需要位姿估计的结果使得所有点都配准，如果在setInputSource点云中，内点数目占总点云的比例高于指定的内点比例nlier_fraction，即可认为变换假设是有效的。
     align.setInlierFraction (0.25f); // Required inlier fraction for accepting a pose hypothesis
     {
         pcl::ScopeTime t("Alignment");
-        align.align (*object_aligned);
+        align.align (*object_aligned);  //将input Source的运算结果输出到object_aligned 中就可以
     }
 
     if (align.hasConverged ())
     {
         // Print results
+
+        //输出变换矩阵与结果
         printf ("\n");
         Eigen::Matrix4f transformation = align.getFinalTransformation ();
         pcl::console::print_info ("    | %6.3f %6.3f %6.3f | \n", transformation (0,0), transformation (0,1), transformation (0,2));
