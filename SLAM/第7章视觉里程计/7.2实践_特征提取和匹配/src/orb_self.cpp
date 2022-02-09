@@ -373,7 +373,7 @@ void ComputeORB(const cv::Mat &img, vector<cv::KeyPoint> &keypoints, vector<Desc
         //计算灰度质心公式，方向角度
 
          // compute the angle of this point
-        DescType desc(8, 0);
+        DescType desc(8, 0);   //开辟八个的空间，随机采样八个点对来计算ORB描述子，初始化为0
         for (int i = 0; i < 8; i++) {
             uint32_t d = 0;
             for (int k = 0; k < 32; k++) {

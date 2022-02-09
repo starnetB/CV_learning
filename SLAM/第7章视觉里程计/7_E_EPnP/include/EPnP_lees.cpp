@@ -173,7 +173,7 @@ double reprojectionError( const Eigen::Matrix3d& K, const std::vector<Eigen::Vec
 bool solvePnPbyEPnP(const Eigen::Matrix3d& K, const std::vector<Eigen::Vector3d>& pts3d, const std::vector<Eigen::Vector2d>& pts2d, Eigen::Matrix3d& R, Eigen::Vector3d& t )
 {
     // Check input data.
-    // 要确保N<4,否则，可能会存在无穷多个解
+    // 要确保N>4,否则，可能会存在无穷多个解
     if ( pts2d.size() < 4 || pts2d.size() != pts3d.size() ) {
         return false;
     }
