@@ -285,7 +285,7 @@ void JacobianAccumulator::accumulate_jacobian(const cv::Range &range) {
 
     if (cnt_good) {
         // set hessian, bias and cost
-        unique_lock<mutex> lck(hessian_mutex);
+        unique_lock<mutex> lck(hessian_mutex);  //多个线程的情况下，定义互斥锁
         H += hessian;
         b += bias;
         cost += cost_tmp / cnt_good;
