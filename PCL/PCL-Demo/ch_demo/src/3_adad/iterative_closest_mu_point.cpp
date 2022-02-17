@@ -136,7 +136,7 @@ void loadData(int argc,char **argv,std::vector<PCD,Eigen::aligned_allocator<PCD>
             pcl::io::loadPCDFile(argv[i],*m.cloud);
             //从点云中移除NAN点  
             std::vector<int> indices;
-            pcl::removeNaNFromPointCloud(*m.cloud,*m.cloud,indices);
+            pcl::removeNaNFromPointCloud(*m.cloud,indices);
             models.push_back(m);
         }
     }
@@ -246,7 +246,7 @@ void pairAlign(const PointCloud::Ptr cloud_src, const PointCloud::Ptr cloud_tgt,
 		showCloudsRight(points_with_normals_tgt, points_with_normals_src);
 	}
 	//
-	// 得到目标点云到源点云的变换(H方向是 source -> target)
+	// 得到目标点云到源点云的变换(H方向是 source -> target) 因此求逆
 	targetToSource = Ti.inverse();
 	//
 	//把目标点云转换回源框架
