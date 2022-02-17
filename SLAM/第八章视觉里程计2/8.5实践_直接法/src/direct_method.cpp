@@ -156,7 +156,7 @@ int main(int argc,char **argv){
         cv::Mat img=cv::imread((fmt_others % i).str(),0);
         // try single layer by uncomment this line
         // DirectPoseEstimationSingleLayer(left_img, img, pixels_ref, depth_ref, T_cur_ref);
-        DirectPoseEstimationMultiLayer(left_img,img,pixels_ref,depth_ref,T_cur_ref);
+        DirectPoseEstimationMultiLayer(left_img,img,pixel_ref,depth_ref,T_cur_ref);
 
     }
     return 0;
