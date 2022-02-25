@@ -9,7 +9,7 @@ class SnavelyReprojectionError {
 public:
     SnavelyReprojectionError(double observation_x,double observation_y):observed_x(observation_x),
                                                                         observed_y(observation_y){}
-    
+    //    
     template<typename T>
     bool operator()(const T *const camera,
                     const T *const point,
