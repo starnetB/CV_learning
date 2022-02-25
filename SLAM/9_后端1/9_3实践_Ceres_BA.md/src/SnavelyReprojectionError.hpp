@@ -9,7 +9,7 @@ class SnavelyReprojectionError {
 public:
     SnavelyReprojectionError(double observation_x,double observation_y):observed_x(observation_x),
                                                                         observed_y(observation_y){}
-    //    
+    //设计定义单项的误差函数    
     template<typename T>
     bool operator()(const T *const camera,
                     const T *const point,
@@ -59,6 +59,7 @@ public:
 
     static ceres::CostFunction *Create(const double observed_x,const double observed_y)
     {
+        //定义误差函数，并自动求导
         return (new ceres::AutoDiffCostFunction<SnavelyReprojectionError,2,9,3>(
             new SnavelyReprojectionError(observed_x,observed_y)));
     }
@@ -66,4 +67,4 @@ private:
     double observed_x;
     double observed_y;
 }
-#endif
+#endif   // SnavelReprojection.h
