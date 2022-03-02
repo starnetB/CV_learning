@@ -65,5 +65,5 @@ public:
 private:
     double observed_x;
     double observed_y;
-}
+};
 #endif
