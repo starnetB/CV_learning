@@ -79,11 +79,44 @@ int main(int argc,char **argv){
 
     //Remove the planar inliers,extract the rest
     extract.setNegative(true)   //这边是移除平面的需要
+    extract.filter(*cloud_filtered2);
+    extract_normals.setNegative(true);
+    extract_normals.setInputCloud(cloud_normals);
+    extract_normals.setIndices(inliers_plane);
+    extract_normals.filter(*cloud_normals2);
+
+    // Create the segmentation object for cylinder segmentation and set all the parameters
+    // 设置圆柱体分割对象参数
+    seg.setOptimizeCoefficients(true);
+    seg.setModelType(pcl::SACMODEL_CYLINDER);   // 设置分割模型为圆柱体
+    seg.setMethodType(pcl::SAC_RANSAC);         // 设置采用RANSAC算法进行参数估计
+    seg.setNormalDistanceWeight(0.1);           // 设置表面法线权重系数
+    seg.setMaxIterations(10000);                // 设置最大迭代次数10000
+    seg.setDistanceThreshold(0.05);             // 设置内点到模型的最大距离 0.05m
+    seg.setRadiusLimits(0, 0.1);                // 设置圆柱体的半径范围0 -> 0.1m
+    seg.setInputCloud(cloud_filtered2);
+    seg.setInputNormals(cloud_normals2);
+
+    // Obtain the cylinder inliers and coefficients
+    seg.segment(*inliers_cylinder, *coefficients_cylinder);
+    std::cerr << "Cylinder coefficients: " << *coefficients_cylinder << std::endl;
 
 
+    // Write the cylinder inliers to disk
+    extract.setInputCloud(cloud_filtered2);
+    extract.setIndices(inliers_cylinder);
+    extract.setNegative(false);
+    pcl::PointCloud<PointT>::Ptr cloud_cylinder(new pcl::PointCloud<PointT>());
+    extract.filter(*cloud_cylinder);
 
-
-
+    if (cloud_cylinder->points.empty())
+        std::cerr << "Can't find the cylindrical component." << std::endl;
+    else {
+        std::cerr << "PointCloud representing the cylindrical component: " << cloud_cylinder->points.size()
+                  << " data points." << std::endl;
+        writer.write("table_scene_mug_stereo_textured_cylinder.pcd", *cloud_cylinder, false);
+    }
+    return (0);
 }
 
 
