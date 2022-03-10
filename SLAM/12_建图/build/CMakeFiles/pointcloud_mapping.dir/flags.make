@@ -6,5 +6,5 @@ CXX_FLAGS = -std=c++14 -O2  -O3 -DNDEBUG
 
 CXX_DEFINES = -DDISABLE_LIBUSB_1_0 -DDISABLE_PCAP -DDISABLE_PNG -Dqh_QHpointer -DvtkRenderingContext2D_AUTOINIT="1(vtkRenderingContextOpenGL2)" -DvtkRenderingCore_AUTOINIT="3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)"
 
-CXX_INCLUDES = -I/usr/include/eigen3 -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/pcl-1.10 -I/usr/include/ni -I/usr/include/openni2 -isystem /usr/local/include/opencv4 
+CXX_INCLUDES = -isystem /usr/include/eigen3 -isystem /usr/local/include/opencv4 -isystem /usr/include/vtk-7.1 -isystem /usr/include/freetype2 -isystem /usr/include/pcl-1.10 -isystem /usr/include/ni -isystem /usr/include/openni2 
 

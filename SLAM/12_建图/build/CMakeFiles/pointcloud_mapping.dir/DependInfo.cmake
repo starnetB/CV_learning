@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/lees/linux_bak/CV_learning/SLAM/12_建图/dense_mapping.cpp" "/home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/dense_mapping.dir/dense_mapping.cpp.o"
+  "/home/lees/linux_bak/CV_learning/SLAM/12_建图/pointcloud_mapping.cpp" "/home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/pointcloud_mapping.dir/pointcloud_mapping.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,12 +21,12 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
+  "/usr/local/include/opencv4"
   "/usr/include/vtk-7.1"
   "/usr/include/freetype2"
   "/usr/include/pcl-1.10"
   "/usr/include/ni"
   "/usr/include/openni2"
-  "/usr/local/include/opencv4"
   )
 
 # Targets to which this target links.

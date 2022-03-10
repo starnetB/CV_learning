@@ -14,16 +14,17 @@ using namespace std;
 #include <pcl/filters/statistical_outlier_removal.h>
 
 int main(int argc, char **argv) {
+
     vector<cv::Mat> colorImgs, depthImgs;    // 彩色图和深度图
     vector<Eigen::Isometry3d> poses;         // 相机位姿
 
     ifstream fin("./data/pose.txt");
-    if (!fin) {
-        cerr << "cannot find pose file" << endl;
+    if(!fin){
+        cerr<<"catnot find pose file "<<endl;
         return 1;
     }
 
-    for (int i = 0; i < 5; i++) {
+   for (int i = 0; i < 5; i++) {
         boost::format fmt("./data/%s/%d.%s"); //图像文件格式
         colorImgs.push_back(cv::imread((fmt % "color" % (i + 1) % "png").str()));
         depthImgs.push_back(cv::imread((fmt % "depth" % (i + 1) % "png").str(), -1)); // 使用-1读取原始图像
@@ -39,8 +40,8 @@ int main(int argc, char **argv) {
         //以上代码获取无副图，然后将图的位姿拿出来 
     }
 
-    // 计算点云并拼接
-    // 相机内参 
+    //计算点云并拼接 
+    //相机内参
     double cx = 319.5;
     double cy = 239.5;
     double fx = 481.2;
@@ -53,8 +54,7 @@ int main(int argc, char **argv) {
     typedef pcl::PointXYZRGB PointT;
     typedef pcl::PointCloud<PointT> PointCloud;
 
-    // 新建一个点云
-    PointCloud::Ptr pointCloud(new PointCloud);
+       PointCloud::Ptr pointCloud(new PointCloud);
     for (int i = 0; i < 5; i++) {
         PointCloud::Ptr current(new PointCloud);
         cout << "转换图像中: " << i + 1 << endl;
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
         PointCloud::Ptr tmp(new PointCloud);
         pcl::StatisticalOutlierRemoval<PointT> statistical_filter;
 
-        //一下代码对每个一点的周围五十个点做分析，生产高斯分布，如果一个点离开平均距离超过了一个标准差的设定阈值倍数，则舍去
+         //一下代码对每个一点的周围五十个点做分析，生产高斯分布，如果一个点离开平均距离超过了一个标准差的设定阈值倍数，则舍去
         statistical_filter.setMeanK(50);  //搜索周围50个点估计高斯分布
         statistical_filter.setStddevMulThresh(1.0);  //保留标准差倍数
         statistical_filter.setInputCloud(current);  //输入
@@ -103,8 +103,7 @@ int main(int argc, char **argv) {
     PointCloud::Ptr tmp(new PointCloud);
     voxel_filter.setInputCloud(pointCloud);
     voxel_filter.filter(*tmp);
-    tmp->swap(*pointCloud);
-
+    tmp->swap(*pointCloud);//将pointCloud 和tmp的点云内容交换
     cout << "滤波之后，点云共有" << pointCloud->size() << "个点." << endl;
 
     pcl::io::savePCDFileBinary("map.pcd", *pointCloud);

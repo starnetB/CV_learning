@@ -1,3 +1,4 @@
 /home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/rebuild_cache.dir
 /home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/edit_cache.dir
+/home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/pointcloud_mapping.dir
 /home/lees/linux_bak/CV_learning/SLAM/12_建图/build/CMakeFiles/dense_mapping.dir

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named pointcloud_mapping
+
+# Build rule for target.
+pointcloud_mapping: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pointcloud_mapping
+.PHONY : pointcloud_mapping
+
+# fast build rule for target.
+pointcloud_mapping/fast:
+	$(MAKE) -f CMakeFiles/pointcloud_mapping.dir/build.make CMakeFiles/pointcloud_mapping.dir/build
+.PHONY : pointcloud_mapping/fast
+
+#=============================================================================
 # Target rules for targets named dense_mapping
 
 # Build rule for target.
@@ -150,6 +163,33 @@ dense_mapping.cpp.s:
 	$(MAKE) -f CMakeFiles/dense_mapping.dir/build.make CMakeFiles/dense_mapping.dir/dense_mapping.cpp.s
 .PHONY : dense_mapping.cpp.s
 
+pointcloud_mapping.o: pointcloud_mapping.cpp.o
+
+.PHONY : pointcloud_mapping.o
+
+# target to build an object file
+pointcloud_mapping.cpp.o:
+	$(MAKE) -f CMakeFiles/pointcloud_mapping.dir/build.make CMakeFiles/pointcloud_mapping.dir/pointcloud_mapping.cpp.o
+.PHONY : pointcloud_mapping.cpp.o
+
+pointcloud_mapping.i: pointcloud_mapping.cpp.i
+
+.PHONY : pointcloud_mapping.i
+
+# target to preprocess a source file
+pointcloud_mapping.cpp.i:
+	$(MAKE) -f CMakeFiles/pointcloud_mapping.dir/build.make CMakeFiles/pointcloud_mapping.dir/pointcloud_mapping.cpp.i
+.PHONY : pointcloud_mapping.cpp.i
+
+pointcloud_mapping.s: pointcloud_mapping.cpp.s
+
+.PHONY : pointcloud_mapping.s
+
+# target to generate assembly for a file
+pointcloud_mapping.cpp.s:
+	$(MAKE) -f CMakeFiles/pointcloud_mapping.dir/build.make CMakeFiles/pointcloud_mapping.dir/pointcloud_mapping.cpp.s
+.PHONY : pointcloud_mapping.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... pointcloud_mapping"
 	@echo "... dense_mapping"
 	@echo "... dense_mapping.o"
 	@echo "... dense_mapping.i"
 	@echo "... dense_mapping.s"
+	@echo "... pointcloud_mapping.o"
+	@echo "... pointcloud_mapping.i"
+	@echo "... pointcloud_mapping.s"
 .PHONY : help
 
 
