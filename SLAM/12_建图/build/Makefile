@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named octomap_mapping
+
+# Build rule for target.
+octomap_mapping: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 octomap_mapping
+.PHONY : octomap_mapping
+
+# fast build rule for target.
+octomap_mapping/fast:
+	$(MAKE) -f CMakeFiles/octomap_mapping.dir/build.make CMakeFiles/octomap_mapping.dir/build
+.PHONY : octomap_mapping/fast
+
+#=============================================================================
+# Target rules for targets named surfel_mapping
+
+# Build rule for target.
+surfel_mapping: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 surfel_mapping
+.PHONY : surfel_mapping
+
+# fast build rule for target.
+surfel_mapping/fast:
+	$(MAKE) -f CMakeFiles/surfel_mapping.dir/build.make CMakeFiles/surfel_mapping.dir/build
+.PHONY : surfel_mapping/fast
+
+#=============================================================================
 # Target rules for targets named pointcloud_mapping
 
 # Build rule for target.
@@ -163,6 +189,33 @@ dense_mapping.cpp.s:
 	$(MAKE) -f CMakeFiles/dense_mapping.dir/build.make CMakeFiles/dense_mapping.dir/dense_mapping.cpp.s
 .PHONY : dense_mapping.cpp.s
 
+octomap_mapping.o: octomap_mapping.cpp.o
+
+.PHONY : octomap_mapping.o
+
+# target to build an object file
+octomap_mapping.cpp.o:
+	$(MAKE) -f CMakeFiles/octomap_mapping.dir/build.make CMakeFiles/octomap_mapping.dir/octomap_mapping.cpp.o
+.PHONY : octomap_mapping.cpp.o
+
+octomap_mapping.i: octomap_mapping.cpp.i
+
+.PHONY : octomap_mapping.i
+
+# target to preprocess a source file
+octomap_mapping.cpp.i:
+	$(MAKE) -f CMakeFiles/octomap_mapping.dir/build.make CMakeFiles/octomap_mapping.dir/octomap_mapping.cpp.i
+.PHONY : octomap_mapping.cpp.i
+
+octomap_mapping.s: octomap_mapping.cpp.s
+
+.PHONY : octomap_mapping.s
+
+# target to generate assembly for a file
+octomap_mapping.cpp.s:
+	$(MAKE) -f CMakeFiles/octomap_mapping.dir/build.make CMakeFiles/octomap_mapping.dir/octomap_mapping.cpp.s
+.PHONY : octomap_mapping.cpp.s
+
 pointcloud_mapping.o: pointcloud_mapping.cpp.o
 
 .PHONY : pointcloud_mapping.o
@@ -190,6 +243,33 @@ pointcloud_mapping.cpp.s:
 	$(MAKE) -f CMakeFiles/pointcloud_mapping.dir/build.make CMakeFiles/pointcloud_mapping.dir/pointcloud_mapping.cpp.s
 .PHONY : pointcloud_mapping.cpp.s
 
+surfel_mapping.o: surfel_mapping.cpp.o
+
+.PHONY : surfel_mapping.o
+
+# target to build an object file
+surfel_mapping.cpp.o:
+	$(MAKE) -f CMakeFiles/surfel_mapping.dir/build.make CMakeFiles/surfel_mapping.dir/surfel_mapping.cpp.o
+.PHONY : surfel_mapping.cpp.o
+
+surfel_mapping.i: surfel_mapping.cpp.i
+
+.PHONY : surfel_mapping.i
+
+# target to preprocess a source file
+surfel_mapping.cpp.i:
+	$(MAKE) -f CMakeFiles/surfel_mapping.dir/build.make CMakeFiles/surfel_mapping.dir/surfel_mapping.cpp.i
+.PHONY : surfel_mapping.cpp.i
+
+surfel_mapping.s: surfel_mapping.cpp.s
+
+.PHONY : surfel_mapping.s
+
+# target to generate assembly for a file
+surfel_mapping.cpp.s:
+	$(MAKE) -f CMakeFiles/surfel_mapping.dir/build.make CMakeFiles/surfel_mapping.dir/surfel_mapping.cpp.s
+.PHONY : surfel_mapping.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -197,15 +277,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... octomap_mapping"
+	@echo "... surfel_mapping"
 	@echo "... edit_cache"
 	@echo "... pointcloud_mapping"
 	@echo "... dense_mapping"
 	@echo "... dense_mapping.o"
 	@echo "... dense_mapping.i"
 	@echo "... dense_mapping.s"
+	@echo "... octomap_mapping.o"
+	@echo "... octomap_mapping.i"
+	@echo "... octomap_mapping.s"
 	@echo "... pointcloud_mapping.o"
 	@echo "... pointcloud_mapping.i"
 	@echo "... pointcloud_mapping.s"
+	@echo "... surfel_mapping.o"
+	@echo "... surfel_mapping.i"
+	@echo "... surfel_mapping.s"
 .PHONY : help
 
 

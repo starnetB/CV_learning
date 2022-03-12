@@ -510,7 +510,7 @@ flann_DIR:PATH=flann_DIR-NOTFOUND
 fmt_DIR:PATH=/usr/local/lib/cmake/fmt
 
 //The directory containing a CMake configuration file for octomap.
-octomap_DIR:PATH=octomap_DIR-NOTFOUND
+octomap_DIR:PATH=/usr/lib/x86_64-linux-gnu/octomap
 
 //Path to a library.
 pkgcfg_lib_PC_FLANN_flann:FILEPATH=/usr/lib/x86_64-linux-gnu/libflann.so

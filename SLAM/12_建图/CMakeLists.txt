@@ -20,8 +20,8 @@ include_directories(${PCL_INCLUDE_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 # octomap 
-# find_package(octomap REQUIRED)
-# include_directories(${OCTOMAP_INCLUDE_DIRS})
+find_package(octomap REQUIRED)
+include_directories(${OCTOMAP_INCLUDE_DIRS})
 
 set(THIRD_PARTY_LIBS
         ${OpenCV_LIBS}
@@ -32,3 +32,9 @@ target_link_libraries(dense_mapping ${THIRD_PARTY_LIBS} fmt)
 
 add_executable(pointcloud_mapping pointcloud_mapping.cpp)
 target_link_libraries(pointcloud_mapping ${OpenCV_LIBS} ${PCL_LIBRARIES} fmt)
+
+add_executable(surfel_mapping surfel_mapping.cpp)
+target_link_libraries(surfel_mapping ${OpenCV_LIBS} ${PCL_LIBRARIES} fmt)
+
+add_executable(octomap_mapping octomap_mapping.cpp)
+target_link_libraries(octomap_mapping ${OpenCV_LIBS} ${PCL_LIBRARIES} ${OCTOMAP_LIBRARIES} fmt)

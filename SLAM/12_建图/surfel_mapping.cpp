@@ -25,7 +25,8 @@ SurfelCloudPtr reconstructSurface(const PointCloudPtr &input,
     mls.setSearchRadius(radius);
     mls.setComputeNormals(true); // 需要法线
     mls.setSqrGaussParam(radius*radius);
-    mls.setPolynomialFit(polynomial_order>1);  //如果大于二阶，那么就需要使用多项式进行拟合，来提高精度
+    bool type=(polynomial_order>1);
+    mls.setPolynomialFit(type);  //如果大于二阶，使用多项式进行拟合，来提高精度
     mls.setPolynomialOrder(polynomial_order);  //设定阶
     mls.setInputCloud(input);
     SurfelCloudPtr output(new SurfelCloud);
