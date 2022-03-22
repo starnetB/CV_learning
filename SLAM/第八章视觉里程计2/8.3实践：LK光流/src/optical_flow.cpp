@@ -101,6 +101,9 @@ int main(int argc,char **argv){
 
     //key points,using GFTT here 
     vector<KeyPoint> kp1;
+    // 500 是最大的角点数量
+    // 0.01 是R
+    // 20是两个角点间的最小距离
     Ptr<GFTTDetector> detector=GFTTDetector::create(500,0.01,20);
     detector->detect(img1, kp1);
 
@@ -248,7 +251,9 @@ void OpticalFlowSingleLevel(
     kp2.resize(kp1.size());   //同步kp2与kp1的大小关系
     success.resize(kp1.size());  //判断符号同步关系 
     OpticalFlowTracker tracker(img1, img2, kp1, kp2, success, inverse, has_initial);
-    parallel_for_(Range(0, kp1.size()),  //线程共计运行五次，每次传入一个数
+    // placeholders::_1 表示占位符
+    // OpticalFlowTracker::calculateOpticalFlow,含有一个参数，所以有一个占位符，如果第二个参数的占位符应该如下placeholders::_2
+    parallel_for_(Range(0, kp1.size()),  
                   std::bind(&OpticalFlowTracker::calculateOpticalFlow, &tracker, placeholders::_1));
 }
 
@@ -267,7 +272,7 @@ inline float GetPixelValue(const cv::Mat &img,float x,float y){
     if(x>=img.cols)  x=img.cols-1;
     if(y>=img.rows)  y=img.rows-1;
     uchar *data=&img.data[int(y)*img.step+int(x)];  //从某一点数据开始指向数据
-    float xx=x-floor(x);  //获取小数部分
+    float xx=x-floor(x);  //获取小数部分    
     float yy=y-floor(y);  //获取小数部分
     return float((1-xx)*(1-yy)*data[0]+
                   xx*(1-yy)*data[1]+
@@ -309,8 +314,13 @@ void OpticalFlowTracker::calculateOpticalFlow(const Range &range){
             for (int x = -half_patch_size; x < half_patch_size; x++)
                 for (int y = -half_patch_size; y < half_patch_size; y++) {
                     double error = GetPixelValue(img1, kp.pt.x + x, kp.pt.y + y) -
-                                   GetPixelValue(img2, kp.pt.x + x + dx, kp.pt.y + y + dy);;  // Jacobian
-                    if (inverse == false) {  //-0.5什么意思，这里说的不清楚 ，这个应该是soble梯度的反向操作，
+                                   GetPixelValue(img2, kp.pt.x + x + dx, kp.pt.y + y + dy);;  
+                    // Jacobian
+                    // 这边error=I_{xy}-I_{xy+dxy}
+                    // 于是 error =-(Ix dx+Iy dy+It dt)
+                    // J=-[Ix,Iy]
+                    if (inverse == false) {  //为什么是负数，看上面就清楚了
+                        //推出的是-I_x *d_x
                         J = -1.0 * Eigen::Vector2d(
                             0.5 * (GetPixelValue(img2, kp.pt.x + dx + x + 1, kp.pt.y + dy + y) -
                                    GetPixelValue(img2, kp.pt.x + dx + x - 1, kp.pt.y + dy + y)),

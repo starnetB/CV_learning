@@ -311,7 +311,7 @@ void DirectPoseEstimationMultiLayer(
     // parameters
     int pyramids = 4;
     double pyramid_scale = 0.5;
-    double scales[] = {1.0, 0.5, 0.25, 0.125;
+    double scales[] = {1.0, 0.5, 0.25, 0.125};
     
     // create pyramids
     vector<cv::Mat> pyr1, pyr2; // image pyramids
