@@ -22,7 +22,7 @@ int main(int argc,char **argv){
     return 0;
 }
 
-void SolveBA(BALProblem &bal_problem){
+void SolveBA(BALProplem &bal_problem){
     const int point_block_size=bal_problem.point_block_size();   //size=3
     const int camera_block_size=bal_problem.camera_block_size();  //camera_size=9
     double *points=bal_problem.mutable_points();    //指向points的初始点
