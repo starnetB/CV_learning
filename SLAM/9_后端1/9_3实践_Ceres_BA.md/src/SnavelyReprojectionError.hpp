@@ -66,10 +66,5 @@ public:
 private:
     double observed_x;
     double observed_y;
-<<<<<<< HEAD
 };
 #endif
-=======
-}
-#endif   // SnavelReprojection.h
->>>>>>> 3c8278fe31450b7a0b5b96c230198634411c229b

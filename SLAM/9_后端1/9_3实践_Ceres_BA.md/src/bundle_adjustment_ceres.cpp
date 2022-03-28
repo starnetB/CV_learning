@@ -55,7 +55,6 @@ void SolveBA(BALProplem &bal_problem){
         problem.AddResidualBlock(cost_function, loss_function, camera, point);
     }
 
-    //show some information here ...
     // show some information here ...
     std::cout << "bal problem file loaded..." << std::endl;
     std::cout << "bal problem have " << bal_problem.num_cameras() << " cameras and "
