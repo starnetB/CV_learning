@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/ceres/internal/integer_sequence_algorithm.h
+utility
+-
+ceres/jet_fwd.h
+../include/ceres/internal/ceres/jet_fwd.h
+
+../include/ceres/internal/jet_traits.h
+tuple
+-
+type_traits
+-
+utility
+-
+ceres/internal/integer_sequence_algorithm.h
+../include/ceres/internal/ceres/internal/integer_sequence_algorithm.h
+ceres/jet_fwd.h
+../include/ceres/internal/ceres/jet_fwd.h
+
+../include/ceres/jet_fwd.h
+
+/home/ziye01/CV_learning/ceres-solver/internal/ceres/integer_sequence_algorithm_test.cc
+ceres/internal/integer_sequence_algorithm.h
+/home/ziye01/CV_learning/ceres-solver/internal/ceres/ceres/internal/integer_sequence_algorithm.h
+type_traits
+-
+utility
+-
+ceres/internal/jet_traits.h
+/home/ziye01/CV_learning/ceres-solver/internal/ceres/ceres/internal/jet_traits.h
+

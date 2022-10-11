@@ -1,0 +1,126 @@
+Performing C++ SOURCE FILE Test HAVE_BIGOBJ failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7ec15/fast && /usr/bin/make -f CMakeFiles/cmTC_7ec15.dir/build.make CMakeFiles/cmTC_7ec15.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7ec15.dir/src.cxx.o
+/usr/bin/g++    -DHAVE_BIGOBJ -fPIE   /bigobj -o CMakeFiles/cmTC_7ec15.dir/src.cxx.o -c /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp/src.cxx
+g++: error: /bigobj: No such file or directory
+make[1]: *** [CMakeFiles/cmTC_7ec15.dir/build.make:66: CMakeFiles/cmTC_7ec15.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_7ec15/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test HAVE_BIGOBJ failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_d2ab2/fast && /usr/bin/make -f CMakeFiles/cmTC_d2ab2.dir/build.make CMakeFiles/cmTC_d2ab2.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d2ab2.dir/src.cxx.o
+/usr/bin/g++    -DHAVE_BIGOBJ -fPIE   /bigobj -o CMakeFiles/cmTC_d2ab2.dir/src.cxx.o -c /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp/src.cxx
+g++: error: /bigobj: No such file or directory
+make[1]: *** [CMakeFiles/cmTC_d2ab2.dir/build.make:66: CMakeFiles/cmTC_d2ab2.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_d2ab2/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_31458/fast && /usr/bin/make -f CMakeFiles/cmTC_31458.dir/build.make CMakeFiles/cmTC_31458.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_31458.dir/src.c.o
+/usr/bin/gcc   -fPIC -DCMAKE_HAVE_LIBC_PTHREAD -fPIE   -o CMakeFiles/cmTC_31458.dir/src.c.o   -c /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_31458
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_31458.dir/link.txt --verbose=1
+/usr/bin/gcc -fPIC -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_31458.dir/src.c.o  -o cmTC_31458 
+/usr/bin/ld: CMakeFiles/cmTC_31458.dir/src.c.o: in function `main':
+src.c:(.text+0x46): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_31458.dir/build.make:87: cmTC_31458] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_31458/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_eb9c2/fast && /usr/bin/make -f CMakeFiles/cmTC_eb9c2.dir/build.make CMakeFiles/cmTC_eb9c2.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_eb9c2.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE   -o CMakeFiles/cmTC_eb9c2.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_eb9c2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eb9c2.dir/link.txt --verbose=1
+/usr/bin/gcc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_eb9c2.dir/CheckFunctionExists.c.o  -o cmTC_eb9c2  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_eb9c2.dir/build.make:87: cmTC_eb9c2] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_eb9c2/fast] Error 2
+
+
+
+Determining if the function sgemm_ exists failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_21625/fast && /usr/bin/make -f CMakeFiles/cmTC_21625.dir/build.make CMakeFiles/cmTC_21625.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_21625.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=sgemm_ -fPIE   -o CMakeFiles/cmTC_21625.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_21625
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21625.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=sgemm_    CMakeFiles/cmTC_21625.dir/CheckFunctionExists.c.o  -o cmTC_21625 
+/usr/bin/ld: CMakeFiles/cmTC_21625.dir/CheckFunctionExists.c.o: in function `main':
+CheckFunctionExists.c:(.text+0x14): undefined reference to `sgemm_'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_21625.dir/build.make:87: cmTC_21625] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_21625/fast] Error 2
+
+
+
+Determining if the function cheev_ exists failed with the following output:
+Change Dir: /home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_586fa/fast && /usr/bin/make -f CMakeFiles/cmTC_586fa.dir/build.make CMakeFiles/cmTC_586fa.dir/build
+make[1]: Entering directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_586fa.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=cheev_ -fPIE   -o CMakeFiles/cmTC_586fa.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_586fa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_586fa.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=cheev_    CMakeFiles/cmTC_586fa.dir/CheckFunctionExists.c.o  -o cmTC_586fa  /usr/lib/x86_64-linux-gnu/libblas.so 
+/usr/bin/ld: CMakeFiles/cmTC_586fa.dir/CheckFunctionExists.c.o: in function `main':
+CheckFunctionExists.c:(.text+0x14): undefined reference to `cheev_'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_586fa.dir/build.make:88: cmTC_586fa] Error 1
+make[1]: Leaving directory '/home/ziye01/CV_learning/ceres-solver/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_586fa/fast] Error 2
+
+
+

@@ -74,5 +74,6 @@
         "geometry": "cpp",
         "core": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "cmake.sourceDirectory": "${workspaceFolder}/SLAM/3/3.2 实践课程"
 }

@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ziye01/CV_learning/ceres-solver/internal/ceres/cuda_kernels.cu.cc
+cuda_runtime.h
+/home/ziye01/CV_learning/ceres-solver/internal/ceres/cuda_runtime.h
+
