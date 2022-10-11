@@ -83,8 +83,10 @@ int main(int argc, char **argv){
 
     double abc[3]={ae,be,ce};
 
+    //求解块，指定求解块，参数的维度
     typedef g2o::BlockSolver<g2o::BlockSolverTraits<3,1>> BlockSolverType;  //每个误差项优化变量维度为3，误差值维度为1
 
+    //指定，求解器类型
     typedef g2o::LinearSolverDense<BlockSolverType::PoseMatrixType> LinearSolverType; //线性求解器类型
 
     //梯度下降方法，可以从GN，LM，DogLeg中选
@@ -105,7 +107,7 @@ int main(int argc, char **argv){
     for(int i=0;i<N;i++){
         CurveFittingEdge *edge=new CurveFittingEdge(x_data[i]);
         edge->setId(i);                        //设置边的id
-        edge->setVertex(0,v);                  //设置顶点0id的顶点指向 V，指向同一个顶点
+        edge->setVertex(0,v);                  //设置顶点0，id的顶点指向 V，指向同一个顶点
         edge->setMeasurement(y_data[i]);   //观测数据
         edge->setInformation(Eigen::Matrix<double,1,1>::
                             Identity()*1/(w_sigma*w_sigma));
