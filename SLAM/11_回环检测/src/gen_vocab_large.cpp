@@ -54,6 +54,7 @@ int main( int argc, char** argv )
         descriptors.push_back( descriptor );
         cout<<"extracting features from image " << index++ <<endl;
     }
+    
     cout<<"extract total "<<descriptors.size()*500<<" features."<<endl;
     
     // create vocabulary 

@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
         //这边获取图的特征描述子
         descriptors.push_back(descriptor);
     }
+
     // we can compare the images directly or we can compare one image to a database 
     // images :
     cout << "comparing images with images " << endl;
@@ -56,6 +57,7 @@ int main(int argc, char **argv) {
         }
         cout<<endl;
     }
+    
     // or with database 直接与数据集比较计算得分
     cout << "comparing images with database " << endl;
     DBoW3::Database db(vocab, false, 0);
