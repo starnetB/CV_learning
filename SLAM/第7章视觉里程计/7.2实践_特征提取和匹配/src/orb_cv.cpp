@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
     //-- 读取图像
     Mat img_1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);  //读取彩色图片
     Mat img_2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
+    
     assert(img_1.data != nullptr && img_2.data != nullptr);  //确保图片不为空
 
     //-- 初始化

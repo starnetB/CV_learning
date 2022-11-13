@@ -35,6 +35,7 @@ public:
 };
 
 //误差模型 模板参数：观测值维度，类型，连接顶点类型,边
+//一元边
 class CurveFittingEdge:public g2o::BaseUnaryEdge<1,double,CurveFittingVertex>{
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -62,7 +63,7 @@ public:
     virtual bool read(istream &in){return true;}
     virtual bool write(ostream &out) const {return true;}  //1.当成员函数后面加const，函数中所有类中的成员属性不能被改变
 public:
-    double _x;  //x值，y值为_measurement ,父类自带了
+    double _x;  //x值，
 
 };
 
@@ -133,3 +134,6 @@ int main(int argc, char **argv){
 
     return 0;
 }
+
+//这里总结下，这里点只是在意优化变量的维度，而不会在意具体的观测量，通过setEstimate(Eigen::Vector3d(ae,be,ce))将优化变量传入
+//边需要传入，常数参数x和观测值y(setMeasurement(y_data[i]);)，并通过点来待优化变量，当然可以传入信息矩阵
