@@ -8,6 +8,29 @@
 using namespace std;
 using namespace cv;
 
+/** @brief Class for matching keypoint descriptors
+query descriptor index, train descriptor index, train image index, and distance between
+descriptors.
+*/
+// class CV_EXPORTS_W_SIMPLE DMatch
+// {
+// public:
+//     CV_WRAP DMatch();//默认构造函数
+
+//     CV_WRAP DMatch(int _queryIdx, int _trainIdx, float _distance);//构造函数
+//     CV_WRAP DMatch(int _queryIdx, int _trainIdx, int _imgIdx, float _distance);
+ 
+//     CV_PROP_RW int queryIdx; //query描述子下标,即match函数中位于前面的描述子
+//     CV_PROP_RW int trainIdx; // train描述子下标，match函数中位于后面的描述子
+ 
+//    // 匹配图像下标，对于一副图像img1的描述子,在其他图像中找到与其最相似的，imgIdx就是找到的图像下标
+//     CV_PROP_RW int imgIdx;  
+ 
+//     //两个描述子的距离，一般是欧式距离
+//     CV_PROP_RW float distance;
+//     // less is better
+//     bool operator<(const DMatch &m) const;
+// };
 /****************************************************
  * 本程序演示了如何使用2D-2D的特征匹配估计相机运动
  * **************************************************/
